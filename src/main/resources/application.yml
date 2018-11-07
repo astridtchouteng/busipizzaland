@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  context-path: /pizzaland
+
+spring:
+  datasource:
+    username: postgres
+    password: BuSI
+    url: jdbc:postgresql://localhost:5432/pizzaland
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate.ddl-auto: create
+    show-sql: true
