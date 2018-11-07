@@ -3,21 +3,36 @@ package be.busi.pizzaland.dataAccess.entity;
 import be.busi.pizzaland.model.RoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Role implements GrantedAuthority {
+@Entity
+@Table(name = "role")
+public class RoleEntity implements GrantedAuthority {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "role", length = 50)
+    @NotNull
     private RoleEnum role;
 
+    @ManyToMany(mappedBy = "roles")
     private Set<UserEntity> users = new HashSet<>();
 
-    public Role() {}
+    public RoleEntity() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public RoleEnum getRole() {
         return role;
@@ -33,6 +48,10 @@ public class Role implements GrantedAuthority {
 
     public void setUsers(Set<UserEntity> users) {
         this.users = users;
+    }
+
+    public void addUser(UserEntity userEntity){
+        users.add(userEntity);
     }
 
     @Override
