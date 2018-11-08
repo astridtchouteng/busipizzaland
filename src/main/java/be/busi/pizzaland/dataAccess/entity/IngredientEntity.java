@@ -1,0 +1,58 @@
+package be.busi.pizzaland.dataAccess.entity;
+
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "ingredient")
+public class IngredientEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Column(name = "nom", unique = true)
+    private String nom;
+
+    @NotNull
+    @Column(name = "stock")
+    private double stock;
+
+    @OneToMany(mappedBy = "primaryKey.ingredient",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)//cascade for this case is required
+    private Set<PortionEntity> portionEntities = new HashSet<>();
+
+    public IngredientEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public double getStock() {
+        return stock;
+    }
+
+    public void setStock(double stock) {
+        this.stock = stock;
+    }
+
+
+}

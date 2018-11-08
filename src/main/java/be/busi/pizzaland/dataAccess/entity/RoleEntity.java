@@ -56,6 +56,6 @@ public class RoleEntity implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return role.getRole();
+        return role.name();
     }
 }
