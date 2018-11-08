@@ -68,7 +68,13 @@ public class UserEntity implements UserDetails {
     )
     private Set<RoleEntity> roles = new HashSet<>();
 
-    public UserEntity() {}
+    @OneToMany(mappedBy = "user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<CommandeEntity> commandes = new HashSet<>();
+
+    public UserEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -199,5 +205,21 @@ public class UserEntity implements UserDetails {
 
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public Set<CommandeEntity> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(Set<CommandeEntity> commandes) {
+        this.commandes = commandes;
+    }
+
+    public void addCommande(CommandeEntity commandeEntity){
+        this.commandes.add(commandeEntity);
+    }
+
+    public void addRole(RoleEntity roleEntity){
+        this.roles.add(roleEntity);
     }
 }

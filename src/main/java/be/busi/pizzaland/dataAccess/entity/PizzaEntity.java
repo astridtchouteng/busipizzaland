@@ -15,9 +15,9 @@ public class PizzaEntity {
     private Long id;
 
     @JoinColumn(name = "categorie",
-                referencedColumnName = "id")
+            referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private CategorieEntity categorieEntity;
+    private CategorieEntity categorie;
 
     @Column(name = "description")
     private String description;
@@ -29,7 +29,14 @@ public class PizzaEntity {
     @OneToMany(mappedBy = "primaryKey.pizza",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<PortionEntity> portionEntities = new HashSet<>();
+    private Set<PortionEntity> portions = new HashSet<>();
+
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "primaryKey.pizza")
+    private Set<LigneCommandeEntity> ligneCommandes = new HashSet<>();
 
 
     public PizzaEntity() {
@@ -43,12 +50,12 @@ public class PizzaEntity {
         this.id = id;
     }
 
-    public CategorieEntity getCategorieEntity() {
-        return categorieEntity;
+    public CategorieEntity getCategorie() {
+        return categorie;
     }
 
-    public void setCategorieEntity(CategorieEntity categorieEntity) {
-        this.categorieEntity = categorieEntity;
+    public void setCategorie(CategorieEntity categorie) {
+        this.categorie = categorie;
     }
 
     public String getDescription() {
@@ -65,5 +72,29 @@ public class PizzaEntity {
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public Set<PortionEntity> getPortions() {
+        return portions;
+    }
+
+    public void setPortions(Set<PortionEntity> portions) {
+        this.portions = portions;
+    }
+
+    public Set<LigneCommandeEntity> getLigneCommandes() {
+        return ligneCommandes;
+    }
+
+    public void setLigneCommandes(Set<LigneCommandeEntity> ligneCommandes) {
+        this.ligneCommandes = ligneCommandes;
+    }
+
+    public void addPortion(PortionEntity portionEntity){
+        this.portions.add(portionEntity);
+    }
+
+    public void addLigneCommande(LigneCommandeEntity ligneCommandeEntity){
+        this.ligneCommandes.add(ligneCommandeEntity);
     }
 }

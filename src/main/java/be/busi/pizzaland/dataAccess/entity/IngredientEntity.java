@@ -25,7 +25,7 @@ public class IngredientEntity {
     @OneToMany(mappedBy = "primaryKey.ingredient",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)//cascade for this case is required
-    private Set<PortionEntity> portionEntities = new HashSet<>();
+    private Set<PortionEntity> portions = new HashSet<>();
 
     public IngredientEntity() {
     }
@@ -54,5 +54,15 @@ public class IngredientEntity {
         this.stock = stock;
     }
 
+    public Set<PortionEntity> getPortions() {
+        return portions;
+    }
 
+    public void setPortions(Set<PortionEntity> portions) {
+        this.portions = portions;
+    }
+
+    public void addPortion(PortionEntity portionEntity){
+        this.portions.add(portionEntity);
+    }
 }

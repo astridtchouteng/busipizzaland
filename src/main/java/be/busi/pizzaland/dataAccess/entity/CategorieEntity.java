@@ -17,9 +17,10 @@ public class CategorieEntity {
 
     @Column(name = "categorie", unique = true)
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private CategorieEnum categorieEnum;
 
-    @OneToMany(mappedBy = "categorieEntity",
+    @OneToMany(mappedBy = "categorie",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<PizzaEntity> pizzas;

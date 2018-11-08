@@ -1,6 +1,8 @@
 package be.busi.pizzaland.dataAccess.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +21,7 @@ public class PortionEntity {
 
     @Column(name = "portion")
     @NotNull
+    @Min(value = 1)
     private Double portion;
 
     public PortionEntity() {}
@@ -39,5 +42,20 @@ public class PortionEntity {
         this.portion = portion;
     }
 
+    public void getIngredient(){
+        getPrimaryKey().getIngredientEntity();
+    }
+
+    public void setIngredient(IngredientEntity ingredient){
+        getPrimaryKey().setIngredientEntity(ingredient.getId());
+    }
+
+    public void getPizza(){
+        getPrimaryKey().getPizzaEntity();
+    }
+
+    public void setPizza(PizzaEntity pizza){
+        getPrimaryKey().setIngredientEntity(pizza.getId());
+    }
 
 }
