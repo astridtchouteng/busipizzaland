@@ -5,8 +5,6 @@
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
     </head>
     <body>
-        Welcome, Astrid
-
-
+        Welcome, Astrid <a href = "${pageContext.request.contextPath}/login"></a>
     </body>
 </html>

@@ -5,11 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 </head>
 <body>
 <!------ Include the above in your HEAD tag ---------->
@@ -24,6 +20,7 @@
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin">
+
             <span id="reauth-email" class="reauth-email"></span>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -37,6 +34,9 @@
         <a href="#" class="forgot-password">
             Forgot the password?
         </a>
+        <%--<form:form method="post" modelAttribute="currentUser">--%>
+            <%----%>
+        <%--</form:form>--%>
     </div><!-- /card-container -->
 </div><!-- /container -->
 
