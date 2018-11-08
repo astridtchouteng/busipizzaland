@@ -3,11 +3,9 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
-
     </head>
     <body>
-        Welcome, Astrid, push vers astrid.
-
+        Page Login!
 
     </body>
 </html>

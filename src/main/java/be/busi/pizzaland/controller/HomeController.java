@@ -20,10 +20,6 @@ public class HomeController {
     @GetMapping
     public String home(Model model) {
 
-        RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole(RoleEnum.ROLE_ADMIN);
-
-        roleRepository.save(roleEntity);
 
         model.addAttribute("titre","Pizza BIO");
         return "integrated:welcome";

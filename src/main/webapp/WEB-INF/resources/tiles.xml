@@ -11,7 +11,4 @@
         <put-attribute name="main-content" value="/WEB-INF/jsp/{1}.jsp"/>
     </definition>
 
-    <!--<definition username="error" extends="template-main" >
-        <put-attribute username="main-content" value="/WEB-INF/jsp/error.jsp"/>
-    </definition>-->
 </tiles-definitions>
