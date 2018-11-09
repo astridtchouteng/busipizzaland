@@ -1,6 +1,6 @@
 package be.busi.pizzaland.dataAccess.dao;
 
-import be.busi.pizzaland.dataAccess.Util.ProviderConverter;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
 import be.busi.pizzaland.dataAccess.repository.CategorieRepository;
 import be.busi.pizzaland.model.CategorieEnum;

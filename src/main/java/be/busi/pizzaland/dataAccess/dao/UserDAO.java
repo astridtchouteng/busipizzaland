@@ -2,8 +2,7 @@ package be.busi.pizzaland.dataAccess.dao;
 
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.dataAccess.repository.UserRepository;
-import be.busi.pizzaland.dataAccess.Util.ProviderConverter;
-import be.busi.pizzaland.exception.UserExistsException;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +35,7 @@ public class UserDAO implements UserDetailsService {
         return user;
     }
 
-    public User save(User user) throws UserExistsException {
+    public User save(User user){
 
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
