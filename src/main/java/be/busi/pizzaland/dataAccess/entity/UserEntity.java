@@ -38,10 +38,6 @@ public class UserEntity implements UserDetails {
     @Column(name = "adresse")
     private String adresse;
 
-    @Column(name = "age")
-    //@DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate date_naissance;
-
     @Column(name = "sexe")
     @NotNull
     private String sexe;
@@ -88,7 +84,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
@@ -123,14 +119,6 @@ public class UserEntity implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public LocalDate getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(LocalDate date_naissance) {
-        this.date_naissance = date_naissance;
     }
 
     public String getSexe() {

@@ -14,13 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/home")
 public class HomeController {
 
-    @Autowired
-    private RoleRepository roleRepository;
-
     @GetMapping
     public String home(Model model) {
-
-
         model.addAttribute("titre","Pizza BIO");
         return "integrated:welcome";
     }
