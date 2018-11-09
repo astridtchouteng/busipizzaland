@@ -52,6 +52,6 @@ public class InscriptionController {
         } catch (UserExistsException e) {
             System.out.println(e.getMessage());
         }
-        return "redirect:/welcome";
+        return "redirect:/home";
     }
 }

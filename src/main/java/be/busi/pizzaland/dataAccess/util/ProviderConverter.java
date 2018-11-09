@@ -1,7 +1,11 @@
-package be.busi.pizzaland.dataAccess.util;
+package be.busi.pizzaland.dataAccess.Util;
 
+import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
+import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
 import be.busi.pizzaland.dataAccess.entity.RoleEntity;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
+import be.busi.pizzaland.model.CategorieEnum;
+import be.busi.pizzaland.model.Pizza;
 import be.busi.pizzaland.model.Role;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +79,40 @@ public class ProviderConverter {
         RoleEntity roleEntity = new RoleEntity();
         roleEntity.setRole(role.getNameRole());
         return roleEntity;
+    }
+
+    public CategorieEnum categorieEntityToCategorieEnum(CategorieEntity categorieEntity) {
+
+        return categorieEntity.getCategorieEnum();
+    }
+
+    public CategorieEntity categorieEnumToCategorie(CategorieEnum categorieEnum){
+
+        CategorieEntity categorieEntity = new CategorieEntity();
+        categorieEntity.setCategorieEnum(categorieEnum);
+        return categorieEntity;
+    }
+
+    public PizzaEntity PizzaModelToPizzaEntity(Pizza pizza) {
+
+        PizzaEntity pizzaEntity = new PizzaEntity();
+
+        pizzaEntity.setCategorie(categorieEnumToCategorie(pizza.getCategorie()));
+        pizzaEntity.setPrix(pizza.getPrix());
+        pizzaEntity.setDescription(pizza.getDescription());
+
+        return pizzaEntity;
+    }
+
+    public Pizza PizzaEntityToPizzaModel(PizzaEntity pizzaEntity) {
+
+        Pizza pizza = new Pizza();
+
+        pizza.setCategorie(categorieEntityToCategorieEnum(pizzaEntity.getCategorie()));
+        pizza.setPrix (pizzaEntity.getPrix());
+        pizza.setDescription(pizzaEntity.getDescription());
+
+        return pizza;
     }
 
 

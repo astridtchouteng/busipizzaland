@@ -20,7 +20,7 @@ public class CategorieDAO {
 
     public CategorieEnum save(CategorieEnum categorie){
 
-        CategorieEntity categorieEntity = providerConverter.categorieEnumToCategorieEntity(categorie);
+        CategorieEntity categorieEntity = providerConverter.categorieEnumToCategorie(categorie);
         CategorieEntity categorieSaved = categorieRepository.save(categorieEntity);
         return providerConverter.categorieEntityToCategorieEnum(categorieSaved);
     }
