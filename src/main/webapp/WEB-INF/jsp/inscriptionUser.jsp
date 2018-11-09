@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-    <title></title>
+    <title>${titre}</title>
 </head>
 <body>
 <div class="container">
@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <form:form method="post" action="/enregistrer" modelAttribute="user">
+            <form:form method="post" action="/pizzaland/inscription" modelAttribute="currentUser">
                 <div class="form-group">
                     <form:label path="username"><label>Username</label></form:label>
                     <form:input path="username" cssClass="form-control"></form:input>
@@ -33,7 +33,7 @@
                     <form:password path="password" cssClass="form-control"></form:password>
                 </div>
                 <div class="form-group">
-                    <form:label path="password">ConfirmPassword</form:label>
+                    ConfirmPassword
                     <input type="password" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -42,12 +42,8 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio">
-                    <label class="form-check-label">Boy</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" value="M">
-                    <label class="form-check-label" value="F">Girl</label>
+                    <form:radiobutton path="sexe" value="true" label="Boy"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="false" label="Girl"></form:radiobutton>
                 </div>
 
 

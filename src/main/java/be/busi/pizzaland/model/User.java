@@ -3,22 +3,31 @@ package be.busi.pizzaland.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.*;
 
 public class User implements UserDetails {
 
+    @NotNull
     private String username;
-    private Integer firstName;
+    @NotNull
+    private String firstname;
+    @NotNull
     private String password;
+
     private String email;
+
     private String adresse;
-    private LocalDate date_naissance;
+
+    @NotNull
     private String sexe;
+
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
+    @NotNull
     private Set<Role> roles = new HashSet<>();
     private Set<Commande> commandes = new HashSet<>();
 
@@ -114,12 +123,12 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public Integer getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(Integer firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setPassword(String password) {
@@ -140,14 +149,6 @@ public class User implements UserDetails {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public LocalDate getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(LocalDate date_naissance) {
-        this.date_naissance = date_naissance;
     }
 
     public String getSexe() {
