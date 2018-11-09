@@ -40,11 +40,7 @@
                     <form:label path="adresse">Adresse</form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>
                 </div>
-                <%--<div class="form-group">--%>
-                    <%--<form:label path="age">Age</form:label>--%>
-                    <%--<fmt:formatDate pattern="dd/MM/yyy" value = "${age}" />--%>
-                    <%--<form:input path="age"></form:input>--%>
-                <%--</div>--%>
+
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio">
                     <label class="form-check-label">Boy</label>

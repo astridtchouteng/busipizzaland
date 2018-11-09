@@ -20,6 +20,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String login(Model model) {
-        return "integrated:login";
+        model.addAttribute("user", new User());
+        return "integrated:loginUser";
     }
 }
