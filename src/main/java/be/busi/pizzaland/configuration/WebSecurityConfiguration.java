@@ -19,12 +19,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/home"
     };
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/users"};
-    String[] staticResources = {
+
+    /* String[] staticResources = {
             "/css/**",
             "/images/**",
             "/fonts/**",
             "/scripts/**",
-    };
+    };*/
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -37,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN")
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
-                .antMatchers(staticResources).permitAll()
+                //.antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
 
                 .and()
