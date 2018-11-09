@@ -52,7 +52,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                .failureHandler(new AuthenticationFailureHandler() {
+                /*.failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
                                                         HttpServletResponse httpServletResponse,
@@ -60,7 +60,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                             throws IOException, ServletException {
                         System.out.println("****"+e.getMessage());
                     }
-                })
+                })*/
                 .loginPage(LOGIN_REQUEST)
                 .permitAll()
 

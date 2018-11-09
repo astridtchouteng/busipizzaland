@@ -3,6 +3,7 @@ package be.busi.pizzaland.dataAccess.util;
 import be.busi.pizzaland.dataAccess.entity.RoleEntity;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.model.Role;
+import be.busi.pizzaland.model.RoleEnum;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -55,11 +56,10 @@ public class ProviderConverter {
         userEntity.setCredentialsNonExpired(user.isCredentialsNonExpired());
         userEntity.setEnabled(user.isEnabled());
 
+        RoleEntity role = new RoleEntity();
+        role.setRole(RoleEnum.ROLE_USER);
         Set<RoleEntity> rolesEntity = new HashSet<>();
-        user.getAuthorities().stream()
-                .forEach(role -> {
-                    rolesEntity.add(roleToRoleEntity((Role) role));
-                });
+        rolesEntity.add(role);
         userEntity.setRoles(rolesEntity);
 
         return userEntity;

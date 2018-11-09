@@ -44,14 +44,7 @@ public class InscriptionController {
         if(errors.hasErrors()){
             return "integrated:inscriptionUser";
         }
-        Role role = new Role();
-        role.setNameRole(RoleEnum.ROLE_USER);
-        user.addRole(role);
-        try {
-            userDAO.save(user);
-        } catch (UserExistsException e) {
-            System.out.println(e.getMessage());
-        }
+        userDAO.save(user);
         return "redirect:/welcome";
     }
 }
