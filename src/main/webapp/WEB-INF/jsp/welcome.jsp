@@ -5,6 +5,13 @@
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
     </head>
     <body>
-        Welcome, Astrid <a href = "${pageContext.request.contextPath}/login"></a>
+        <div class = "container">
+            <p>Welcome, Astrid</p>
+            <p><a href = "${pageContext.request.contextPath}/login">login</a></p>
+            <p><a href = "${pageContext.request.contextPath}/inscription">inscription</a></p>
+        </div>
+
+
+
     </body>
 </html>

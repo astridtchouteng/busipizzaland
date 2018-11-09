@@ -1,6 +1,7 @@
 package be.busi.pizzaland.dataAccess.entity;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,6 +39,7 @@ public class UserEntity implements UserDetails {
     private String adresse;
 
     @Column(name = "age")
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate date_naissance;
 
     @Column(name = "sexe")

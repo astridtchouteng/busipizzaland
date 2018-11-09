@@ -3,14 +3,13 @@ package be.busi.pizzaland.controller;
 
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/login")
-public class LoginController {
+@RequestMapping(value = "/inscription")
+public class InscriptionController {
 
     // je dois utiliser User et pas UserEntity
     @ModelAttribute("user")
@@ -19,8 +18,14 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String login() {
+    public String inscription() {
 
-        return "integrated:loginUser";
+        return "integrated:inscriptionUser";
+    }
+
+    @RequestMapping(value = "/enregistrer", method = RequestMethod.POST)
+    public String enregistrer() {
+
+        return "integrated:welcome";
     }
 }
