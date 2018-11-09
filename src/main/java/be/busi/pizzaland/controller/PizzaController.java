@@ -30,5 +30,6 @@ public class PizzaController {
         if(errors.hasErrors())
             return "redirect./errors";
 
+        return "integrated:welcome";
     }
 }
