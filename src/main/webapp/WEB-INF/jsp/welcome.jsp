@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
-
+        <title>${titre}</title>
     </head>
     <body>
         <div class = "container">

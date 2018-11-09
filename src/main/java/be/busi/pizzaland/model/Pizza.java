@@ -1,6 +1,5 @@
 package be.busi.pizzaland.model;
 
-import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
 
 import java.util.Objects;
 
@@ -10,7 +9,7 @@ public class Pizza {
 
     private Long id;
 
-    private CategorieEntity categorie;
+    private CategorieEnum categorie;
 
     private String description;
 
@@ -27,11 +26,11 @@ public class Pizza {
         this.id = id;
     }
 
-    public CategorieEntity getCategorie() {
+    public CategorieEnum getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(CategorieEntity categorie) {
+    public void setCategorie(CategorieEnum categorie) {
         this.categorie = categorie;
     }
 
