@@ -44,6 +44,6 @@ public class PizzaController {
         Pizza pizzaToBeSaved = pizza;
         pizzaToBeSaved = pizzaDAO.save(pizza);
 
-        return "integrated:welcome";
+        return "redirect:/welcome";
     }
 }

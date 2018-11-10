@@ -111,6 +111,7 @@ public class ProviderConverter {
         pizza.setCategorie(categorieEntityToCategorieEnum(pizzaEntity.getCategorie()));
         pizza.setPrix (pizzaEntity.getPrix());
         pizza.setDescription(pizzaEntity.getDescription());
+        pizza.setId(pizzaEntity.getId());
 
         return pizza;
     }
