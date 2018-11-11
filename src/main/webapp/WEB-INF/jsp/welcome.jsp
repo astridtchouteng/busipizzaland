@@ -7,18 +7,7 @@
     </head>
     <body>
         <div class="row mt-4">
-            <%--<div class="col-lg-3" style="max-width: 250px;">--%>
-                <%--<div class="list-group" id="list-tab" role="tablist">--%>
-                    <%--<c:forEach items="${cats}" var="cat">--%>
-                        <%--&lt;%&ndash;<a href="${pageContext.request.contextPath}/home/categorie?categorie=${cat}" >${cat}</a>&ndash;%&gt;--%>
-                        <%--<a class="list-group-item d-flex justify-content-between align-items-center--%>
-                                        <%--list-group-item-action list-group-item-primary"--%>
-                           <%--data-toggle="list" href="${pageContext.request.contextPath}/home/categorie?categorie=${cat}" role="tab" aria-controls="profile">--%>
-                                <%--${cat}--%>
-                            <%--<span class="badge badge-primary badge-pill">2</span>--%>
-                        <%--</a>--%>
-                    <%--</c:forEach>--%>
-                <%--</div>--%>
+            <div class="col-3">
                 <ul class="list-group">
                     <c:forEach items="${cats}" var="cat">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -28,9 +17,10 @@
                         </li>
                     </c:forEach>
                 </ul>
-            <%--</div>--%>
+            </div>
+
             <div class="col-lg-9">
-                <c:if test="${pizzas!= null  and  not empty pizzas}">
+                <%--<c:if test="${pizzas!= null  and  not empty pizzas}">--%>
                     <div class="row card-deck">
                         <c:forEach items="${pizzas}" var="pizza">
                             <div class="card text-white bg-warning mb-3 mr-3"
@@ -64,7 +54,7 @@
                             </div>
                         </c:forEach>
                     </div>
-                </c:if>
+                <%--</c:if>--%>
             </div>
         </div>
     </body>

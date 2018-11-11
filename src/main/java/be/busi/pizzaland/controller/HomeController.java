@@ -38,7 +38,7 @@ public class HomeController {
 
         if(pizzas == null || pizzas.isEmpty()){
             pizzas = pizzaDAO.getAll();
-            model.addAttribute("pizzas", pizzas);
+            model.addAttribute(PIZZAS, pizzas);
         }
 
         System.out.println(pizzas);
@@ -46,7 +46,7 @@ public class HomeController {
         Set<CategorieEnum> categorieEnums = categorieService.getCategories();
         List<String> catStrings = categorieEnums.stream().map(categorieEnum -> categorieEnum.getName()).collect(Collectors.toList());
         model.addAttribute("cats", catStrings);
-        return "integrated:welcome";
+        return "integrated:afficherPanier";
     }
 
     @RequestMapping(value = "/categorie", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class HomeController {
 
         System.out.println(pizzaTries);
 
-        model.addAttribute("pizzas", pizzaTries);
+        model.addAttribute(PIZZAS, pizzaTries);
 
         return "redirect:/home";
     }
