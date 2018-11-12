@@ -6,15 +6,11 @@ import java.util.Objects;
 
 public class Pizza {
 
-
     private Long id;
-
-    private CategorieEnum categorie;
-
+    private Categorie categorie;
     private String description;
-
     private double prix;
-
+    private String nom;
     public Pizza() {
     }
 
@@ -26,11 +22,19 @@ public class Pizza {
         this.id = id;
     }
 
-    public CategorieEnum getCategorie() {
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Categorie getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(CategorieEnum categorie) {
+    public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 

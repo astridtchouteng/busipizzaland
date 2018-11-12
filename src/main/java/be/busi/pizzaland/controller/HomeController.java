@@ -2,6 +2,7 @@ package be.busi.pizzaland.controller;
 
 
 import be.busi.pizzaland.Service.CategorieService;
+import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.Constants;
@@ -23,8 +24,9 @@ public class HomeController {
 
     @Autowired
     private PizzaDAO pizzaDAO;
+
     @Autowired
-    private CategorieService categorieService;
+    private CategorieDAO categorieDAO;
 
     @ModelAttribute(Constants.PIZZAS)
     public Set<Pizza> pizzas(){
@@ -34,17 +36,11 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @ModelAttribute(Constants.PIZZAS) Set<Pizza> pizzas) {
 
-        if(pizzas == null || pizzas.isEmpty()){
-            pizzas = pizzaDAO.getAll();
-            model.addAttribute(Constants.PIZZAS, pizzas);
-        }
+         pizzas = pizzaDAO.getAll();
+         model.addAttribute(Constants.PIZZAS, pizzas);
 
-        System.out.println(pizzas);
-
-        Set<CategorieEnum> categorieEnums = categorieService.getCategories();
-        List<String> catStrings = categorieEnums.stream().map(categorieEnum -> categorieEnum.getName()).collect(Collectors.toList());
-        model.addAttribute("cats", catStrings);
-        return "integrated:afficherPanier";
+        model.addAttribute("categories", categorieDAO.getAll());
+        return "integrated:welcome";
     }
 
     @RequestMapping(value = "/categorie", method = RequestMethod.GET)
