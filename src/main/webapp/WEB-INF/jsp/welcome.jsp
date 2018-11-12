@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class = "container">
-            <p>Welcome, Astrid</p>
+            <p>Welcome, Astrid!!!</p>
             <p><a href = "${pageContext.request.contextPath}/login">login</a></p>
             <p><a href = "${pageContext.request.contextPath}/inscription">inscription</a></p>
         </div>
