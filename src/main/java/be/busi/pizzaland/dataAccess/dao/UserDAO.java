@@ -36,7 +36,7 @@ public class UserDAO implements UserDetailsService {
         return user;
     }
 
-    public User save(User user) throws UserExistsException {
+    public User save(User user){
 
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);

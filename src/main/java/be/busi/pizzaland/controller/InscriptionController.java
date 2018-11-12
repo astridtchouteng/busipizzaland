@@ -47,11 +47,9 @@ public class InscriptionController {
         Role role = new Role();
         role.setNameRole(RoleEnum.ROLE_USER);
         user.addRole(role);
-        try {
+
             userDAO.save(user);
-        } catch (UserExistsException e) {
-            System.out.println(e.getMessage());
-        }
+
         return "redirect:/home";
     }
 }
