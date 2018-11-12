@@ -37,6 +37,12 @@
                     <input type="password" class="form-control" />
                 </div>
                 <div class="form-group">
+                    <form:label path="role"><label>Role</label></form:label>
+                    <form:select path="role">
+                        <form:options items="${roles}" itemValue="nameRole" itemLabel="nameRole"/>
+                    </form:select>
+                </div>
+                <div class="form-group">
                     <form:label path="adresse">Adresse</form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>
                 </div>

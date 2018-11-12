@@ -21,10 +21,13 @@ public class RoleEntity implements GrantedAuthority {
     @NotNull
     private RoleEnum role;
 
-    @ManyToMany(mappedBy = "roles")
+    @OneToMany(mappedBy = "role",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<UserEntity> users = new HashSet<>();
 
-    public RoleEntity() {}
+    public RoleEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -50,7 +53,7 @@ public class RoleEntity implements GrantedAuthority {
         this.users = users;
     }
 
-    public void addUser(UserEntity userEntity){
+    public void addUser(UserEntity userEntity) {
         users.add(userEntity);
     }
 

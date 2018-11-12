@@ -14,6 +14,11 @@ public class PizzaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(name = "nom", unique = true)
+    private String nom;
+
+    @NotNull
     @JoinColumn(name = "categorie",
             referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,6 +53,14 @@ public class PizzaEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public CategorieEntity getCategorie() {
@@ -97,4 +110,6 @@ public class PizzaEntity {
     public void addLigneCommande(LigneCommandeEntity ligneCommandeEntity){
         this.ligneCommandes.add(ligneCommandeEntity);
     }
+
+
 }

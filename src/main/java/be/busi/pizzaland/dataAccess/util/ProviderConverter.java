@@ -35,12 +35,7 @@ public class ProviderConverter {
         user.setCredentialsNonExpired(userEntity.isCredentialsNonExpired());
         user.setEnabled(userEntity.isEnabled());
 
-        Set<Role> roles = new HashSet<>();
-        userEntity.getAuthorities().stream()
-                .forEach(roleEntity -> {
-                    roles.add(roleEntityToRole((RoleEntity) roleEntity));
-                });
-        user.setRoles(roles);
+        user.setRole(roleEntityToRole(userEntity.getRole()));
 
         return user;
     }
@@ -58,13 +53,7 @@ public class ProviderConverter {
         userEntity.setAccountNonLocked(user.isAccountNonLocked());
         userEntity.setCredentialsNonExpired(user.isCredentialsNonExpired());
         userEntity.setEnabled(user.isEnabled());
-
-        Set<RoleEntity> rolesEntity = new HashSet<>();
-        user.getAuthorities().stream()
-                .forEach(role -> {
-                    rolesEntity.add(roleToRoleEntity((Role) role));
-                });
-        userEntity.setRoles(rolesEntity);
+        userEntity.setRole(roleToRoleEntity(user.getRole()));
 
         return userEntity;
     }

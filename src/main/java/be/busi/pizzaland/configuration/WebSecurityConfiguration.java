@@ -23,9 +23,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
-            "/home","/inscription", "/pizza", "/home/categorie"
+            "/home","/inscription", "/home/categorie"
     };
-    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/users"};
+    private static final String[] AUTHORIZED_REQUESTS_USER = new String[]{
+      //pizza customizée
+    };
+    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
+            "/users","/pizza","/ingredient"
+    };
 
      String[] staticResources = {
             "/css/**",
@@ -45,6 +50,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN")
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
+                .antMatchers(AUTHORIZED_REQUESTS_USER).permitAll()
                 .antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
 

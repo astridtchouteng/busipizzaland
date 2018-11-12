@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -58,13 +59,12 @@ public class UserEntity implements UserDetails {
     @NotNull
     private Boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
-    )
-    private Set<RoleEntity> roles = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER,
+                cascade = CascadeType.ALL)
+    @NotNull
+    @JoinColumn(name = "role",
+            referencedColumnName = "id")
+    private RoleEntity role;
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,
@@ -84,7 +84,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return Arrays.asList(role);
     }
 
     @Override
@@ -189,12 +189,12 @@ public class UserEntity implements UserDetails {
         this.adresse = adresse;
     }
 
-    public Set<RoleEntity> getRoles() {
-        return roles;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setRoles(Set<RoleEntity> roles) {
-        this.roles = roles;
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     public Set<CommandeEntity> getCommandes() {
@@ -205,11 +205,8 @@ public class UserEntity implements UserDetails {
         this.commandes = commandes;
     }
 
-    public void addCommande(CommandeEntity commandeEntity){
+    public void addCommande(CommandeEntity commandeEntity) {
         this.commandes.add(commandeEntity);
     }
 
-    public void addRole(RoleEntity roleEntity){
-        this.roles.add(roleEntity);
-    }
 }

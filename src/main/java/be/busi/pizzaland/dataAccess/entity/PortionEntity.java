@@ -24,6 +24,11 @@ public class PortionEntity {
     @Min(value = 1)
     private Double portion;
 
+    public PortionEntity(PortionId primaryKey, Double portion) {
+        this.primaryKey = primaryKey;
+        this.portion = portion;
+    }
+
     public PortionEntity() {}
 
     public PortionId getPrimaryKey() {
