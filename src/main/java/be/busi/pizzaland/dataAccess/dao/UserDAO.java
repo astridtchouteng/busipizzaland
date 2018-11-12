@@ -48,7 +48,6 @@ public class UserDAO implements UserDetailsService {
     }
 
     public User save(User user) {
-
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setAccountNonExpired(true);

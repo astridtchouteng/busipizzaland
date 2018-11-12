@@ -36,12 +36,7 @@ public class ProviderConverter {
         user.setCredentialsNonExpired(userEntity.isCredentialsNonExpired());
         user.setEnabled(userEntity.isEnabled());
 
-        Set<Role> roles = new HashSet<>();
-        userEntity.getAuthorities().stream()
-                .forEach(roleEntity -> {
-                    roles.add(roleEntityToRole((RoleEntity) roleEntity));
-                });
-        user.setRoles(roles);
+        user.setRole(roleEntityToRole(userEntity.getRole()));
 
         return user;
     }
@@ -59,12 +54,16 @@ public class ProviderConverter {
         userEntity.setAccountNonLocked(user.isAccountNonLocked());
         userEntity.setCredentialsNonExpired(user.isCredentialsNonExpired());
         userEntity.setEnabled(user.isEnabled());
+<<<<<<< HEAD
 
         RoleEntity role = new RoleEntity();
         role.setRole(RoleEnum.ROLE_USER);
         Set<RoleEntity> rolesEntity = new HashSet<>();
         rolesEntity.add(role);
         userEntity.setRoles(rolesEntity);
+=======
+        userEntity.setRole(roleToRoleEntity(user.getRole()));
+>>>>>>> d92becd995bd3b4e3dc7c27fc214edc0e9ccd214
 
         return userEntity;
     }
@@ -111,6 +110,10 @@ public class ProviderConverter {
         pizza.setCategorie(categorieEntityToCategorieEnum(pizzaEntity.getCategorie()));
         pizza.setPrix (pizzaEntity.getPrix());
         pizza.setDescription(pizzaEntity.getDescription());
+<<<<<<< HEAD
+=======
+        pizza.setId(pizzaEntity.getId());
+>>>>>>> d92becd995bd3b4e3dc7c27fc214edc0e9ccd214
 
         return pizza;
     }

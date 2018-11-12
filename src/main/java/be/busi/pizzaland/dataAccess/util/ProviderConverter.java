@@ -7,7 +7,6 @@ import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.Pizza;
 import be.busi.pizzaland.model.Role;
-import be.busi.pizzaland.model.RoleEnum;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,12 +35,7 @@ public class ProviderConverter {
         user.setCredentialsNonExpired(userEntity.isCredentialsNonExpired());
         user.setEnabled(userEntity.isEnabled());
 
-        Set<Role> roles = new HashSet<>();
-        userEntity.getAuthorities().stream()
-                .forEach(roleEntity -> {
-                    roles.add(roleEntityToRole((RoleEntity) roleEntity));
-                });
-        user.setRoles(roles);
+        user.setRole(roleEntityToRole(userEntity.getRole()));
 
         return user;
     }
@@ -60,11 +54,7 @@ public class ProviderConverter {
         userEntity.setCredentialsNonExpired(user.isCredentialsNonExpired());
         userEntity.setEnabled(user.isEnabled());
 
-        RoleEntity role = new RoleEntity();
-        role.setRole(RoleEnum.ROLE_USER);
-        Set<RoleEntity> rolesEntity = new HashSet<>();
-        rolesEntity.add(role);
-        userEntity.setRoles(rolesEntity);
+        userEntity.setRole(roleToRoleEntity(user.getRole()));
 
         return userEntity;
     }
@@ -111,6 +101,7 @@ public class ProviderConverter {
         pizza.setCategorie(categorieEntityToCategorieEnum(pizzaEntity.getCategorie()));
         pizza.setPrix (pizzaEntity.getPrix());
         pizza.setDescription(pizzaEntity.getDescription());
+        pizza.setId(pizzaEntity.getId());
 
         return pizza;
     }

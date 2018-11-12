@@ -24,16 +24,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
-            "/home","/inscription", "/pizza"
+            "/home","/inscription", "/pizza", "/home/categorie"
     };
-    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/users"};
+    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
+            "/users","/pizza","/ingredient"
+    };
 
-    /* String[] staticResources = {
+     String[] staticResources = {
             "/css/**",
             "/images/**",
             "/fonts/**",
             "/scripts/**",
-    };*/
+    };
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -46,14 +48,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN")
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
-                //.antMatchers(staticResources).permitAll()
+                .antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
 
 
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                /*.failureHandler(new AuthenticationFailureHandler() {
+                .failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
                                                         HttpServletResponse httpServletResponse,
@@ -61,7 +63,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                             throws IOException, ServletException {
                         System.out.println("****"+e.getMessage());
                     }
-                })*/
+                })
                 .loginPage(LOGIN_REQUEST)
                 .permitAll()
 
