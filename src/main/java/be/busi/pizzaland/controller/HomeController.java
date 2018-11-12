@@ -46,7 +46,7 @@ public class HomeController {
         Set<CategorieEnum> categorieEnums = categorieService.getCategories();
         List<String> catStrings = categorieEnums.stream().map(categorieEnum -> categorieEnum.getName()).collect(Collectors.toList());
         model.addAttribute("cats", catStrings);
-        return "integrated:afficherPanier";
+        return "integrated:welcome";
     }
 
     @RequestMapping(value = "/categorie", method = RequestMethod.GET)

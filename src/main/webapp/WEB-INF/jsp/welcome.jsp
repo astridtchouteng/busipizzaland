@@ -40,22 +40,25 @@
                                         <p>${pizza.description}</p>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-12 col-lg-12">
-                                            <form class="form-row my-2 my-lg-0">
-                                                <div class="col-4">
-                                                    <input class="form-control mr-sm-2" type="number" min="1" max="20"
-                                                           value="1"/>
-                                                </div>
-                                                <div class="col-3 offset-1">
-                                                    <p class="lead">
-                                                            ${pizza.prix}</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                                        Search
-                                                    </button>
-                                                </div>
-                                            </form>
+                                        <div class="col-4">
+                                            <input class="mr-sm-2" type="number" min="1" max="20"
+                                                   value="1"/>
+                                        </div>
+                                        <div class="col-3">
+                                            <p class="lead">
+                                                    ${pizza.prix}</p>
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="${pageContext.request.contextPath}/panier" class="btn btn-outline-success btn-sm">
+                                                Ajouter au panier
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-4 offset-4">
+                                            <a href="#" class="btn btn-danger btn-sm"></a>
                                         </div>
                                     </div>
                                 </div>
