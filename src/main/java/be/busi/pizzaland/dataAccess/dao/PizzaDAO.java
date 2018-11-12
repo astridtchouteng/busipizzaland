@@ -8,7 +8,7 @@ import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import be.busi.pizzaland.dataAccess.Util.ProviderConverter;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 
 import java.util.Set;
 
