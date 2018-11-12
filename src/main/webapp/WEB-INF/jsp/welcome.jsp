@@ -25,29 +25,56 @@
                         <c:forEach items="${pizzas}" var="pizza">
                             <div class="card text-white bg-warning mb-3 mr-3"
                                  style="max-width: 400px; max-height: 400px;">
-                                <div class="card-header">${pizza.categorie}</div>
+                                <div class="card-header">
+                                    <a href="${pageContext.request.contextPath}/pizzaDetails">${pizza.description}</a>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Description</h5>
                                     <div class="card-text">
                                         <p>${pizza.description}</p>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-12 col-lg-12">
-                                            <form class="form-row my-2 my-lg-0">
-                                                <div class="col-4">
-                                                    <input class="form-control mr-sm-2" type="number" min="1" max="20"
-                                                           value="1"/>
-                                                </div>
-                                                <div class="col-3 offset-1">
-                                                    <p class="lead">
-                                                            ${pizza.prix}</p>
-                                                </div>
-                                                <div class="col-4">
-                                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                                        Search
-                                                    </button>
-                                                </div>
-                                            </form>
+                                        <div class="col-3">
+                                            <p class="lead">
+                                                    ${pizza.prix}</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="row">
+                                                <form:form cssClass="form-inline" action="pizzaland/home/panier" method="post" modelAttribute="commande">
+                                                    <div class="col-3">
+                                                        <form:input path="quantite" type="number" min="1" max="20" value="1"/>
+                                                        <form:input path="nom" type="text" value="${pizza.nom}"/>
+                                                    </div>
+                                                    <div class="col-3 offset-2">
+                                                        <input type="submit"/>
+                                                    </div>
+                                                </form:form>
+                                            </div>
+                                        </div>
+                                        <%--<form class="form-inline">--%>
+                                            <%--<input type="number" class="form-control" min="1" max="20"--%>
+                                                   <%--value="1"/>--%>
+                                            <%--<button type="submit" class="btn btn-primary mb-2">Submit</button>--%>
+                                        <%--</form>--%>
+                                        <%--<div class="col-4">--%>
+                                            <%--<input class="form-control mr-sm-2" type="number" min="1" max="20"--%>
+                                                   <%--value="1"/>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="col-3">--%>
+                                            <%--<p class="lead">--%>
+                                                    <%--${pizza.prix}</p>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="col-4">--%>
+                                            <%--<a href="${pageContext.request.contextPath}/home/panier?nomPizza=${pizza.description}" class="btn btn-outline-success my-2 my-sm-0 btn-sm">--%>
+                                                <%--Ajouter au panier--%>
+                                            <%--</a>--%>
+                                        <%--</div>--%>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-4 offset-4">
+                                            <a href="${pageContext.request.contextPath}/pizzaDetails" class="btn btn-danger btn-sm">Customise ta pizza</a>
                                         </div>
                                     </div>
                                 </div>

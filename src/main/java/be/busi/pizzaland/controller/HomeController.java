@@ -4,23 +4,25 @@ package be.busi.pizzaland.controller;
 import be.busi.pizzaland.Service.CategorieService;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.CategorieEnum;
+import be.busi.pizzaland.model.Constants;
+import be.busi.pizzaland.model.LigneCommande;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static be.busi.pizzaland.model.Constants.PANIER;
 import static be.busi.pizzaland.model.Constants.PIZZAS;
 
 @Controller
 @RequestMapping(value = "/home")
-@SessionAttributes({PIZZAS})
+@SessionAttributes({PIZZAS, PANIER})
 public class HomeController {
 
     @Autowired
@@ -33,6 +35,17 @@ public class HomeController {
         return new HashSet<>();
     }
 
+
+    @ModelAttribute(PANIER)
+    public Map<Pizza, Integer> panier(){
+        return new HashMap<>();
+    }
+
+    @ModelAttribute("commande")
+    public LigneCommande ligneCommande(){
+        return new LigneCommande();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @ModelAttribute(PIZZAS) Set<Pizza> pizzas) {
 
@@ -41,12 +54,12 @@ public class HomeController {
             model.addAttribute(PIZZAS, pizzas);
         }
 
-        System.out.println(pizzas);
+        //System.out.println(pizzas);
 
         Set<CategorieEnum> categorieEnums = categorieService.getCategories();
         List<String> catStrings = categorieEnums.stream().map(categorieEnum -> categorieEnum.getName()).collect(Collectors.toList());
         model.addAttribute("cats", catStrings);
-        return "integrated:afficherPanier";
+        return "integrated:welcome";
     }
 
     @RequestMapping(value = "/categorie", method = RequestMethod.GET)
@@ -61,6 +74,25 @@ public class HomeController {
 
         return "redirect:/home";
     }
+
+    @RequestMapping(value = "/panier", method = RequestMethod.POST)
+    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
+                                  Model model, @ModelAttribute(value=Constants.PANIER) Map<Pizza, Integer> panier,  BindingResult errors,
+                                  @ModelAttribute("commande") LigneCommande ligneCommande)  {
+
+
+        System.out.println(ligneCommande);
+
+        if(errors.hasErrors()){
+
+            return "redirect:/affciherPizzas";
+        }
+
+
+        return "redirect:/welcome";
+    }
+
+
 
 
 }

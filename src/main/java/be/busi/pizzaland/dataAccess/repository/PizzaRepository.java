@@ -14,4 +14,6 @@ import java.util.List;
 public interface PizzaRepository extends JpaRepository<PizzaEntity, Long> {
 
     List<PizzaEntity> findByCategorieCategorieEnum(CategorieEnum categorie_categorieEnum);
+
+    //PizzaEntity findByNom(String nom);
 }

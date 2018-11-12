@@ -45,7 +45,6 @@ public class PizzaDAO {
                 save(providerConverter.categorieEnumToCategorie(pizza.getCategorie()));
 
 
-
         PizzaEntity pizzaEntity = providerConverter.PizzaModelToPizzaEntity(pizza);
         pizzaEntity.setCategorie(categorieEntity);
         PizzaEntity pizzaSaved = pizzaRepository.save(pizzaEntity);
@@ -62,4 +61,10 @@ public class PizzaDAO {
                 map(pizzaEntity -> providerConverter.PizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
     }
+
+    /*public Pizza pizzaByNom(String nom) {
+
+        PizzaEntity pizzaEntity = pizzaRepository.findByNom(nom);
+        return providerConverter.PizzaEntityToPizzaModel(pizzaEntity);
+    }*/
 }
