@@ -1,7 +1,8 @@
 package be.busi.pizzaland.dataAccess.repository;
 
+import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
 import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
-import be.busi.pizzaland.model.CategorieEnum;
+import be.busi.pizzaland.model.Categorie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,5 +14,5 @@ import java.util.List;
 public interface PizzaRepository extends JpaRepository<PizzaEntity, Long> {
 
 
-    List<PizzaEntity> findByCategorieCategorieEnum(CategorieEnum categorie_categorieEnum);
+    List<PizzaEntity> findByCategorie(CategorieEntity categorie);
 }

@@ -12,7 +12,7 @@
                 <ul class="list-group">
                     <c:forEach items="${categories}" var="cat">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="${pageContext.request.contextPath}/home/categorie?categorie=${cat.categorie}" >${cat.categorie}</a>
+                            <a href="${pageContext.request.contextPath}/categorie?categorie=${cat.categorie}" >${cat.categorie}</a>
                         </li>
                     </c:forEach>
                 </ul>

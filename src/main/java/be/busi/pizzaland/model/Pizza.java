@@ -6,20 +6,11 @@ import java.util.Objects;
 
 public class Pizza {
 
-    private Long id;
     private Categorie categorie;
     private String description;
     private double prix;
     private String nom;
     public Pizza() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -56,22 +47,8 @@ public class Pizza {
 
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pizza)) return false;
-        Pizza pizza = (Pizza) o;
-        return Objects.equals(getId(), pizza.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-
-    @Override
     public String toString() {
         return "Pizza{" +
-                "id=" + id +
                 ", categorie=" + categorie +
                 ", description='" + description + '\'' +
                 ", prix=" + prix +

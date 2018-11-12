@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
+
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -29,31 +31,32 @@ public class PizzaDAO {
     private ProviderConverter providerConverter;
 
     public Set<Pizza> getAll() {
-        Set<Pizza> pizzas = pizzaRepository.findAll().
+        Set<Pizza> pizzas = new HashSet<>();
+        pizzas = pizzaRepository.findAll().
                 stream().
-                map(pizzaEntity -> providerConverter.PizzaEntityToPizzaModel(pizzaEntity)).
+                map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
+        pizzas.stream().forEach(p -> System.out.println(p.getPrix()));
         return pizzas;
     }
 
     public Pizza save(Pizza pizza) {
 
-        PizzaEntity pizzaEntity = providerConverter.PizzaModelToPizzaEntity(pizza);
+        PizzaEntity pizzaEntity = providerConverter.pizzaModelToPizzaEntity(pizza);
         PizzaEntity pizzaSaved = pizzaRepository.save(pizzaEntity);
-        Pizza pizzaToReturn = providerConverter.PizzaEntityToPizzaModel(pizzaSaved);
+        Pizza pizzaToReturn = providerConverter.pizzaEntityToPizzaModel(pizzaSaved);
         return pizzaToReturn;
     }
 
     public Set<Pizza> pizzaByCategorie(String categorie) {
 
-        CategorieEnum categorieEnum = CategorieEnum.valueOf(categorie);
-        Categorie categorie1 = new Categorie();
-        categorie1.setCategorie(categorieEnum);
-        CategorieEntity categorieEntity = providerConverter.categorieToCategorieEntity(categorie1);
-        Set<PizzaEntity> pizzaEntities = pizzaRepository.findByCategorieCategorieEnum(categorieEnum)
+        CategorieEntity categorieEntity =
+                categorieRepository.findByCategorieEnum(CategorieEnum.valueOf(categorie));
+        List<PizzaEntity> pizzaEntities2 = pizzaRepository.findByCategorie(categorieEntity);
+        Set<PizzaEntity> pizzaEntities = pizzaRepository.findByCategorie(categorieEntity)
                                                         .stream().collect(Collectors.toSet());
         return pizzaEntities.stream().
-                map(pizzaEntity -> providerConverter.PizzaEntityToPizzaModel(pizzaEntity)).
+                map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
     }
 

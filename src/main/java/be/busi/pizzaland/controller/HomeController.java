@@ -25,32 +25,17 @@ public class HomeController {
     @Autowired
     private PizzaDAO pizzaDAO;
 
+
+
     @Autowired
     private CategorieDAO categorieDAO;
 
-    @ModelAttribute(Constants.PIZZAS)
-    public Set<Pizza> pizzas(){
-        return new HashSet<>();
-    }
-
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(Constants.PIZZAS) Set<Pizza> pizzas) {
+    public String home(Model model) {
 
-         pizzas = pizzaDAO.getAll();
-         model.addAttribute(Constants.PIZZAS, pizzas);
-
+         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
-    }
-
-    @RequestMapping(value = "/categorie", method = RequestMethod.GET)
-    public String pizzaParCategorie(@RequestParam(name = "categorie", required = false, defaultValue = "world") String categorie,
-                                    Model model) {
-
-        Set<Pizza> pizzaTries = pizzaDAO.pizzaByCategorie(categorie);
-       model.addAttribute(Constants.PIZZAS, pizzaTries);
-
-        return "redirect:/home";
     }
 
 
