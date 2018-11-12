@@ -1,4 +1,4 @@
-package be.busi.pizzaland.dataAccess.Util;
+package be.busi.pizzaland.dataAccess.util;
 
 import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
 import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
