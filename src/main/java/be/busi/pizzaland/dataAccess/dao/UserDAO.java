@@ -2,7 +2,7 @@ package be.busi.pizzaland.dataAccess.dao;
 
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.dataAccess.repository.UserRepository;
-import be.busi.pizzaland.dataAccess.Util.ProviderConverter;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.exception.UserExistsException;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
