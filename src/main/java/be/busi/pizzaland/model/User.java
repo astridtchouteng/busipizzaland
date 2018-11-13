@@ -15,11 +15,9 @@ public class User implements UserDetails {
     private String firstname;
     @NotNull
     private String password;
-
+    @NotNull
     private String email;
-
     private String adresse;
-
     @NotNull
     private String sexe;
 
@@ -27,7 +25,6 @@ public class User implements UserDetails {
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
-    @NotNull
     private Role role;
     private Set<Commande> commandes = new HashSet<>();
 

@@ -25,15 +25,13 @@ public class HomeController {
     @Autowired
     private PizzaDAO pizzaDAO;
 
-
-
     @Autowired
     private CategorieDAO categorieDAO;
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
 
-         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
+        model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
     }

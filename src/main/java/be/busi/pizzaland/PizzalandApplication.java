@@ -41,13 +41,9 @@ public class PizzalandApplication {
         return args ->{
 
             RoleEntity roleuser = new RoleEntity();
-            roleuser.setRole(RoleEnum.ROLE_ADMIN);
-
-            RoleEntity roleadmin = new RoleEntity();
-            roleadmin.setRole(RoleEnum.ROLE_ADMIN);
+            roleuser.setRole(RoleEnum.ROLE_USER);
 
             roleRepository.save(roleuser);
-            roleRepository.save(roleadmin);
 
             CategorieEntity categorieEntity = new CategorieEntity();
             categorieEntity.setCategorieEnum(CategorieEnum.VEGETARIENNE);
