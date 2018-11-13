@@ -27,8 +27,7 @@ public class User implements UserDetails {
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
-    @NotNull
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
     private Set<Commande> commandes = new HashSet<>();
 
     public User() {
@@ -39,20 +38,12 @@ public class User implements UserDetails {
     }
 
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void addRole(Role role) {
-        roles.add(role);
-    }
-
-    public void addRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Set<Commande> getCommande() {
@@ -74,7 +65,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return Arrays.asList(role);
     }
 
     @Override

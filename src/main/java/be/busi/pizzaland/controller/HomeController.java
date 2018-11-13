@@ -2,8 +2,8 @@ package be.busi.pizzaland.controller;
 
 
 import be.busi.pizzaland.Service.CategorieService;
+import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
-import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.Constants;
 import be.busi.pizzaland.model.LigneCommande;
 import be.busi.pizzaland.model.Pizza;
@@ -15,25 +15,22 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static be.busi.pizzaland.model.Constants.PANIER;
 import static be.busi.pizzaland.model.Constants.PIZZAS;
 
 @Controller
 @RequestMapping(value = "/home")
-@SessionAttributes({PIZZAS, PANIER})
+@SessionAttributes({PIZZAS, PANIER,Constants.CURRENT_USER})
 public class HomeController {
 
     @Autowired
     private PizzaDAO pizzaDAO;
-    @Autowired
-    private CategorieService categorieService;
 
-    @ModelAttribute(PIZZAS)
-    public Set<Pizza> pizzas(){
-        return new HashSet<>();
-    }
+
+
+    @Autowired
+    private CategorieDAO categorieDAO;
 
 
     @ModelAttribute(PANIER)
@@ -47,32 +44,11 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(PIZZAS) Set<Pizza> pizzas) {
+    public String home(Model model) {
 
-        if(pizzas == null || pizzas.isEmpty()){
-            pizzas = pizzaDAO.getAll();
-            model.addAttribute(PIZZAS, pizzas);
-        }
-
-        //System.out.println(pizzas);
-
-        Set<CategorieEnum> categorieEnums = categorieService.getCategories();
-        List<String> catStrings = categorieEnums.stream().map(categorieEnum -> categorieEnum.getName()).collect(Collectors.toList());
-        model.addAttribute("cats", catStrings);
+         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
+        model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
-    }
-
-    @RequestMapping(value = "/categorie", method = RequestMethod.GET)
-    public String pizzaParCategorie(@RequestParam(name = "categorie", required = false, defaultValue = "world") String categorie,
-                                    Model model) {
-
-        Set<Pizza> pizzaTries = pizzaDAO.pizzaByCategorie(categorie);
-
-        System.out.println(pizzaTries);
-
-        model.addAttribute(PIZZAS, pizzaTries);
-
-        return "redirect:/home";
     }
 
     @RequestMapping(value = "/panier", method = RequestMethod.POST)
@@ -91,8 +67,6 @@ public class HomeController {
 
         return "redirect:/welcome";
     }
-
-
 
 
 }

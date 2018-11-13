@@ -36,6 +36,7 @@
                     ConfirmPassword
                     <input type="password" class="form-control" />
                 </div>
+
                 <div class="form-group">
                     <form:label path="adresse">Adresse</form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>

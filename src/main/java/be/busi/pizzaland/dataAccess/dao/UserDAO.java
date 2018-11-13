@@ -1,8 +1,12 @@
 package be.busi.pizzaland.dataAccess.dao;
 
+import be.busi.pizzaland.dataAccess.entity.RoleEntity;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
+import be.busi.pizzaland.dataAccess.repository.RoleRepository;
 import be.busi.pizzaland.dataAccess.repository.UserRepository;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
+import be.busi.pizzaland.exception.UserExistsException;
+import be.busi.pizzaland.model.RoleEnum;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 @Service
 @Transactional
@@ -21,6 +30,9 @@ public class UserDAO implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private ProviderConverter providerConverter;
@@ -35,8 +47,7 @@ public class UserDAO implements UserDetailsService {
         return user;
     }
 
-    public User save(User user){
-
+    public User save(User user) {
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setAccountNonExpired(true);

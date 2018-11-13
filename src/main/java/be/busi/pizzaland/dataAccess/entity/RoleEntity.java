@@ -21,7 +21,7 @@ public class RoleEntity implements GrantedAuthority {
     @NotNull
     private RoleEnum role;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "role")
     private Set<UserEntity> users = new HashSet<>();
 
     public RoleEntity() {}
