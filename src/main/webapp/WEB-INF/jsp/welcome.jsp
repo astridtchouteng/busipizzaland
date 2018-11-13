@@ -44,7 +44,7 @@
                                                     <%--<form:form cssClass="form-inline" action="pizzaland/home/panier" method="post" modelAttribute="commande">--%>
                                                         <%--<div class=" form-row">--%>
                                                             <%--<div class="col-3">--%>
-                                                                <%--<form:input path="quantite" cssClass="form-control" type="number" min="1" max="20" value="1"/>--%>
+                                                                <%--<form:input path="quantiteTotal" cssClass="form-control" type="number" min="1" max="20" value="1"/>--%>
                                                             <%--</div>--%>
                                                             <%--<div class="col-2">--%>
                                                                 <%--<form:input path="nom" type="hidden" cssClass="form-control" value="${pizza.nom}"/>--%>

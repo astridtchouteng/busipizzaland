@@ -17,8 +17,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${panier!= null and not empty panier}">
-                        <c:forEach items="${panier}" var="row">
+                    <c:if test="${panier.contenu!= null and not empty panier.contenu}">
+                        <c:forEach items="${panier.contenu}" var="row">
                             <tr>
                                 <td>
                                     <div class="card text-white bg-warning mb-3 "
@@ -46,11 +46,13 @@
                                 <td>
                                     <div class="row">
 
-                                        <a href="#" class="btn btn-danger btn-sm plus">+</a>
+                                        <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=plus"
+                                           class="btn btn-danger btn-sm plus">+</a>
 
                                     <input type="number" size="4" min="1" max="200" value="${row.value}" />
 
-                                        <a href="#" class="btn btn-danger btn-sm moins">-</a>
+                                        <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=moins"
+                                           class="btn btn-danger btn-sm moins">-</a>
 
                                     </div>
                                 </td>

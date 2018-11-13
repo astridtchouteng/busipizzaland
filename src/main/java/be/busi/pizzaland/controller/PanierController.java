@@ -3,6 +3,7 @@ package be.busi.pizzaland.controller;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Constants;
 import be.busi.pizzaland.model.LigneCommande;
+import be.busi.pizzaland.model.Panier;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,14 +24,27 @@ public class PanierController {
     private PizzaDAO pizzaDAO;
 
     @ModelAttribute(Constants.PANIER)
+    public Panier panier(){
+        return new Panier();
+    }
+
+    /*@ModelAttribute(Constants.PANIER)
     public Map<Pizza, Integer> panier(){
         return new HashMap<>();
-    }
+    }*/
+
+    /*@RequestMapping(method = RequestMethod.GET)
+    public String home(Model model)  {
+
+
+        return "integrated:afficherPanier";
+    }*/
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
                                   Model model,
-                                  @ModelAttribute(value= Constants.PANIER) Map<Pizza, Integer> panier, BindingResult errors)  {
+                                  @ModelAttribute(value= Constants.PANIER) Panier panier, BindingResult errors)  {
 
 
 
@@ -39,20 +53,44 @@ public class PanierController {
 
         if(pizza != null) {
             if(!panier.containsKey(pizza))
-                panier.put(pizza, 1);
-            else panier.put(pizza, panier.get(pizza) + 1);
+                panier.addPizza(pizza, 1);
+            else panier.addPizza(pizza, panier.get(pizza) + 1);
         }
         model.addAttribute(Constants.PANIER, panier);
-
-        System.out.println(pizza);
-        System.out.println(panier);
 
         if(errors.hasErrors()){
 
             return "redirect:/affciherPizzas";
         }
 
-
-        return "integrated:/afficherPanier";
+        return "integrated:afficherPanier";
     }
+
+    @RequestMapping(value = "/modifier", method = RequestMethod.GET)
+    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
+            @RequestParam(name = "operation", required = false, defaultValue = "world")String operation,
+                                  Model model,
+                                  @ModelAttribute(value= Constants.PANIER) Panier panier, BindingResult errors)  {
+
+
+
+
+        Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
+
+        if(pizza != null) {
+            if(!panier.containsKey(pizza))
+                panier.addPizza(pizza, 1);
+            else panier.addPizza(pizza, panier.get(pizza) + 1);
+        }
+        model.addAttribute(Constants.PANIER, panier);
+
+        if(errors.hasErrors()){
+
+            return "redirect:/affciherPizzas";
+        }
+
+        return "redirect:/afficherPanier";
+    }
+
+
 }
