@@ -9,15 +9,15 @@ public class Panier {
 
     private int quantiteTotal;
 
-    private int prixTotal;
+    private Double prixTotal;
 
     public Panier() {
 
         this.quantiteTotal = 0;
-        this.prixTotal = 0;
+        this.prixTotal = 0.0;
     }
 
-    public void addPizza(Pizza pizza, int quantite) {
+    public void addPizza(Pizza pizza, Integer quantite) {
 
         if(!contenu.containsKey(pizza)){
             contenu.put(pizza, 1);
@@ -27,6 +27,18 @@ public class Panier {
         }
 
         this.quantiteTotal += quantite;
+
+        updatePriTolal();
+    }
+
+    public void removePizza(Pizza pizza, Integer quantite){
+
+        if(contenu != null && contenu.containsKey(pizza)){
+
+            contenu.put(pizza, contenu.get(pizza) -1);
+        }
+
+        this.quantiteTotal -= quantite;
 
         updatePriTolal();
     }
@@ -43,7 +55,7 @@ public class Panier {
 
     private void updatePriTolal() {
 
-        this.prixTotal = 0;
+        this.prixTotal = 0.0;
 
         for(Pizza pizza : contenu.keySet())
             this.prixTotal += pizza.getPrix() * contenu.get(pizza);
@@ -57,19 +69,19 @@ public class Panier {
         this.contenu = contenu;
     }
 
-    public int getQuantiteTotal() {
+    public Integer getQuantiteTotal() {
         return quantiteTotal;
     }
 
-    public void setQuantiteTotal(int quantiteTotal) {
+    public void setQuantiteTotal(Integer quantiteTotal) {
         this.quantiteTotal = quantiteTotal;
     }
 
-    public int getPrixTotal() {
+    public Double getPrixTotal() {
         return prixTotal;
     }
 
-    public void setPrixTotal(int prixTotal) {
+    public void setPrixTotal(Double prixTotal) {
         this.prixTotal = prixTotal;
     }
 

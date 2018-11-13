@@ -62,7 +62,7 @@
                     </c:if>
                     <tr>
                         <td colspan="3">Total</td>
-                        <td>1500</td>
+                        <td>${panier.prixTotal}</td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;"><a href="#" class="btn btn-danger">Vider Panier</a></td>

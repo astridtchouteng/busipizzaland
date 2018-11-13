@@ -37,7 +37,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="panier.do" id="cart1" class ="btn btn-primary btn-sm">
+                    <a href="#" id="cart1" class ="btn btn-primary btn-sm">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Shopping Cart
                         <span class="badge">

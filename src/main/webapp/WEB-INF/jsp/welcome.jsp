@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="col-9">
                                                 <div class="2">
-                                                    <a href="${pageContext.request.contextPath}/panier?nomPizza=${pizza.nom}" class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+                                                    <a href="${pageContext.request.contextPath}/traiter?nomPizza=${pizza.nom}" class="btn btn-outline-success my-2 my-sm-0 btn-sm">
                                                         Ajouter au panier</a>
                                                 </div>
                                                                 <%--<div class="row">--%>
