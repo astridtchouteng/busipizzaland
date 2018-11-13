@@ -12,6 +12,9 @@ public class Panier {
     private int prixTotal;
 
     public Panier() {
+
+        this.quantiteTotal = 0;
+        this.prixTotal = 0;
     }
 
     public void addPizza(Pizza pizza, int quantite) {

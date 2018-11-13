@@ -28,18 +28,12 @@ public class PanierController {
         return new Panier();
     }
 
-    /*@ModelAttribute(Constants.PANIER)
-    public Map<Pizza, Integer> panier(){
-        return new HashMap<>();
-    }*/
-
     /*@RequestMapping(method = RequestMethod.GET)
     public String home(Model model)  {
 
 
         return "integrated:afficherPanier";
     }*/
-
 
     @RequestMapping(method = RequestMethod.GET)
     public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
@@ -52,9 +46,7 @@ public class PanierController {
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null) {
-            if(!panier.containsKey(pizza))
-                panier.addPizza(pizza, 1);
-            else panier.addPizza(pizza, panier.get(pizza) + 1);
+            panier.addPizza(pizza, 1);
         }
         model.addAttribute(Constants.PANIER, panier);
 
@@ -63,18 +55,17 @@ public class PanierController {
             return "redirect:/affciherPizzas";
         }
 
-        return "integrated:afficherPanier";
+        return "integrated:home";
     }
 
-    @RequestMapping(value = "/modifier", method = RequestMethod.GET)
-    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
+    /*@RequestMapping(value = "/modifier", method = RequestMethod.GET)
+    public String modifier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
             @RequestParam(name = "operation", required = false, defaultValue = "world")String operation,
                                   Model model,
                                   @ModelAttribute(value= Constants.PANIER) Panier panier, BindingResult errors)  {
 
 
-
-
+        System.out.println("coucou");
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null) {
@@ -89,8 +80,8 @@ public class PanierController {
             return "redirect:/affciherPizzas";
         }
 
-        return "redirect:/afficherPanier";
-    }
+        return "redirect:/panier";
+    }*/
 
 
 }
