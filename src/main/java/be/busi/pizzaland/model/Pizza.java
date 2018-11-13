@@ -47,6 +47,19 @@ public class Pizza {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pizza)) return false;
+        Pizza pizza = (Pizza) o;
+        return Objects.equals(getNom(), pizza.getNom());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNom());
+    }
+
+    @Override
     public String toString() {
         return "Pizza{" +
                 ", categorie=" + categorie +

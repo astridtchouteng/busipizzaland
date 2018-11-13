@@ -36,7 +36,7 @@ public class PizzaDAO {
                 stream().
                 map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
-        pizzas.stream().forEach(p -> System.out.println(p.getPrix()));
+        //pizzas.stream().forEach(p -> System.out.println(p.getPrix()));
         return pizzas;
     }
 
@@ -58,6 +58,14 @@ public class PizzaDAO {
         return pizzaEntities.stream().
                 map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
+    }
+
+    public Pizza getPizzaByNom(String nom) {
+
+        Pizza pizza = new Pizza();
+        PizzaEntity pizzaEntity = pizzaRepository.findByNom(nom);
+        pizza = providerConverter.pizzaEntityToPizzaModel(pizzaEntity);
+        return pizza;
     }
 
 }

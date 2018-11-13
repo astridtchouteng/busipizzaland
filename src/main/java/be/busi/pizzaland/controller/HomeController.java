@@ -27,21 +27,8 @@ public class HomeController {
     @Autowired
     private PizzaDAO pizzaDAO;
 
-
-
     @Autowired
     private CategorieDAO categorieDAO;
-
-
-    @ModelAttribute(PANIER)
-    public Map<Pizza, Integer> panier(){
-        return new HashMap<>();
-    }
-
-    @ModelAttribute("commande")
-    public LigneCommande ligneCommande(){
-        return new LigneCommande();
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
@@ -49,23 +36,6 @@ public class HomeController {
          model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
-    }
-
-    @RequestMapping(value = "/panier", method = RequestMethod.POST)
-    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
-                                  Model model, @ModelAttribute(value=Constants.PANIER) Map<Pizza, Integer> panier,  BindingResult errors,
-                                  @ModelAttribute("commande") LigneCommande ligneCommande)  {
-
-
-        System.out.println(ligneCommande);
-
-        if(errors.hasErrors()){
-
-            return "redirect:/affciherPizzas";
-        }
-
-
-        return "redirect:/welcome";
     }
 
 

@@ -17,15 +17,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${pizzas!= null and not empty pizzas}">
-                        <c:forEach items="${pizzas}" var="pizza">
+                    <c:if test="${panier!= null and not empty panier}">
+                        <c:forEach items="${panier}" var="row">
                             <tr>
                                 <td>
                                     <div class="card text-white bg-warning mb-3 "
-                                         style="max-width: 300px; max-height: 250px;">
-                                        <div class="card-header">${pizza.categorie}</div>
+                                         style="max-width: 300px; max-height: 350px;">
+                                        <div class="card-header">${row.key.nom}</div>
                                         <div class="card-body">
-                                            <h5 class="card-title">${pizza.description}</h5>
+                                            <h5 class="card-title">${row.key.description}</h5>
                                             <%--<div class="card-text">--%>
                                                 <%--<p>${pizza.description}</p>--%>
                                             <%--</div>--%>
@@ -42,9 +42,19 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>${pizza.prix}</td>
-                                <td><input type="number" min="1" max="20" value="100" /></td>
-                                <td>${pizza.prix * 10}</td>
+                                <td>${row.key.prix}</td>
+                                <td>
+                                    <div class="row">
+
+                                        <a href="#" class="btn btn-danger btn-sm plus">+</a>
+
+                                    <input type="number" size="4" min="1" max="200" value="${row.value}" />
+
+                                        <a href="#" class="btn btn-danger btn-sm moins">-</a>
+
+                                    </div>
+                                </td>
+                                <td>${row.value * row.key.prix }</td>
                             </tr>
                         </c:forEach>
                     </c:if>

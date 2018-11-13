@@ -15,4 +15,6 @@ public interface PizzaRepository extends JpaRepository<PizzaEntity, Long> {
 
 
     List<PizzaEntity> findByCategorie(CategorieEntity categorie);
+    PizzaEntity findByNom(String nom);
+
 }
