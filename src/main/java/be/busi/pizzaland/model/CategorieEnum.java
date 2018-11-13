@@ -2,12 +2,9 @@ package be.busi.pizzaland.model;
 
 public enum CategorieEnum {
 
-    MAGHERITA("MAGHERITA"),
-    TRADIZIONALE("TRADIZIONALE"),
-    NAPOLITAINE("NAPOLITAINE"),
-    MARINARA("MARINARA"),
-    QUATRES_SAISONS("QUATRES_SAISONS"),
-    HAWAIENNE("HAWAIENNE");
+    VEGETARIENNE("VEGETARIENNE"),
+    FROMAGE("FROMAGE"),
+    EXOTIQUE("EXOTIQUE");
 
     private String name;
 

@@ -1,6 +1,7 @@
 package be.busi.pizzaland.controller;
 
 
+import be.busi.pizzaland.dataAccess.dao.RoleDAO;
 import be.busi.pizzaland.dataAccess.dao.UserDAO;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.exception.UserExistsException;
@@ -26,6 +27,7 @@ import java.util.Set;
 @SessionAttributes({Constants.CURRENT_USER})
 public class InscriptionController {
 
+
     @Autowired
     private UserDAO userDAO;
 
@@ -44,10 +46,10 @@ public class InscriptionController {
         if(errors.hasErrors()){
             return "integrated:inscriptionUser";
         }
+
         Role role = new Role();
         role.setNameRole(RoleEnum.ROLE_USER);
-        user.addRole(role);
-
+        user.setRole(role);
             userDAO.save(user);
 
         return "redirect:/home";

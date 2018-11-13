@@ -1,6 +1,8 @@
 package be.busi.pizzaland.dataAccess.entity;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -21,6 +23,10 @@ public class PizzaEntity {
 
     @Column(name = "description")
     private String description;
+
+    @NotNull
+    @Column(name = "nom", unique = true)
+    private String nom;
 
     @NotNull
     @Column(name = "prix")
@@ -48,6 +54,14 @@ public class PizzaEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public CategorieEntity getCategorie() {

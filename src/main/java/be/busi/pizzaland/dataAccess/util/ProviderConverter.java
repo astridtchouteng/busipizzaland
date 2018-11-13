@@ -1,19 +1,11 @@
 package be.busi.pizzaland.dataAccess.util;
 
-import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
-import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
-import be.busi.pizzaland.dataAccess.entity.RoleEntity;
-import be.busi.pizzaland.dataAccess.entity.UserEntity;
-import be.busi.pizzaland.model.CategorieEnum;
-import be.busi.pizzaland.model.Pizza;
-import be.busi.pizzaland.model.Role;
-import be.busi.pizzaland.model.User;
+import be.busi.pizzaland.dataAccess.entity.*;
+import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class ProviderConverter {
@@ -35,12 +27,7 @@ public class ProviderConverter {
         user.setCredentialsNonExpired(userEntity.isCredentialsNonExpired());
         user.setEnabled(userEntity.isEnabled());
 
-        Set<Role> roles = new HashSet<>();
-        userEntity.getAuthorities().stream()
-                .forEach(roleEntity -> {
-                    roles.add(roleEntityToRole((RoleEntity) roleEntity));
-                });
-        user.setRoles(roles);
+        user.setRole(roleEntityToRole(userEntity.getRole()));
 
         return user;
     }
@@ -59,12 +46,7 @@ public class ProviderConverter {
         userEntity.setCredentialsNonExpired(user.isCredentialsNonExpired());
         userEntity.setEnabled(user.isEnabled());
 
-        Set<RoleEntity> rolesEntity = new HashSet<>();
-        user.getAuthorities().stream()
-                .forEach(role -> {
-                    rolesEntity.add(roleToRoleEntity((Role) role));
-                });
-        userEntity.setRoles(rolesEntity);
+        userEntity.setRole(roleToRoleEntity(user.getRole()));
 
         return userEntity;
     }
@@ -81,40 +63,62 @@ public class ProviderConverter {
         return roleEntity;
     }
 
-    public CategorieEnum categorieEntityToCategorieEnum(CategorieEntity categorieEntity) {
+    public Categorie categorieEntityToCategorie(CategorieEntity categorieEntity) {
 
-        return categorieEntity.getCategorieEnum();
+        Categorie categorie = new Categorie();
+        categorie.setCategorie(categorieEntity.getCategorieEnum());
+        return categorie;
     }
 
-    public CategorieEntity categorieEnumToCategorie(CategorieEnum categorieEnum){
+    public CategorieEntity categorieToCategorieEntity(Categorie categorie){
 
         CategorieEntity categorieEntity = new CategorieEntity();
-        categorieEntity.setCategorieEnum(categorieEnum);
+        categorieEntity.setCategorieEnum(categorie.getCategorie());
         return categorieEntity;
     }
 
-    public PizzaEntity PizzaModelToPizzaEntity(Pizza pizza) {
+    public PizzaEntity pizzaModelToPizzaEntity(Pizza pizza) {
 
         PizzaEntity pizzaEntity = new PizzaEntity();
 
-        pizzaEntity.setCategorie(categorieEnumToCategorie(pizza.getCategorie()));
+        pizzaEntity.setCategorie(categorieToCategorieEntity(pizza.getCategorie()));
+        pizzaEntity.setNom(pizza.getNom());
         pizzaEntity.setPrix(pizza.getPrix());
         pizzaEntity.setDescription(pizza.getDescription());
 
         return pizzaEntity;
     }
 
-    public Pizza PizzaEntityToPizzaModel(PizzaEntity pizzaEntity) {
+    public Pizza pizzaEntityToPizzaModel(PizzaEntity pizzaEntity) {
 
         Pizza pizza = new Pizza();
 
-        pizza.setCategorie(categorieEntityToCategorieEnum(pizzaEntity.getCategorie()));
+        pizza.setCategorie(categorieEntityToCategorie(pizzaEntity.getCategorie()));
+        pizza.setNom(pizzaEntity.getNom());
         pizza.setPrix (pizzaEntity.getPrix());
         pizza.setDescription(pizzaEntity.getDescription());
-        pizza.setId(pizzaEntity.getId());
 
         return pizza;
     }
+
+    public CommandeEntity CommandeToComandeEntity(Commande commande) {
+
+        CommandeEntity commandeEntity = new CommandeEntity();
+        commandeEntity.setEtat(commande.getEtatCommande());
+        commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
+        return commandeEntity;
+    }
+
+    public Commande commandeEntityToCommande(CommandeEntity commandeEntity) {
+
+        Commande commande = new Commande();
+
+        commande.setEtatCommande(commandeEntity.getEtat());
+        commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
+
+        return commande;
+    }
+
 
 
 }
