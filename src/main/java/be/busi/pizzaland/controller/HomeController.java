@@ -4,22 +4,24 @@ package be.busi.pizzaland.controller;
 import be.busi.pizzaland.Service.CategorieService;
 import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
-import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.Constants;
+import be.busi.pizzaland.model.LigneCommande;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import java.util.*;
+
+import static be.busi.pizzaland.model.Constants.PANIER;
+import static be.busi.pizzaland.model.Constants.PIZZAS;
 
 @Controller
 @RequestMapping(value = "/home")
-@SessionAttributes({Constants.CURRENT_USER})
+@SessionAttributes({PIZZAS, PANIER,Constants.CURRENT_USER})
 public class HomeController {
 
     @Autowired
@@ -28,12 +30,40 @@ public class HomeController {
     @Autowired
     private CategorieDAO categorieDAO;
 
+
+    @ModelAttribute(PANIER)
+    public Map<Pizza, Integer> panier(){
+        return new HashMap<>();
+    }
+
+    @ModelAttribute("commande")
+    public LigneCommande ligneCommande(){
+        return new LigneCommande();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
 
         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
+    }
+
+    @RequestMapping(value = "/panier", method = RequestMethod.POST)
+    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
+                                  Model model, @ModelAttribute(value=Constants.PANIER) Map<Pizza, Integer> panier,  BindingResult errors,
+                                  @ModelAttribute("commande") LigneCommande ligneCommande)  {
+
+
+        System.out.println(ligneCommande);
+
+        if(errors.hasErrors()){
+
+            return "redirect:/affciherPizzas";
+        }
+
+
+        return "redirect:/welcome";
     }
 
 

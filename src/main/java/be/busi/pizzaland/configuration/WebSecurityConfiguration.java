@@ -24,7 +24,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
-            "/home","/inscription", "/pizza", "/categorie"
+            "/home","/inscription", "/pizza", "/categorie", "/panier"
     };
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
             "/users","/pizza","/ingredient"
@@ -75,6 +75,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+
     }
 
 }

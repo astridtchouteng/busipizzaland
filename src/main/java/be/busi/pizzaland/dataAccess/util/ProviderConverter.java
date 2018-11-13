@@ -1,16 +1,11 @@
 package be.busi.pizzaland.dataAccess.util;
 
-import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
-import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
-import be.busi.pizzaland.dataAccess.entity.RoleEntity;
-import be.busi.pizzaland.dataAccess.entity.UserEntity;
+import be.busi.pizzaland.dataAccess.entity.*;
 import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class ProviderConverter {
@@ -105,6 +100,25 @@ public class ProviderConverter {
 
         return pizza;
     }
+
+    public CommandeEntity CommandeToComandeEntity(Commande commande) {
+
+        CommandeEntity commandeEntity = new CommandeEntity();
+        commandeEntity.setEtat(commande.getEtatCommande());
+        commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
+        return commandeEntity;
+    }
+
+    public Commande commandeEntityToCommande(CommandeEntity commandeEntity) {
+
+        Commande commande = new Commande();
+
+        commande.setEtatCommande(commandeEntity.getEtat());
+        commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
+
+        return commande;
+    }
+
 
 
 }

@@ -38,7 +38,7 @@ public class PizzaController {
 
         if(errors.hasErrors()) {
             System.out.println(errors.getAllErrors());
-            return "redirect./errors";
+            return "redirect:/errors";
         }
 
         Pizza pizzaToBeSaved = pizza;

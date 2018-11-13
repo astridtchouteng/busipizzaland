@@ -26,7 +26,6 @@ import java.util.Set;
 @RequestMapping(value = "/inscription")
 @SessionAttributes({Constants.CURRENT_USER})
 public class InscriptionController {
-
     @Autowired
     private UserDAO userDAO;
 
