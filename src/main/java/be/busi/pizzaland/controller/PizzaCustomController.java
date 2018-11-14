@@ -7,7 +7,6 @@ import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.model.Constants;
 import be.busi.pizzaland.model.Ingredient;
 import be.busi.pizzaland.model.Pizza;
-import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -80,6 +79,9 @@ public class PizzaCustomController {
 ////            }
 ////        }
 //
+        if(authentication.getPrincipal()==null){
+            return "redirect:/login";
+        }
         if(authentication == null){
 
             return "redirect:/login";
