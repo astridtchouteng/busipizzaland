@@ -26,14 +26,17 @@
                                         <div class="card-header">${row.key.nom}</div>
                                         <div class="card-body">
                                             <h5 class="card-title">${row.key.description}</h5>
-                                            <%--<div class="card-text">--%>
+                                                <%--<div class="card-text">--%>
                                                 <%--<p>${pizza.description}</p>--%>
-                                            <%--</div>--%>
+                                                <%--</div>--%>
                                         </div>
                                         <div class="card-footer">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+
+                                                    <a href="${pageContext.request.contextPath}/panier/supprimer?nomPizza=${row.key.nom}"
+                                                       class="btn btn-danger btn-sm" disabled="true">Supprimer
+                                                    </a>
                                                 </div>
                                                 <div class="col-4 offset-4">
                                                     <a href="#" class="btn btn-primary btn-sm">Promotion</a>
@@ -47,13 +50,14 @@
                                     <div class="row">
 
                                         <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=plus"
-                                           class="btn btn-danger btn-sm plus">+</a>
+                                           class="btn btn-danger btn-sm plus">+
+                                        </a>
 
-                                    <input type="number" size="4" min="1" max="200" value="${row.value}" />
+                                        <input type="number" size="4" min="1" max="200" value="${row.value}"/>
 
                                         <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=moins"
-                                           class="btn btn-danger btn-sm moins">-</a>
-
+                                           class="btn btn-danger btn-sm moins" disabled="true">-
+                                        </a>
                                     </div>
                                 </td>
                                 <td>${row.value * row.key.prix }</td>
@@ -65,8 +69,14 @@
                         <td>${panier.prixTotal}</td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="text-align: center;"><a href="#" class="btn btn-danger">Vider Panier</a></td>
-                        <td colspan="2" style="text-align: center;"><a href="#" class="btn btn-success">Valider Commande</a></td>
+                        <td colspan="2" style="text-align: center;">
+                            <a href="${pageContext.request.contextPath}/panier/vider" class="btn btn-danger">Vider
+                                Panier
+                            </a>
+                        </td>
+                        <td colspan="2" style="text-align: center;">
+                            <a href="#" class="btn btn-success">Valider Commande</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

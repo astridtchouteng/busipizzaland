@@ -33,14 +33,37 @@ public class Panier {
 
     public void removePizza(Pizza pizza, Integer quantite){
 
-        if(contenu != null && contenu.containsKey(pizza)){
+
+        if(contenu != null && contenu.containsKey(pizza) && contenu.get(pizza) >= 1 ){
 
             contenu.put(pizza, contenu.get(pizza) -1);
+
+            if(contenu.get(pizza) == 0)
+                contenu.remove(pizza);
+
+            this.quantiteTotal -= quantite;
+            updatePriTolal();
         }
 
-        this.quantiteTotal -= quantite;
+    }
 
-        updatePriTolal();
+    public void supprimerParPizza(Pizza pizza){
+
+        int quantite = 0;
+
+        if(contenu != null && contenu.containsKey(pizza)) {
+            quantite = contenu.remove(pizza);
+            this.quantiteTotal -= quantite;
+            updatePriTolal();
+        }
+    }
+
+    public void vider() {
+
+        if(contenu!= null);
+            contenu = new HashMap<>();
+        this.quantiteTotal = 0;
+        this.prixTotal = 0.0;
     }
 
     public boolean containsKey(Pizza pizza) {

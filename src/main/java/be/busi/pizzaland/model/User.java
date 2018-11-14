@@ -173,4 +173,5 @@ public class User implements UserDetails {
     public void setCommandes(Set<Commande> commandes) {
         this.commandes = commandes;
     }
+
 }

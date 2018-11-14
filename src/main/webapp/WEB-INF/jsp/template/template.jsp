@@ -1,5 +1,6 @@
 <%@ include file="../include/importTags.jsp" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,21 +24,37 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Hidden brand</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/home">PizzaLand</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link" href="#">Link</a>--%>
+                <%--</li>--%>
+                <%--<li class="nav-item">--%>
+                    <%--<a class="nav-link disabled" href="#">Disabled</a>--%>
+                <%--</li>--%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" id="cart1" class ="btn btn-primary btn-sm">
+                    <sec:authorize access="authenticated">
+                        Herve
+                    </sec:authorize>
+                    <c:choose>
+                        <c:when test="${pageContext.request.userPrincipal.username != null}">
+                            <a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a>
+                            <ul class="nav navbar-nav">
+                                <li>${pageContext.request.userPrincipal.username}</li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${pageContext.request.contextPath}/login" class ="btn btn-success btn-sm mr-1">Login</a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/panier"  class ="btn btn-primary btn-sm">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Shopping Cart
                         <span class="badge">

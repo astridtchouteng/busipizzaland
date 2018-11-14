@@ -58,5 +58,32 @@ public class PanierController {
         return "redirect:/panier";
     }
 
+    @RequestMapping(value = "/supprimer", method = RequestMethod.GET)
+    public String supprimerParPizza(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
+                                    Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors){
+
+        if(errors.hasErrors()){
+            return "integrated:afficherPizzas";
+        }
+
+        Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
+
+        if(pizza != null)
+            panier.supprimerParPizza(pizza);
+
+        return "redirect:/panier";
+    }
+
+    @RequestMapping(value = "/vider", method = RequestMethod.GET)
+    public String vider(Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors) {
+
+        if(errors.hasErrors()){
+            return "integrated:afficherPizzas";
+        }
+
+        panier.vider();
+        return "redirect:/panier";
+    }
+
 
 }
