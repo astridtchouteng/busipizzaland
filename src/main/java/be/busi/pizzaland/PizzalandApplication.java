@@ -40,7 +40,7 @@ public class PizzalandApplication {
     }
 
 
-    /*@Bean
+    @Bean
     CommandLineRunner runIt(){
 
         return args ->{
@@ -61,9 +61,13 @@ public class PizzalandApplication {
             CategorieEntity categorieEntity2 = new CategorieEntity();
             categorieEntity2.setCategorieEnum(CategorieEnum.EXOTIQUE);
 
+            CategorieEntity categorieEntity3 = new CategorieEntity();
+            categorieEntity3.setCategorieEnum(CategorieEnum.CUSTOMISEE);
+
             categorieRepository.save(categorieEntity);
             categorieRepository.save(categorieEntity1);
             categorieRepository.save(categorieEntity2);
+            categorieRepository.save(categorieEntity3);
 
             PizzaEntity pizzaEntity = new PizzaEntity();
             pizzaEntity.setCategorie(categorieEntity2);
@@ -375,8 +379,8 @@ public class PizzalandApplication {
             etatCommandeRepository.save(nonPaye);
             etatCommandeRepository.save(livraison);
             etatCommandeRepository.save(livree);
-            etatCommandeRepository.save(preparation);
+            etatCommandeRepository.save(preparation);*/
         };
 
-    }*/
+    }
 }

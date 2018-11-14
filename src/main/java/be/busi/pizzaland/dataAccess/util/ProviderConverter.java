@@ -66,6 +66,7 @@ public class ProviderConverter {
     public Categorie categorieEntityToCategorie(CategorieEntity categorieEntity) {
 
         Categorie categorie = new Categorie();
+        categorie.setId(categorieEntity.getId());
         categorie.setCategorie(categorieEntity.getCategorieEnum());
         return categorie;
     }
@@ -73,6 +74,7 @@ public class ProviderConverter {
     public CategorieEntity categorieToCategorieEntity(Categorie categorie){
 
         CategorieEntity categorieEntity = new CategorieEntity();
+        categorieEntity.setId(categorie.getId());
         categorieEntity.setCategorieEnum(categorie.getCategorie());
         return categorieEntity;
     }

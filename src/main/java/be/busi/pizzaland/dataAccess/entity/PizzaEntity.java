@@ -26,7 +26,7 @@ public class PizzaEntity {
     private String description;
 
     @NotNull
-    @Column(name = "nom")
+    @Column(name = "nom", unique = true)
     private String nom;
 
     @NotNull

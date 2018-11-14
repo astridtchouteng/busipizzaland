@@ -4,6 +4,7 @@ public enum CategorieEnum {
 
     VEGETARIENNE("VEGETARIENNE"),
     FROMAGE("FROMAGE"),
+    CUSTOMISEE("CUSTOMISEE"),
     EXOTIQUE("EXOTIQUE");
 
     private String name;
