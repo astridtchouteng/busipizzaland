@@ -1,7 +1,6 @@
 package be.busi.pizzaland.controller;
 
 
-import be.busi.pizzaland.Service.CategorieService;
 import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Constants;
@@ -33,10 +32,21 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
 
-         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
+        model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
     }
 
-
+    @RequestMapping(value = "/panier", method = RequestMethod.POST)
+    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false,
+                                                               defaultValue = "world")String nomPizza,
+                                  Model model,
+                                  @ModelAttribute(value=Constants.PANIER) Map<Pizza, Integer> panier,
+                                  BindingResult errors,
+                                  @ModelAttribute("commande") LigneCommande ligneCommande)  {
+        if(errors.hasErrors()){
+            return "redirect:/affciherPizzas";
+        }
+        return "redirect:/welcome";
+    }
 }

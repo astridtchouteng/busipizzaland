@@ -80,7 +80,7 @@ public class ProviderConverter {
     public PizzaEntity pizzaModelToPizzaEntity(Pizza pizza) {
 
         PizzaEntity pizzaEntity = new PizzaEntity();
-
+        pizzaEntity.setId(pizza.getId());
         pizzaEntity.setCategorie(categorieToCategorieEntity(pizza.getCategorie()));
         pizzaEntity.setNom(pizza.getNom());
         pizzaEntity.setPrix(pizza.getPrix());
@@ -92,7 +92,7 @@ public class ProviderConverter {
     public Pizza pizzaEntityToPizzaModel(PizzaEntity pizzaEntity) {
 
         Pizza pizza = new Pizza();
-
+        pizza.setId(pizzaEntity.getId());
         pizza.setCategorie(categorieEntityToCategorie(pizzaEntity.getCategorie()));
         pizza.setNom(pizzaEntity.getNom());
         pizza.setPrix (pizzaEntity.getPrix());
@@ -119,6 +119,22 @@ public class ProviderConverter {
         return commande;
     }
 
+    public Ingredient ingredientEntityToIngredient(IngredientEntity ingredientEntity) {
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setId(ingredientEntity.getId());
+        ingredient.setNom(ingredientEntity.getNom());
+        ingredient.setStock(ingredientEntity.getStock());
+        return ingredient;
+    }
+
+    public IngredientEntity ingredientToIngredientEntity(Ingredient ingredient) {
+        IngredientEntity ingredientEntity = new IngredientEntity();
+        ingredientEntity.setId(ingredient.getId());
+        ingredientEntity.setNom(ingredient.getNom());
+        ingredientEntity.setStock(ingredient.getStock());
+        return ingredientEntity;
+    }
 
 
 }

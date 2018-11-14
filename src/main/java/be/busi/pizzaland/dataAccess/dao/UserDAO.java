@@ -54,7 +54,7 @@ public class UserDAO implements UserDetailsService {
         user.setEnabled(true);
         UserEntity userEntity = providerConverter.userModelToUserEntity(user);
         userEntity = userRepository.save(userEntity);
-        System.out.println(userEntity.getId());
+
         return providerConverter.userEntityToUserModel(userEntity);
     }
 
@@ -65,6 +65,7 @@ public class UserDAO implements UserDetailsService {
     }
 
     public boolean existUser(String username){
+
         return userRepository.findUserEntitiesByFirstname(username);
     }
 

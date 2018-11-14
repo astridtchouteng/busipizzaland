@@ -15,11 +15,9 @@ public class User implements UserDetails {
     private String firstname;
     @NotNull
     private String password;
-
+    @NotNull
     private String email;
-
     private String adresse;
-
     @NotNull
     private String sexe;
 

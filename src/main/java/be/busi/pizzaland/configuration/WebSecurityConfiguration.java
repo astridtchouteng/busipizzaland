@@ -56,7 +56,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                //.loginProcessingUrl("/processLogin")
                 .failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,

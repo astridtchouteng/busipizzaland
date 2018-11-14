@@ -1,16 +1,27 @@
 package be.busi.pizzaland.model;
 
 
-import java.util.Objects;
+import java.util.*;
 
 
 public class Pizza {
 
+    private Long id;
     private Categorie categorie;
     private String description;
     private double prix;
     private String nom;
-    public Pizza() {
+    List<String> stringIngredients = new ArrayList<>();
+    Map<Ingredient, Integer> mapIngredients = new HashMap<>();
+
+    public Pizza() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -45,6 +56,52 @@ public class Pizza {
         this.prix = prix;
     }
 
+    public Set<Ingredient> getIngredients() {
+        return mapIngredients.keySet();
+    }
+
+    public List<String> getStringIngredients() {
+        return stringIngredients;
+    }
+
+    public void setStringIngredients(List<String> stringIngredients) {
+        this.stringIngredients = stringIngredients;
+    }
+
+    public Map<Ingredient, Integer> getMapIngredients() {
+        return mapIngredients;
+    }
+
+    public void setMapIngredients(Map<Ingredient, Integer> mapIngredients) {
+        this.mapIngredients = mapIngredients;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+
+        for (Map.Entry<Ingredient, Integer> entry: mapIngredients.entrySet() ) {
+            if(entry.getKey().getId().equals(ingredient.getId())){
+                entry.setValue(entry.getValue()+1);
+                break;
+            }
+        }
+
+        if(!mapIngredients.containsKey(ingredient)) {
+            mapIngredients.put(ingredient,1);
+        }
+    }
+
+    public void removeIngredient(Ingredient ingredient){
+        for (Map.Entry<Ingredient, Integer> entry: mapIngredients.entrySet() ) {
+            if(entry.getKey().getId().equals(ingredient.getId())){
+                if(entry.getValue().equals(1)){
+                    mapIngredients.remove(ingredient);
+                }
+                else{
+                    entry.setValue(entry.getValue()-1);
+                }
+            }
+        }
+    }
 
     @Override
     public boolean equals(Object o) {

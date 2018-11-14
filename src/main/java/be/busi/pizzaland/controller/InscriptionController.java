@@ -26,8 +26,6 @@ import java.util.Set;
 @RequestMapping(value = "/inscription")
 @SessionAttributes({Constants.CURRENT_USER})
 public class InscriptionController {
-
-
     @Autowired
     private UserDAO userDAO;
 
@@ -50,7 +48,7 @@ public class InscriptionController {
         Role role = new Role();
         role.setNameRole(RoleEnum.ROLE_USER);
         user.setRole(role);
-            userDAO.save(user);
+        userDAO.save(user);
 
         return "redirect:/home";
     }

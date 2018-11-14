@@ -4,6 +4,7 @@ package be.busi.pizzaland.dataAccess.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -64,5 +65,18 @@ public class IngredientEntity {
 
     public void addPortion(PortionEntity portionEntity){
         this.portions.add(portionEntity);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IngredientEntity)) return false;
+        IngredientEntity that = (IngredientEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
