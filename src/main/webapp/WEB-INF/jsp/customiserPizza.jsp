@@ -3,9 +3,13 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
+        <title>${titre}</title>
     </head>
     <body>
-        Page Login!
+        <div class="row mt-4">
+            <div class="">
 
+            </div>
+        </div>
     </body>
 </html>

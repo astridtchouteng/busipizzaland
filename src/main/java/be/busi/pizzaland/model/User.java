@@ -3,23 +3,29 @@ package be.busi.pizzaland.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.*;
 
 public class User implements UserDetails {
 
+    @NotNull
     private String username;
-    private Integer firstName;
+    @NotNull
+    private String firstname;
+    @NotNull
     private String password;
+    @NotNull
     private String email;
     private String adresse;
-    private LocalDate date_naissance;
+    @NotNull
     private String sexe;
+
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
     private Set<Commande> commandes = new HashSet<>();
 
     public User() {
@@ -30,20 +36,12 @@ public class User implements UserDetails {
     }
 
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void addRole(Role role) {
-        roles.add(role);
-    }
-
-    public void addRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Set<Commande> getCommande() {
@@ -65,7 +63,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return Arrays.asList(role);
     }
 
     @Override
@@ -114,12 +112,12 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public Integer getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(Integer firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setPassword(String password) {
@@ -140,14 +138,6 @@ public class User implements UserDetails {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public LocalDate getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(LocalDate date_naissance) {
-        this.date_naissance = date_naissance;
     }
 
     public String getSexe() {

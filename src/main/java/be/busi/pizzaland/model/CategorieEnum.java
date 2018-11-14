@@ -2,10 +2,28 @@ package be.busi.pizzaland.model;
 
 public enum CategorieEnum {
 
-    MAGHERITA,
-    TRADIZIONALE,
-    NAPOLITAINE,
-    MARINARA,
-    QUATRES_SAISONS,
-    HAWAIENNE
+    VEGETARIENNE("VEGETARIENNE"),
+    FROMAGE("FROMAGE"),
+    EXOTIQUE("EXOTIQUE");
+
+    private String name;
+
+    private CategorieEnum(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "CategorieEnum{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

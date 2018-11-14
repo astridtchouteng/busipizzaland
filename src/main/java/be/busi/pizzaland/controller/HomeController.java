@@ -1,27 +1,63 @@
 package be.busi.pizzaland.controller;
 
 
-import be.busi.pizzaland.dataAccess.entity.RoleEntity;
-import be.busi.pizzaland.dataAccess.repository.RoleRepository;
-import be.busi.pizzaland.model.RoleEnum;
+import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
+import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
+import be.busi.pizzaland.model.Constants;
+import be.busi.pizzaland.model.LigneCommande;
+import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.*;
+
+import static be.busi.pizzaland.model.Constants.PANIER;
+import static be.busi.pizzaland.model.Constants.PIZZAS;
 
 @Controller
 @RequestMapping(value = "/home")
+@SessionAttributes({PIZZAS, PANIER,Constants.CURRENT_USER})
 public class HomeController {
 
     @Autowired
-    private RoleRepository roleRepository;
+    private PizzaDAO pizzaDAO;
 
-    @GetMapping
+    @Autowired
+    private CategorieDAO categorieDAO;
+
+
+    @ModelAttribute(PANIER)
+    public Map<Pizza, Integer> panier(){
+        return new HashMap<>();
+    }
+
+    @ModelAttribute("commande")
+    public LigneCommande ligneCommande(){
+        return new LigneCommande();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
 
-
-        model.addAttribute("titre","Pizza BIO");
+        model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
+        model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
+    }
+
+    @RequestMapping(value = "/panier", method = RequestMethod.POST)
+    public String ajouterAuPanier(@RequestParam(name = "nomPizza", required = false,
+                                                               defaultValue = "world")String nomPizza,
+                                  Model model,
+                                  @ModelAttribute(value=Constants.PANIER) Map<Pizza, Integer> panier,
+                                  BindingResult errors,
+                                  @ModelAttribute("commande") LigneCommande ligneCommande)  {
+        if(errors.hasErrors()){
+            return "redirect:/affciherPizzas";
+        }
+        return "redirect:/welcome";
     }
 }
