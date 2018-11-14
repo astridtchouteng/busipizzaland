@@ -5,11 +5,14 @@ import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.dataAccess.dao.UserDAO;
 import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -96,28 +99,38 @@ public class PanierController {
     }
 
     @RequestMapping(value = "/valider", method = RequestMethod.GET)
-    public String valider(Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors/*,
-                          @ModelAttribute(Constants.CURRENT_USER) User user*/) {
+    public String valider(Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors,
+                          Authentication authentication,
+                          @ModelAttribute(Constants.CURRENT_USER) User user) {
+
+        UserDetails u = (UserDetails) authentication.getPrincipal();
+
+        user = userDAO.getCurrentUser(u.getUsername());
+
+        Commande commande = new Commande();
+        commande.setUser(user);
+
+        EtatCommande etatCommande = new EtatCommande();
+        etatCommande.setEtatCommandeEnum(EtatCommandeEnum.NON_PAYE);
+
+        commande.setEtatCommande(etatCommande);
+
+        Commande commandeSaved = commandeDAO.save(commande);
+
+        System.out.println("*************" + commande);
+
+        if(user == null){
+
+            if(authentication != null){
+
+
+            }
+        }
 
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
 
-        Commande commande = new Commande();
-        //commande.setUser(userDAO.getCurrentUser(user));
-        Commande commandeSaved = commandeDAO.save(commande);
-
-        /*System.out.println("Coucou" + commandeSaved);
-
-        LigneCommande ligneCommande = new LigneCommande();
-         Set<LigneCommande> ligneCommandeList = new HashSet<>();
-
-        Set<Pizza> pizzas = new HashSet<>();
-
-        for(Pizza pizza : panier.getContenu().keySet()){
-
-            Pizza pizzaFounded = pizzaDAO.getPizzaByNom(pizza.getNom());
-        }*/
 
         return "redirect:/panier";
     }

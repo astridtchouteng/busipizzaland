@@ -25,8 +25,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
             "/home","/inscription", "/pizza", "/categorie", "/panier", "/traiter", "/panier/modifier", "/panier/vider",
-            "/panier/supprimer", "/panier/valider"
+            "/panier/supprimer"
     };
+
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
             "/users","/pizza","/ingredient"
     };
@@ -52,7 +53,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
 
-
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
@@ -70,6 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout()
+                .logoutSuccessUrl("/home")
                 .permitAll();
     }
 
