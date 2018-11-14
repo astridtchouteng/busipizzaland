@@ -25,7 +25,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
             "/home","/inscription", "/pizza", "/categorie", "/panier", "/traiter", "/panier/modifier", "/panier/vider",
-            "/panier/supprimer"
+            "/panier/supprimer", "/panier/valider"
     };
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
             "/users","/pizza","/ingredient"
@@ -56,6 +56,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+                //.loginProcessingUrl("/processLogin")
                 .failureHandler(new AuthenticationFailureHandler() {
                     @Override
                     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,

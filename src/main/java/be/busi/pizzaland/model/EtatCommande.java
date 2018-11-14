@@ -1,10 +1,21 @@
 package be.busi.pizzaland.model;
 
-public enum EtatCommande {
+public class EtatCommande {
 
-    NON_PAYE,
-    PAYE,
-    PREPARATION,
-    LIVRAISON,
-    LIVREE
+    private EtatCommandeEnum etatCommandeEnum;
+
+    public EtatCommande() {
+    }
+
+    public EtatCommande(EtatCommandeEnum etatCommandeEnum) {
+        this.etatCommandeEnum = etatCommandeEnum;
+    }
+
+    public EtatCommandeEnum getEtatCommandeEnum() {
+        return etatCommandeEnum;
+    }
+
+    public void setEtatCommandeEnum(EtatCommandeEnum etatCommandeEnum) {
+        this.etatCommandeEnum = etatCommandeEnum;
+    }
 }

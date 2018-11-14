@@ -2,27 +2,27 @@ package be.busi.pizzaland.model;
 
 public class Commande {
 
-    private EtatCommande etatCommande;
+    private EtatCommandeEnum etatCommande;
 
     private User user;
 
     public Commande() {
     }
 
-    public Commande(EtatCommande etatCommande) {
+    public Commande(EtatCommandeEnum etatCommande) {
         this.etatCommande = etatCommande;
     }
 
-    public Commande(EtatCommande etatCommande, User user) {
+    public Commande(EtatCommandeEnum etatCommande, User user) {
         this.etatCommande = etatCommande;
         this.user = user;
     }
 
-    public EtatCommande getEtatCommande() {
+    public EtatCommandeEnum getEtatCommande() {
         return etatCommande;
     }
 
-    public void setEtatCommande(EtatCommande etatCommande) {
+    public void setEtatCommande(EtatCommandeEnum etatCommande) {
         this.etatCommande = etatCommande;
     }
 

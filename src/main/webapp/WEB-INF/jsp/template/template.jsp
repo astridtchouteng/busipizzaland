@@ -38,20 +38,19 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <sec:authorize access="authenticated">
-                        Herve
-                    </sec:authorize>
-                    <c:choose>
-                        <c:when test="${pageContext.request.userPrincipal.username != null}">
-                            <a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a>
-                            <ul class="nav navbar-nav">
-                                <li>${pageContext.request.userPrincipal.username}</li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login" class ="btn btn-success btn-sm mr-1">Login</a>
+                    <%--<c:choose>--%>
+
+                        <%--<c:when test="${pageContext.request.userPrincipal.principal.username != null}">--%>
+                            <%--<a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a>--%>
+                            <%--<ul class="nav navbar-nav">--%>
+                                <%--<li>${pageContext.request.userPrincipal.username}</li>--%>
+                            <%--</ul>--%>
+                        <%--</c:when>--%>
+                        <%--<c:otherwise>--%>
                             <a href="${pageContext.request.contextPath}/login" class ="btn btn-success btn-sm mr-1">Login</a>
-                        </c:otherwise>
-                    </c:choose>
+                        <%--</c:otherwise>--%>
+                    <%--</c:choose>--%>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/panier"  class ="btn btn-primary btn-sm">
@@ -63,10 +62,6 @@
                     </a>
                 </li>
             </ul>
-            <%--<form class="form-inline my-2 my-lg-0">--%>
-                <%--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--%>
-                <%--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--%>
-            <%--</form>--%>
         </div>
     </nav>
 

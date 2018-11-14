@@ -68,5 +68,10 @@ public class UserDAO implements UserDetailsService {
         return userRepository.findUserEntitiesByFirstname(username);
     }
 
+    public User getCurrentUser(User user) {
+
+        return providerConverter.userEntityToUserModel(userRepository.findByUsername(
+                providerConverter.userModelToUserEntity(user).getUsername()));
+    }
 
 }

@@ -1,15 +1,19 @@
 package be.busi.pizzaland.controller;
 
+import be.busi.pizzaland.dataAccess.dao.CommandeDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
-import be.busi.pizzaland.model.Constants;
-import be.busi.pizzaland.model.LigneCommande;
-import be.busi.pizzaland.model.Panier;
-import be.busi.pizzaland.model.Pizza;
+import be.busi.pizzaland.dataAccess.dao.UserDAO;
+import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -20,6 +24,12 @@ public class PanierController {
 
     @Autowired
     private PizzaDAO pizzaDAO;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private CommandeDAO commandeDAO;
 
     @ModelAttribute(Constants.PANIER)
     public Panier panier(){
@@ -82,6 +92,33 @@ public class PanierController {
         }
 
         panier.vider();
+        return "redirect:/panier";
+    }
+
+    @RequestMapping(value = "/valider", method = RequestMethod.GET)
+    public String valider(Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors/*,
+                          @ModelAttribute(Constants.CURRENT_USER) User user*/) {
+
+        if(errors.hasErrors()){
+            return "integrated:afficherPizzas";
+        }
+
+        Commande commande = new Commande();
+        //commande.setUser(userDAO.getCurrentUser(user));
+        Commande commandeSaved = commandeDAO.save(commande);
+
+        /*System.out.println("Coucou" + commandeSaved);
+
+        LigneCommande ligneCommande = new LigneCommande();
+         Set<LigneCommande> ligneCommandeList = new HashSet<>();
+
+        Set<Pizza> pizzas = new HashSet<>();
+
+        for(Pizza pizza : panier.getContenu().keySet()){
+
+            Pizza pizzaFounded = pizzaDAO.getPizzaByNom(pizza.getNom());
+        }*/
+
         return "redirect:/panier";
     }
 

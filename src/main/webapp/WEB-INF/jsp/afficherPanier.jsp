@@ -26,16 +26,13 @@
                                         <div class="card-header">${row.key.nom}</div>
                                         <div class="card-body">
                                             <h5 class="card-title">${row.key.description}</h5>
-                                                <%--<div class="card-text">--%>
-                                                <%--<p>${pizza.description}</p>--%>
-                                                <%--</div>--%>
                                         </div>
                                         <div class="card-footer">
                                             <div class="row">
                                                 <div class="col-4">
 
                                                     <a href="${pageContext.request.contextPath}/panier/supprimer?nomPizza=${row.key.nom}"
-                                                       class="btn btn-danger btn-sm" disabled="true">Supprimer
+                                                       class="btn btn-danger btn-sm">Supprimer
                                                     </a>
                                                 </div>
                                                 <div class="col-4 offset-4">
@@ -75,7 +72,7 @@
                             </a>
                         </td>
                         <td colspan="2" style="text-align: center;">
-                            <a href="#" class="btn btn-success">Valider Commande</a>
+                            <a href="${pageContext.request.contextPath}/panier/valider" class="btn btn-success">Valider Commande</a>
                         </td>
                     </tr>
                 </tbody>

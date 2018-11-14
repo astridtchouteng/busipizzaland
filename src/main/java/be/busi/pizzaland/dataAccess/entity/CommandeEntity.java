@@ -1,13 +1,10 @@
 package be.busi.pizzaland.dataAccess.entity;
 
 
-import be.busi.pizzaland.model.EtatCommande;
+import be.busi.pizzaland.model.EtatCommandeEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +24,7 @@ public class CommandeEntity {
     @Column(name = "etat")
     @NotNull
     @Enumerated(value = EnumType.STRING)
-    private EtatCommande etat;
+    private EtatCommandeEnum etat;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
@@ -52,11 +49,11 @@ public class CommandeEntity {
         this.user = user;
     }
 
-    public EtatCommande getEtat() {
+    public EtatCommandeEnum getEtat() {
         return etat;
     }
 
-    public void setEtat(EtatCommande etat) {
+    public void setEtat(EtatCommandeEnum etat) {
         this.etat = etat;
     }
 

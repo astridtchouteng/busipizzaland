@@ -3,6 +3,8 @@ package be.busi.pizzaland;
 import be.busi.pizzaland.dataAccess.entity.*;
 import be.busi.pizzaland.dataAccess.repository.*;
 import be.busi.pizzaland.model.CategorieEnum;
+import be.busi.pizzaland.model.EtatCommande;
+import be.busi.pizzaland.model.EtatCommandeEnum;
 import be.busi.pizzaland.model.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class PizzalandApplication {
 
     @Autowired
     private CategorieRepository categorieRepository;
+
+    @Autowired
+    private EtatCommandeRepository etatCommandeRepository;
 
     public static void main(String[] args) {
 
@@ -351,6 +356,26 @@ public class PizzalandApplication {
             portionRepository.save(portionFromage3);
 
 
+            EtatCommandeEntity paye = new EtatCommandeEntity();
+            paye.setEtatCommande(EtatCommandeEnum.PAYE);
+
+            EtatCommandeEntity nonPaye = new EtatCommandeEntity();
+            nonPaye.setEtatCommande(EtatCommandeEnum.NON_PAYE);
+
+            EtatCommandeEntity livraison = new EtatCommandeEntity();
+            livraison.setEtatCommande(EtatCommandeEnum.LIVRAISON);
+
+            EtatCommandeEntity livree = new EtatCommandeEntity();
+            livree.setEtatCommande(EtatCommandeEnum.LIVREE);
+
+            EtatCommandeEntity preparation = new EtatCommandeEntity();
+            preparation.setEtatCommande(EtatCommandeEnum.PREPARATION);
+
+            etatCommandeRepository.save(paye);
+            etatCommandeRepository.save(nonPaye);
+            etatCommandeRepository.save(livraison);
+            etatCommandeRepository.save(livree);
+            etatCommandeRepository.save(preparation);
         };
 
     }
