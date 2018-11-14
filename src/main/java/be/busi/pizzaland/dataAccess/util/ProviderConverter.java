@@ -104,7 +104,7 @@ public class ProviderConverter {
     public CommandeEntity CommandeToComandeEntity(Commande commande) {
 
         CommandeEntity commandeEntity = new CommandeEntity();
-        commandeEntity.setEtat(commande.getEtatCommande());
+        commandeEntity.setEtat(etatCommandeToEtatCommandeEntity(commande.getEtatCommande()));
         commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
         return commandeEntity;
     }
@@ -113,7 +113,7 @@ public class ProviderConverter {
 
         Commande commande = new Commande();
 
-        commande.setEtatCommande(commandeEntity.getEtat());
+        commande.setEtatCommande(etatCommandeEntityToEtatCommande(commandeEntity.getEtat()));
         commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
 
         return commande;
@@ -134,6 +134,20 @@ public class ProviderConverter {
         ingredientEntity.setNom(ingredient.getNom());
         ingredientEntity.setStock(ingredient.getStock());
         return ingredientEntity;
+    }
+
+    public EtatCommandeEntity etatCommandeToEtatCommandeEntity(EtatCommande etatCommande){
+
+        EtatCommandeEntity etatCommandeEntity = new EtatCommandeEntity();
+        etatCommandeEntity.setEtatCommande(etatCommande.getEtatCommandeEnum());
+        return etatCommandeEntity;
+    }
+
+    public EtatCommande etatCommandeEntityToEtatCommande(EtatCommandeEntity etatCommandeEntity){
+
+        EtatCommande etatCommande = new EtatCommande();
+        etatCommande.setEtatCommandeEnum(etatCommandeEntity.getEtatCommande());
+        return etatCommande;
     }
 
 

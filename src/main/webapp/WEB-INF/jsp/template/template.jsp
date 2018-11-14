@@ -30,28 +30,21 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/home">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="#">Link</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link disabled" href="#">Disabled</a>--%>
-                <%--</li>--%>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="${pageContext.request.contextPath}/login" class ="btn btn-success btn-sm mr-1">Login</a>
-                    <%--<c:choose>--%>
-
-                        <%--<c:when test="${pageContext.request.userPrincipal.principal.username != null}">--%>
-                            <%--<a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a>--%>
-                            <%--<ul class="nav navbar-nav">--%>
-                                <%--<li>${pageContext.request.userPrincipal.username}</li>--%>
-                            <%--</ul>--%>
-                        <%--</c:when>--%>
-                        <%--<c:otherwise>--%>
-                            <a href="${pageContext.request.contextPath}/login" class ="btn btn-success btn-sm mr-1">Login</a>
-                        <%--</c:otherwise>--%>
-                    <%--</c:choose>--%>
+                    <sec:authorize access="isAuthenticated()">
+                        <ul class="nav navbar-nav">
+                            <li><sec:authentication property="principal.username"/></li>
+                            <li><a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a></li>
+                        </ul>
+                    </sec:authorize>
+                    <sec:authorize access="!isAuthenticated()">
+                        <%--<ul class="nav navbar-nav">--%>
+                            <li><a href="${pageContext.request.contextPath}/login" class ="btn btn-warning btn-sm">Login</a></li>
+                        <%--</ul>--%>
+                    </sec:authorize>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/panier"  class ="btn btn-primary btn-sm">

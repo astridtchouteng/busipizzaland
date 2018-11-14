@@ -22,7 +22,7 @@ public class EtatCommandeEntity {
     private EtatCommandeEnum etatCommande;
 
     @OneToMany(mappedBy = "etat",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<CommandeEntity> commandeEntities;
 
