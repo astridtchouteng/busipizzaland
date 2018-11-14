@@ -16,13 +16,13 @@ public class EtatCommandeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "etat", unique = true)
+    @Column(name = "etat")
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private EtatCommandeEnum etatCommande;
 
     @OneToMany(mappedBy = "etat",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<CommandeEntity> commandeEntities;
 

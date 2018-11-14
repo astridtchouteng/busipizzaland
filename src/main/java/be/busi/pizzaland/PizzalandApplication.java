@@ -43,7 +43,7 @@ public class PizzalandApplication {
     @Bean
     CommandLineRunner runIt(){
 
-        return args ->{
+        return args -> {
 
             RoleEntity roleuser = new RoleEntity();
             roleuser.setRole(RoleEnum.ROLE_USER);
@@ -169,7 +169,7 @@ public class PizzalandApplication {
             PortionEntity portionEntity = new PortionEntity();
             portionEntity.setPrimaryKey(portionId);
             portionEntity.setPortion(2);
-            fromage.setStock(fromage.getStock()-portionEntity.getPortion());
+            fromage.setStock(fromage.getStock() - portionEntity.getPortion());
             ingredientRepository.save(fromage);
 
             PortionId portionId1 = new PortionId();
@@ -179,7 +179,7 @@ public class PizzalandApplication {
             PortionEntity portionEntity1 = new PortionEntity();
             portionEntity1.setPrimaryKey(portionId1);
             portionEntity1.setPortion(1);
-            tomate.setStock(tomate.getStock()-portionEntity1.getPortion());
+            tomate.setStock(tomate.getStock() - portionEntity1.getPortion());
             ingredientRepository.save(tomate);
 
             PortionId portionId2 = new PortionId();
@@ -189,7 +189,7 @@ public class PizzalandApplication {
             PortionEntity portionEntity2 = new PortionEntity();
             portionEntity2.setPrimaryKey(portionId2);
             portionEntity2.setPortion(2);
-            jambon.setStock(jambon.getStock()-portionEntity2.getPortion());
+            jambon.setStock(jambon.getStock() - portionEntity2.getPortion());
             ingredientRepository.save(jambon);
 
             PortionId portionId3 = new PortionId();
@@ -199,7 +199,7 @@ public class PizzalandApplication {
             PortionEntity portionEntity3 = new PortionEntity();
             portionEntity3.setPrimaryKey(portionId3);
             portionEntity3.setPortion(3);
-            ananas.setStock(ananas.getStock()-portionEntity3.getPortion());
+            ananas.setStock(ananas.getStock() - portionEntity3.getPortion());
             ingredientRepository.save(ananas);
 
             portionRepository.save(portionEntity);
@@ -234,7 +234,7 @@ public class PizzalandApplication {
             PortionEntity portionMaurice2 = new PortionEntity();
             portionMaurice2.setPrimaryKey(portionId6);
             portionMaurice2.setPortion(2);
-            jambon.setStock(jambon.getStock()-portionMaurice2.getPortion());
+            jambon.setStock(jambon.getStock() - portionMaurice2.getPortion());
             ingredientRepository.save(jambon);
 
 
@@ -250,7 +250,7 @@ public class PizzalandApplication {
             PortionEntity portionLegumesEte = new PortionEntity();
             portionLegumesEte.setPrimaryKey(portionId7);
             portionLegumesEte.setPortion(2);
-            ognons.setStock(ognons.getStock()-portionLegumesEte.getPortion());
+            ognons.setStock(ognons.getStock() - portionLegumesEte.getPortion());
             ingredientRepository.save(ognons);
 
             PortionId portionId8 = new PortionId();
@@ -260,7 +260,7 @@ public class PizzalandApplication {
             PortionEntity portionLegumesEte2 = new PortionEntity();
             portionLegumesEte2.setPrimaryKey(portionId8);
             portionLegumesEte2.setPortion(1);
-            aubergine.setStock(aubergine.getStock()-portionLegumesEte2.getPortion());
+            aubergine.setStock(aubergine.getStock() - portionLegumesEte2.getPortion());
             ingredientRepository.save(aubergine);
 
             PortionId portionId9 = new PortionId();
@@ -270,7 +270,7 @@ public class PizzalandApplication {
             PortionEntity portionLegumesEte1 = new PortionEntity();
             portionLegumesEte1.setPrimaryKey(portionId9);
             portionLegumesEte1.setPortion(2);
-            courgette.setStock(courgette.getStock()-portionLegumesEte1.getPortion());
+            courgette.setStock(courgette.getStock() - portionLegumesEte1.getPortion());
             ingredientRepository.save(courgette);
 
 
@@ -286,7 +286,7 @@ public class PizzalandApplication {
             PortionEntity portionRoulee = new PortionEntity();
             portionRoulee.setPrimaryKey(portionId10);
             portionRoulee.setPortion(2);
-            jambon.setStock(jambon.getStock()-portionRoulee.getPortion());
+            jambon.setStock(jambon.getStock() - portionRoulee.getPortion());
             ingredientRepository.save(jambon);
 
             PortionId portionId11 = new PortionId();
@@ -296,7 +296,7 @@ public class PizzalandApplication {
             PortionEntity portionRoulee1 = new PortionEntity();
             portionRoulee1.setPrimaryKey(portionId11);
             portionRoulee1.setPortion(1);
-            mozarella.setStock(mozarella.getStock()-portionRoulee1.getPortion());
+            mozarella.setStock(mozarella.getStock() - portionRoulee1.getPortion());
             ingredientRepository.save(mozarella);
 
             PortionId portionId12 = new PortionId();
@@ -306,7 +306,7 @@ public class PizzalandApplication {
             PortionEntity portionRoulee2 = new PortionEntity();
             portionRoulee2.setPrimaryKey(portionId12);
             portionRoulee2.setPortion(2);
-            fromage.setStock(fromage.getStock()-portionRoulee2.getPortion());
+            fromage.setStock(fromage.getStock() - portionRoulee2.getPortion());
             ingredientRepository.save(fromage);
 
             portionRepository.save(portionRoulee2);
@@ -320,7 +320,7 @@ public class PizzalandApplication {
             PortionEntity portionFromage = new PortionEntity();
             portionFromage.setPrimaryKey(portionId13);
             portionFromage.setPortion(2);
-            mozarella.setStock(mozarella.getStock()-portionFromage.getPortion());
+            mozarella.setStock(mozarella.getStock() - portionFromage.getPortion());
             ingredientRepository.save(mozarella);
 
             PortionId portionId14 = new PortionId();
@@ -330,7 +330,7 @@ public class PizzalandApplication {
             PortionEntity portionFromage1 = new PortionEntity();
             portionFromage1.setPrimaryKey(portionId14);
             portionFromage1.setPortion(1);
-            champigon.setStock(champigon.getStock()-portionFromage1.getPortion());
+            champigon.setStock(champigon.getStock() - portionFromage1.getPortion());
             ingredientRepository.save(champigon);
 
             PortionId portionId15 = new PortionId();
@@ -340,7 +340,7 @@ public class PizzalandApplication {
             PortionEntity portionFromage2 = new PortionEntity();
             portionFromage2.setPrimaryKey(portionId15);
             portionFromage2.setPortion(2);
-            jambon.setStock(jambon.getStock()-portionFromage2.getPortion());
+            jambon.setStock(jambon.getStock() - portionFromage2.getPortion());
             ingredientRepository.save(jambon);
 
             PortionId portionId16 = new PortionId();
@@ -350,7 +350,7 @@ public class PizzalandApplication {
             PortionEntity portionFromage3 = new PortionEntity();
             portionFromage3.setPrimaryKey(portionId16);
             portionFromage3.setPortion(3);
-            olive.setStock(olive.getStock()-portionFromage3.getPortion());
+            olive.setStock(olive.getStock() - portionFromage3.getPortion());
             ingredientRepository.save(olive);
 
 
@@ -360,7 +360,7 @@ public class PizzalandApplication {
             portionRepository.save(portionFromage3);
 
 
-            /*EtatCommandeEntity paye = new EtatCommandeEntity();
+            EtatCommandeEntity paye = new EtatCommandeEntity();
             paye.setEtatCommande(EtatCommandeEnum.PAYE);
 
             EtatCommandeEntity nonPaye = new EtatCommandeEntity();
@@ -379,8 +379,9 @@ public class PizzalandApplication {
             etatCommandeRepository.save(nonPaye);
             etatCommandeRepository.save(livraison);
             etatCommandeRepository.save(livree);
-            etatCommandeRepository.save(preparation);*/
-        };
+            etatCommandeRepository.save(preparation);
 
+
+        };
     }
 }

@@ -22,10 +22,11 @@ public class CommandeEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity user;
 
-    @Column(name = "etat")
     @NotNull
-    @Enumerated(value = EnumType.STRING)
-    private EtatCommandeEnum etat;
+    @JoinColumn(name = "etatCommande",
+            referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private EtatCommandeEntity etat;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
@@ -50,11 +51,11 @@ public class CommandeEntity {
         this.user = user;
     }
 
-    public EtatCommandeEnum getEtat() {
+    public EtatCommandeEntity getEtat() {
         return etat;
     }
 
-    public void setEtat(EtatCommandeEnum etat) {
+    public void setEtat(EtatCommandeEntity etat) {
         this.etat = etat;
     }
 
