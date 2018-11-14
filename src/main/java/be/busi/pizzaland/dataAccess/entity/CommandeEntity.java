@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -70,5 +71,18 @@ public class CommandeEntity {
 
     public void addLigneCommande(LigneCommandeEntity ligneCommandeEntity){
         this.ligneCommandes.add(ligneCommandeEntity);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CommandeEntity)) return false;
+        CommandeEntity that = (CommandeEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

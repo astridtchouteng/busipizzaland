@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -25,7 +26,7 @@ public class PizzaEntity {
     private String description;
 
     @NotNull
-    @Column(name = "nom", unique = true)
+    @Column(name = "nom")
     private String nom;
 
     @NotNull
@@ -110,5 +111,18 @@ public class PizzaEntity {
 
     public void addLigneCommande(LigneCommandeEntity ligneCommandeEntity){
         this.ligneCommandes.add(ligneCommandeEntity);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PizzaEntity)) return false;
+        PizzaEntity that = (PizzaEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

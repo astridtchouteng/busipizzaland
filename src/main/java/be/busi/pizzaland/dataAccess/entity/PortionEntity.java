@@ -22,7 +22,7 @@ public class PortionEntity {
     @Column(name = "portion")
     @NotNull
     @Min(value = 1)
-    private Double portion;
+    private Integer portion;
 
     public PortionEntity() {}
 
@@ -30,7 +30,7 @@ public class PortionEntity {
         return primaryKey;
     }
 
-    public Double getPortion() {
+    public Integer getPortion() {
         return portion;
     }
 
@@ -38,7 +38,7 @@ public class PortionEntity {
         this.primaryKey = primaryKey;
     }
 
-    public void setPortion(Double portion) {
+    public void setPortion(Integer portion) {
         this.portion = portion;
     }
 

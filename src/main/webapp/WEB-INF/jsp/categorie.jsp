@@ -23,7 +23,7 @@
                     <c:forEach items="${pizzas}" var="pizza">
                         <div class="card text-white bg-warning mb-3 mr-3"
                              style="max-width: 400px; max-height: 400px;">
-                            <div class="card-header">${pizza.nom}</div>
+                            <div class="card-header"><a href="${pageContext.request.contextPath}/pizzaDetails?nom=${pizza.nom}">${pizza.nom}</a></div>
                             <div class="card-body">
                                 <h5 class="card-title">Description</h5>
                                 <div class="card-text">

@@ -2,10 +2,15 @@ package be.busi.pizzaland.dataAccess.dao;
 
 import be.busi.pizzaland.dataAccess.entity.CategorieEntity;
 import be.busi.pizzaland.dataAccess.entity.PizzaEntity;
+import be.busi.pizzaland.dataAccess.entity.PortionEntity;
+import be.busi.pizzaland.dataAccess.entity.PortionId;
 import be.busi.pizzaland.dataAccess.repository.CategorieRepository;
+import be.busi.pizzaland.dataAccess.repository.IngredientRepository;
 import be.busi.pizzaland.dataAccess.repository.PizzaRepository;
+import be.busi.pizzaland.dataAccess.repository.PortionRepository;
 import be.busi.pizzaland.model.Categorie;
 import be.busi.pizzaland.model.CategorieEnum;
+import be.busi.pizzaland.model.Ingredient;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +30,12 @@ public class PizzaDAO {
     private PizzaRepository pizzaRepository;
 
     @Autowired
+    private PortionRepository portionRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    @Autowired
     private CategorieRepository categorieRepository;
 
     @Autowired
@@ -36,7 +47,10 @@ public class PizzaDAO {
                 stream().
                 map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
-        pizzas.stream().forEach(p -> System.out.println(p.getPrix()));
+
+        Set<Ingredient> ingredients = new HashSet<>();
+
+
         return pizzas;
     }
 
@@ -60,4 +74,15 @@ public class PizzaDAO {
                 collect(Collectors.toSet());
     }
 
+    public Pizza getPizzaByNom(String nom) {
+
+        Pizza pizza = new Pizza();
+        PizzaEntity pizzaEntity = pizzaRepository.findByNom(nom);
+        pizza = providerConverter.pizzaEntityToPizzaModel(pizzaEntity);
+        return pizza;
+    }
+
+    public Pizza getPizzaById(Long idPizza) {
+        return providerConverter.pizzaEntityToPizzaModel(pizzaRepository.findOne(idPizza));
+    }
 }

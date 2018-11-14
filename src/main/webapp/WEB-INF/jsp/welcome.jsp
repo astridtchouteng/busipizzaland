@@ -22,7 +22,7 @@
                         <c:forEach items="${pizzas}" var="pizza">
                             <div class="card-deck">
                                 <div class="card mb-3 mr-5 bg-warning" style="max-width: 18rem; max-height: 350px;">
-                                    <div class="card-header"><a href="${pageContext.request.contextPath}/pizzaDetails">${pizza.nom}</a></div>
+                                    <div class="card-header">${pizza.nom}</div>
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <div class="card-text">
@@ -57,66 +57,15 @@
                                     </div>
                                 </div>
                             </div>
-                                        <%--<div class="card text-white bg-warning mb-3 mr-3"--%>
-                                 <%--style="max-width: 400px; max-height: 300px;">--%>
-                                <%--<div class="card-header">${pizza.nom}</div>--%>
-                                <%--<div class="card-header">--%>
-                                    <%--<a href="${pageContext.request.contextPath}/pizzaDetails">${pizza.description}</a>--%>
-                                <%--</div>--%>
-                                <%--<div class="card-body">--%>
-                                    <%--<h5 class="card-title">Description</h5>--%>
-                                    <%--<div class="card-text">--%>
-                                        <%--<p>${pizza.description}</p>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="row">--%>
-                                        <%--<div class="col-3">--%>
-                                            <%--<p class="lead">${pizza.prix}</p>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="col-9">--%>
-                                            <%--<div class="row">--%>
-                                                <%--<form:form cssClass="form-inline col-12" action="pizzaland/home/panier" method="post" modelAttribute="commande">--%>
-                                                    <%--<div class="col-3">--%>
-                                                        <%--<form:input path="quantite" cssClass="form-control" type="number" min="1" max="20" value="1"/>--%>
-                                                        <%--<form:input path="nom" type="text" cssClass="form-control col-2" value="${pizza.nom}"/>--%>
-                                                    <%--</div>--%>
-                                                    <%--<div class="col-3 offset-2">--%>
-                                                        <%--<input type="submit"/>--%>
-                                                    <%--</div>--%>
-                                                <%--</form:form>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--&lt;%&ndash;<form class="form-inline">&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<input type="number" class="form-control" min="1" max="20"&ndash;%&gt;--%>
-                                                   <%--&lt;%&ndash;value="1"/>&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<button type="submit" class="btn btn-primary mb-2">Submit</button>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;</form>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;<div class="col-4">&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<input class="form-control mr-sm-2" type="number" min="1" max="20"&ndash;%&gt;--%>
-                                                   <%--&lt;%&ndash;value="1"/>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;<div class="col-3">&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<p class="lead">&ndash;%&gt;--%>
-                                                    <%--&lt;%&ndash;${pizza.prix}</p>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;<div class="col-4">&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<a href="${pageContext.request.contextPath}/home/panier?nomPizza=${pizza.description}" class="btn btn-outline-success my-2 my-sm-0 btn-sm">&ndash;%&gt;--%>
-                                                <%--&lt;%&ndash;Ajouter au panier&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<div class="card-footer">--%>
-                                    <%--<div class="row">--%>
-                                        <%--<div class="col-4 offset-4">--%>
-                                            <%--<a href="${pageContext.request.contextPath}/pizzaDetails" class="btn btn-danger btn-sm">Customise ta pizza</a>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+
                         </c:forEach>
                     </div>
                 <%--</c:if>--%>
             </div>
+        </div>
+
+        <div class="row mt-4">
+            <a href="${pageContext.request.contextPath}/pizzaCustom" class ="btn btn-success btn-sm mr-1">Custom Izza</a>
         </div>
     </body>
 </html>

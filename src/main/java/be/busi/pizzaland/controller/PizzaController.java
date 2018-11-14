@@ -34,10 +34,10 @@ public class PizzaController {
     }
 
     @PostMapping
-    public String enregitrer(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult errors) {
+    public String enregitrer(@Valid @ModelAttribute("pizza") Pizza pizza,
+                             BindingResult errors) {
 
         if(errors.hasErrors()) {
-            System.out.println(errors.getAllErrors());
             return "redirect:/errors";
         }
 
