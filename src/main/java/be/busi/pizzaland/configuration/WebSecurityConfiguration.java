@@ -72,14 +72,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .loginPage(LOGIN_REQUEST)
-                .loginProcessingUrl("/login")
+                /*.loginProcessingUrl("/login")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                                         Authentication authentication) throws IOException, ServletException {
                         redirectStrategy.sendRedirect(request, response, "/home");
                     }
-                })// si on se loggue avec succes on est redirigé vers la home
+                })// si on se loggue avec succes on est redirigé vers la home*/
                 .permitAll()
 
                 .and()
