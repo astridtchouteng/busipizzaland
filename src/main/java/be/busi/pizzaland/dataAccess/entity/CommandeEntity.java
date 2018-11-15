@@ -19,13 +19,12 @@ public class CommandeEntity {
 
     @JoinColumn(name = "userCommandes",
             referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private UserEntity user;
 
-    @NotNull
     @JoinColumn(name = "etatCommande",
             referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private EtatCommandeEntity etat;
 
     @OneToMany(fetch = FetchType.LAZY,

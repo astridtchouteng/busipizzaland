@@ -1,6 +1,7 @@
 package be.busi.pizzaland.controller;
 
 import be.busi.pizzaland.Service.CategorieService;
+import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import javax.validation.Valid;
 @RequestMapping(value = "/pizza")
 public class PizzaController {
 
+    @Autowired
+    private CategorieDAO categorieDAO;
 
     @Autowired
     private PizzaDAO pizzaDAO;
@@ -29,7 +32,7 @@ public class PizzaController {
     public String home(Model model) {
 
         model.addAttribute("pizza", new Pizza());
-        model.addAttribute("categories", categorieService.getCategories());
+        model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:createPizza";
     }
 

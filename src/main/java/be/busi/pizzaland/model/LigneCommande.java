@@ -4,8 +4,6 @@ import java.util.Map;
 
 public class LigneCommande {
 
-
-
     private int quantite;
     private String nom;
 
