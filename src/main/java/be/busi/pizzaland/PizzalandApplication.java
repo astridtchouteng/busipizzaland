@@ -40,10 +40,10 @@ public class PizzalandApplication {
     }
 
 
-    @Bean
+    /*@Bean
     CommandLineRunner runIt(){
 
-        return args -> {
+        return args ->{
 
             RoleEntity roleuser = new RoleEntity();
             roleuser.setRole(RoleEnum.ROLE_USER);
@@ -214,7 +214,7 @@ public class PizzalandApplication {
             PortionEntity portionMaurice = new PortionEntity();
             portionMaurice.setPrimaryKey(portionId4);
             portionMaurice.setPortion(2);
-            fromage.setStock(fromage.getStock()-portionMaurice.getPortion());
+            fromage.setStock(fromage.getStock() - portionMaurice.getPortion());
             ingredientRepository.save(fromage);
 
             PortionId portionId5 = new PortionId();
@@ -224,7 +224,7 @@ public class PizzalandApplication {
             PortionEntity portionMaurice1 = new PortionEntity();
             portionMaurice1.setPrimaryKey(portionId5);
             portionMaurice1.setPortion(1);
-            tomate.setStock(tomate.getStock()-portionMaurice1.getPortion());
+            tomate.setStock(tomate.getStock() - portionMaurice1.getPortion());
             ingredientRepository.save(tomate);
 
             PortionId portionId6 = new PortionId();
@@ -383,5 +383,5 @@ public class PizzalandApplication {
 
 
         };
-    }
+    }*/
 }

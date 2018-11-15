@@ -22,7 +22,6 @@ public class CommandeEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private UserEntity user;
 
-    @NotNull
     @JoinColumn(name = "etatCommande",
             referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

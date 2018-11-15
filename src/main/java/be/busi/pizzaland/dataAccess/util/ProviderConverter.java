@@ -124,6 +124,7 @@ public class ProviderConverter {
     public Commande commandeEntityToCommande(CommandeEntity commandeEntity) {
 
         Commande commande = new Commande();
+
         commande.setEtatCommande(etatCommandeEntityToEtatCommande(commandeEntity.getEtat()));
         commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
         commande.setId(commandeEntity.getId());

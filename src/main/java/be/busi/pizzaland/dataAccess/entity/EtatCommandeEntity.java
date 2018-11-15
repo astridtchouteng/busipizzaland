@@ -16,7 +16,7 @@ public class EtatCommandeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "etat")
+    @Column(name = "etat", unique = true)
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private EtatCommandeEnum etatCommande;
