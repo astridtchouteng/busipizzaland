@@ -76,6 +76,16 @@
                             <a href="${pageContext.request.contextPath}/panier/valider" class="btn btn-success">Valider Commande</a>
                         </td>
                     </tr>
+                    <%--<p>Click the button to display a confirm box.</p>--%>
+
+                    <%--<button onclick="myFunction()">Try it</button>--%>
+
+                    <%--<script>--%>
+                    <%--function myFunction() {--%>
+                        <%--if(${panier.prixTotal != 0})--%>
+                            <%--confirm("Press a button!");--%>
+                    <%--}--%>
+                    <%--</script>--%>
                 </tbody>
             </table>
         </div>

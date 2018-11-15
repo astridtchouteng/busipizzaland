@@ -79,7 +79,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                                         Authentication authentication) throws IOException, ServletException {
                         redirectStrategy.sendRedirect(request, response, "/home");
                     }
-                })
+                })// si on se loggue avec succes on est redirigé vers la home
                 .permitAll()
 
                 .and()
