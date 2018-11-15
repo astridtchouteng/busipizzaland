@@ -6,6 +6,7 @@ import be.busi.pizzaland.dataAccess.repository.RoleRepository;
 import be.busi.pizzaland.dataAccess.repository.UserRepository;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.exception.UserExistsException;
+import be.busi.pizzaland.model.Role;
 import be.busi.pizzaland.model.RoleEnum;
 import be.busi.pizzaland.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class UserDAO implements UserDetailsService {
         user.setCredentialsNonExpired(true);
         user.setAccountNonExpired(true);
         user.setEnabled(true);
+        Role role = providerConverter.roleEntityToRole(roleRepository.findAll()
+                                  .stream()
+                                  .filter(roleEntity ->
+                                           roleEntity.getRole().equals(RoleEnum.ROLE_USER))
+                                  .findFirst().get());
+        user.setRole(role);
         UserEntity userEntity = providerConverter.userModelToUserEntity(user);
         userEntity = userRepository.save(userEntity);
 

@@ -1,17 +1,17 @@
 package be.busi.pizzaland;
 
 import be.busi.pizzaland.dataAccess.entity.*;
-import be.busi.pizzaland.dataAccess.repository.*;
 import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.EtatCommande;
 import be.busi.pizzaland.model.EtatCommandeEnum;
 import be.busi.pizzaland.model.RoleEnum;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
+import be.busi.pizzaland.dataAccess.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class PizzalandApplication {

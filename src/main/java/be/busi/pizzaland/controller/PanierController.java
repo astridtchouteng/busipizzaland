@@ -115,15 +115,11 @@ public class PanierController {
         }
 
         Commande commande = new Commande();
-        EtatCommande etatCommande = new EtatCommande();
-        etatCommande.setEtatCommandeEnum(EtatCommandeEnum.NON_PAYE);
-        commande.setEtatCommande(etatCommande);
 
         UserDetails userAuthentication = (UserDetails) authentication.getPrincipal();
         User user = providerConverter.userEntityToUserModel((UserEntity)userAuthentication);
         commande.setUser(user);
         commande = commandeDAO.save(commande);
-        System.out.println(commande.getEtatCommande().getEtatCommandeEnum());
         return "redirect:/panier";
     }
 

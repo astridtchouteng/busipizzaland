@@ -16,6 +16,7 @@ public class ProviderConverter {
     public User userEntityToUserModel(UserEntity userEntity) {
 
         User user = new User();
+        user.setId(userEntity.getId());
         user.setUsername(userEntity.getUsername());
         user.setFirstname(userEntity.getFirstname());
         user.setEmail(userEntity.getEmail());
@@ -35,6 +36,9 @@ public class ProviderConverter {
     public UserEntity userModelToUserEntity(User user) {
         UserEntity userEntity = new UserEntity();
 
+        if(user.getId() != null){
+            userEntity.setId(user.getId());
+        }
         userEntity.setUsername(user.getUsername());
         userEntity.setFirstname(user.getFirstname());
         userEntity.setAdresse(user.getAdresse());
@@ -53,12 +57,16 @@ public class ProviderConverter {
 
     public Role roleEntityToRole(RoleEntity roleEntity) {
         Role role = new Role();
+        role.setId(roleEntity.getId());
         role.setNameRole(roleEntity.getRole());
         return role;
     }
 
     public RoleEntity roleToRoleEntity(Role role) {
         RoleEntity roleEntity = new RoleEntity();
+        if(role.getId() != null) {
+            roleEntity.setId(role.getId());
+        }
         roleEntity.setRole(role.getNameRole());
         return roleEntity;
     }
@@ -82,7 +90,8 @@ public class ProviderConverter {
     public PizzaEntity pizzaModelToPizzaEntity(Pizza pizza) {
 
         PizzaEntity pizzaEntity = new PizzaEntity();
-        pizzaEntity.setId(pizza.getId());
+
+         if(pizza.getId() != null) pizzaEntity.setId(pizza.getId());
         pizzaEntity.setCategorie(categorieToCategorieEntity(pizza.getCategorie()));
         pizzaEntity.setNom(pizza.getNom());
         pizzaEntity.setPrix(pizza.getPrix());
@@ -106,8 +115,9 @@ public class ProviderConverter {
     public CommandeEntity CommandeToComandeEntity(Commande commande) {
 
         CommandeEntity commandeEntity = new CommandeEntity();
+        if(commande.getId() != null) commandeEntity.setId(commande.getId());
         commandeEntity.setEtat(etatCommandeToEtatCommandeEntity(commande.getEtatCommande()));
-
+        commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
         return commandeEntity;
     }
 
@@ -140,6 +150,8 @@ public class ProviderConverter {
     public EtatCommandeEntity etatCommandeToEtatCommandeEntity(EtatCommande etatCommande){
 
         EtatCommandeEntity etatCommandeEntity = new EtatCommandeEntity();
+        if(etatCommande.getId() != null)
+             etatCommandeEntity.setId(etatCommande.getId());
         etatCommandeEntity.setEtatCommande(etatCommande.getEtatCommandeEnum());
         return etatCommandeEntity;
     }
@@ -147,6 +159,7 @@ public class ProviderConverter {
     public EtatCommande etatCommandeEntityToEtatCommande(EtatCommandeEntity etatCommandeEntity){
 
         EtatCommande etatCommande = new EtatCommande();
+        etatCommande.setId(etatCommandeEntity.getId());
         etatCommande.setEtatCommandeEnum(etatCommandeEntity.getEtatCommande());
         return etatCommande;
     }

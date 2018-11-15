@@ -23,7 +23,7 @@ public class EtatCommandeEntity {
 
     @OneToMany(mappedBy = "etat",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
     private Set<CommandeEntity> commandeEntities;
 
     public EtatCommandeEntity() {

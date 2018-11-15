@@ -19,7 +19,7 @@ public class PizzaEntity {
 
     @JoinColumn(name = "categorie",
             referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     private CategorieEntity categorie;
 
     @Column(name = "description")
@@ -35,13 +35,13 @@ public class PizzaEntity {
 
     @OneToMany(mappedBy = "primaryKey.pizza",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
     private Set<PortionEntity> portions = new HashSet<>();
 
 
     @OneToMany(
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             mappedBy = "primaryKey.pizza")
     private Set<LigneCommandeEntity> ligneCommandes = new HashSet<>();
 
