@@ -41,7 +41,7 @@ public class LigneCommandeDAO {
 
         Pizza pizza = providerConverter.pizzaEntityToPizzaModel(pizzaRepository.findOne(ligneCommande.getIdPizza()));
 
-        for (Map.Entry<Ingredient, Integer> entry: pizza.getMapIngredients().entrySet() ) {
+        /*for (Map.Entry<Ingredient, Integer> entry: pizza.getMapIngredients().entrySet() ) {
             PortionId portionId = new PortionId();
             portionId.setPizzaEntity(pizza.getId());
             portionId.setIngredientEntity(entry.getKey().getId());
@@ -49,7 +49,7 @@ public class LigneCommandeDAO {
             portionEntity.setPrimaryKey(portionId);
             portionEntity.setPortion(entry.getValue());
             portionRepository.save(portionEntity);
-        }
+        }*/
 
         return providerConverter.ligneCommandeEntityToLigneCommande(ldcEntitySaved);
     }
