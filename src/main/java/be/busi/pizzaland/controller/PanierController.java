@@ -136,8 +136,13 @@ public class PanierController {
             ligneCommandes.add(ligneCommande);
         }
 
+        Set<LigneCommande> ligneCommandeSaved = new HashSet<>();
+
         for(LigneCommande ligneCommande : ligneCommandes)
-            ligneCommandeDAO.save(ligneCommande);
+            ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
+
+        if(ligneCommandes.equals(ligneCommandeSaved))
+            panier.vider();
 
         return "redirect:/panier";
     }
