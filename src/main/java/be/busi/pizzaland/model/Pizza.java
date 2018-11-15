@@ -11,7 +11,6 @@ public class Pizza {
     private String description;
     private double prix;
     private String nom;
-    List<String> stringIngredients = new ArrayList<>();
     Map<Ingredient, Integer> mapIngredients = new HashMap<>();
 
     public Pizza() {}
@@ -58,14 +57,6 @@ public class Pizza {
 
     public Set<Ingredient> getIngredients() {
         return mapIngredients.keySet();
-    }
-
-    public List<String> getStringIngredients() {
-        return stringIngredients;
-    }
-
-    public void setStringIngredients(List<String> stringIngredients) {
-        this.stringIngredients = stringIngredients;
     }
 
     public Map<Ingredient, Integer> getMapIngredients() {

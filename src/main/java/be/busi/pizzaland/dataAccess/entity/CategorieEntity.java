@@ -23,7 +23,7 @@ public class CategorieEntity {
 
     @OneToMany(mappedBy = "categorie",
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
     private List<PizzaEntity> pizzas;
 
 

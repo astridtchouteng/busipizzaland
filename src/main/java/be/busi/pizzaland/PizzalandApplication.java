@@ -1,17 +1,17 @@
 package be.busi.pizzaland;
 
 import be.busi.pizzaland.dataAccess.entity.*;
-import be.busi.pizzaland.dataAccess.repository.*;
 import be.busi.pizzaland.model.CategorieEnum;
 import be.busi.pizzaland.model.EtatCommande;
 import be.busi.pizzaland.model.EtatCommandeEnum;
 import be.busi.pizzaland.model.RoleEnum;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
+import be.busi.pizzaland.dataAccess.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class PizzalandApplication {
@@ -39,11 +39,10 @@ public class PizzalandApplication {
         SpringApplication.run(PizzalandApplication.class, args);
     }
 
-
     /*@Bean
     CommandLineRunner runIt(){
 
-        return args -> {
+        return args ->{
 
             RoleEntity roleuser = new RoleEntity();
             roleuser.setRole(RoleEnum.ROLE_USER);
@@ -61,9 +60,13 @@ public class PizzalandApplication {
             CategorieEntity categorieEntity2 = new CategorieEntity();
             categorieEntity2.setCategorieEnum(CategorieEnum.EXOTIQUE);
 
+            CategorieEntity categorieEntity3 = new CategorieEntity();
+            categorieEntity3.setCategorieEnum(CategorieEnum.CUSTOMISEE);
+
             categorieRepository.save(categorieEntity);
             categorieRepository.save(categorieEntity1);
             categorieRepository.save(categorieEntity2);
+            categorieRepository.save(categorieEntity3);
 
             PizzaEntity pizzaEntity = new PizzaEntity();
             pizzaEntity.setCategorie(categorieEntity2);

@@ -11,15 +11,4 @@ public class CategorieService {
 
     Set<CategorieEnum> categories = new HashSet<>();
 
-    public CategorieService() {
-        Arrays.stream(CategorieEnum.values()).forEach(cat -> categories.add(cat));
-    }
-
-    public Set<CategorieEnum> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<CategorieEnum> categories) {
-        this.categories = categories;
-    }
 }

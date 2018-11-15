@@ -9,6 +9,7 @@ import java.util.*;
 
 public class User implements UserDetails {
 
+    private Long id;
     @NotNull
     private String username;
     @NotNull
@@ -29,6 +30,14 @@ public class User implements UserDetails {
     private Set<Commande> commandes = new HashSet<>();
 
     public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setUsername(String name) {

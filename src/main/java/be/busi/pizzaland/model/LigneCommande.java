@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class LigneCommande {
 
-    private int idPizza;
-    private int idCommande;
+    private Long idPizza;
+    private Long idCommande;
     private int quantite;
 
 
@@ -16,19 +16,19 @@ public class LigneCommande {
         this.quantite = quantite;
     }
 
-    public int getIdPizza() {
+    public Long getIdPizza() {
         return idPizza;
     }
 
-    public void setIdPizza(int idPizza) {
+    public void setIdPizza(Long idPizza) {
         this.idPizza = idPizza;
     }
 
-    public int getIdCommande() {
+    public Long getIdCommande() {
         return idCommande;
     }
 
-    public void setIdCommande(int idCommande) {
+    public void setIdCommande(Long idCommande) {
         this.idCommande = idCommande;
     }
 

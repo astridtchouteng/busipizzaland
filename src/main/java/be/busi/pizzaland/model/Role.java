@@ -7,10 +7,18 @@ import java.util.Set;
 
 public class Role implements GrantedAuthority {
 
+    private Long id;
     private RoleEnum nameRole;
     private Set<User> users = new HashSet<>();
 
-    public Role() {
+    public Role() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public RoleEnum getNameRole() {

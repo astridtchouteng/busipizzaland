@@ -25,7 +25,7 @@ public class IngredientEntity {
 
     @OneToMany(mappedBy = "primaryKey.ingredient",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)//cascade for this case is required
+            cascade = CascadeType.MERGE)//cascade for this case is required
     private Set<PortionEntity> portions = new HashSet<>();
 
     public IngredientEntity() {

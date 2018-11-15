@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -80,5 +81,27 @@ public class PizzaDAO {
 
     public Pizza getPizzaById(Long idPizza) {
         return providerConverter.pizzaEntityToPizzaModel(pizzaRepository.findOne(idPizza));
+    }
+
+    public Pizza savePizzaCustom(Pizza pizza) {
+
+        pizza.setCategorie(providerConverter.categorieEntityToCategorie
+                                (categorieRepository.findByCategorieEnum(CategorieEnum.CUSTOMISEE)));
+        PizzaEntity pizzaEntity = providerConverter.pizzaModelToPizzaEntity(pizza);
+
+        pizzaEntity = pizzaRepository.save(pizzaEntity);
+
+        for (Map.Entry<Ingredient, Integer> entry: pizza.getMapIngredients().entrySet() ) {
+            PortionId portionId = new PortionId();
+            portionId.setPizzaEntity(pizzaEntity.getId());
+            portionId.setIngredientEntity(entry.getKey().getId());
+            PortionEntity portionEntity = new PortionEntity();
+            portionEntity.setPrimaryKey(portionId);
+            portionEntity.setPortion(entry.getValue());
+
+            portionRepository.save(portionEntity);
+        }
+
+        return pizza;
     }
 }

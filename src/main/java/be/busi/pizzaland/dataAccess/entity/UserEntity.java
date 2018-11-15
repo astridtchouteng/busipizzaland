@@ -58,8 +58,7 @@ public class UserEntity implements UserDetails {
     @NotNull
     private Boolean enabled;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @NotNull
     @JoinColumn(name = "role",
             referencedColumnName = "id")
@@ -67,7 +66,7 @@ public class UserEntity implements UserDetails {
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
     private Set<CommandeEntity> commandes = new HashSet<>();
 
     public UserEntity() {

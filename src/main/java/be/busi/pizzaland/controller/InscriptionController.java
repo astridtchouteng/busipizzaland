@@ -45,9 +45,6 @@ public class InscriptionController {
             return "integrated:inscriptionUser";
         }
 
-        Role role = new Role();
-        role.setNameRole(RoleEnum.ROLE_USER);
-        user.setRole(role);
         userDAO.save(user);
 
         return "redirect:/home";

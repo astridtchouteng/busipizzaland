@@ -1,12 +1,11 @@
 package be.busi.pizzaland.controller;
 
+import be.busi.pizzaland.Service.PizzaService;
 import be.busi.pizzaland.dataAccess.dao.IngredientDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.dataAccess.dao.PortionDAO;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
-import be.busi.pizzaland.model.Constants;
-import be.busi.pizzaland.model.Ingredient;
-import be.busi.pizzaland.model.Pizza;
+import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,9 @@ import java.util.*;
 //je dois passer le panier aussi
 @SessionAttributes({Constants.INGREDIENTS_PIZZA})
 public class PizzaCustomController {
+
+    @Autowired
+    private PizzaService pizzaService;
 
     @Autowired
     private PizzaDAO pizzaDAO;
@@ -68,28 +70,14 @@ public class PizzaCustomController {
                                   @ModelAttribute(value = Constants.INGREDIENTS_PIZZA)
                                           Map<Ingredient, Integer> ingredients,
                                   Model model,
-                                  Authentication authentication
-    ){
+                                  Authentication authentication){
 
-//        Map<String, Object> maps = model.asMap();
-////
-////        for (Map.Entry<String, Object> entry: maps.entrySet() ) {
-////            if(entry.getKey().equals("map")){
-////                ingredients = (Map<Ingredient, Integer>) entry.getValue();
-////            }
-////        }
-//
-        if(authentication.getPrincipal()==null){
-            return "redirect:/login";
-        }
-        if(authentication == null){
 
-            return "redirect:/login";
-        }
-        UserEntity user = (UserEntity) authentication.getPrincipal();
-        System.out.println(user.getFirstname());
         pizza.setMapIngredients(ingredients);
-
+        pizza.setNom(pizzaService.getNomPizza());
+        pizza.setDescription(pizzaService.getDescriptionPizza());
+        pizza.setPrix(pizzaService.getPrixPizza(pizza));
+        pizzaDAO.savePizzaCustom(pizza);
         return "redirect:/home";
     }
 
