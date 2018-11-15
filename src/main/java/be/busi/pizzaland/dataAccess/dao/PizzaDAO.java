@@ -98,7 +98,6 @@ public class PizzaDAO {
             PortionEntity portionEntity = new PortionEntity();
             portionEntity.setPrimaryKey(portionId);
             portionEntity.setPortion(entry.getValue());
-
             portionRepository.save(portionEntity);
         }
 
