@@ -34,8 +34,12 @@ public class CommandeDAO {
                                                etatCommandeEntity.getEtatCommande().equals(EtatCommandeEnum.NON_PAYE)
                                        ).findFirst().get());
         commande.setEtatCommande(etatCommande);
+
         CommandeEntity commandeEntity  = providerConverter.CommandeToComandeEntity(commande);
         CommandeEntity commandeEntitySaved = commandeRepository.save(commandeEntity);
+
+
+
         return providerConverter.commandeEntityToCommande(commandeEntitySaved);
 
     }

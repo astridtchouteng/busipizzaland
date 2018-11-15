@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class PizzalandApplication {
@@ -43,7 +44,6 @@ public class PizzalandApplication {
 
         SpringApplication.run(PizzalandApplication.class, args);
     }
-
 
     @Bean
     CommandLineRunner runIt(){
@@ -388,8 +388,8 @@ public class PizzalandApplication {
 
             PromotionEntity promotionEntity = new PromotionEntity();
             promotionEntity.setCodePromo("java");
-            promotionEntity.setDateDebut(LocalDate.now());
-            promotionEntity.setDateFin(LocalDate.now().plusDays(2));
+            promotionEntity.setDateDebut(LocalDateTime.now());
+            promotionEntity.setDateFin(LocalDateTime.now().plusDays(2));
 
             promotionRepository.save(promotionEntity);
 

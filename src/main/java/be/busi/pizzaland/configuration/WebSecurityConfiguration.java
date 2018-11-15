@@ -6,11 +6,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
@@ -27,6 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/home","/inscription", "/pizza", "/categorie", "/panier", "/traiter", "/panier/modifier", "/panier/vider",
             "/panier/supprimer"
     };
+
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
             "/users","/pizza","/ingredient"
     };
@@ -42,6 +47,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
 
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -51,7 +58,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
                 .antMatchers(staticResources).permitAll()
                 .anyRequest().authenticated()
-
 
                 .and()
                 .formLogin()
@@ -66,6 +72,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .loginPage(LOGIN_REQUEST)
+                /*.loginProcessingUrl("/login")
+                .successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+                        redirectStrategy.sendRedirect(request, response, "/home");
+                    }
+                })// si on se loggue avec succes on est redirigé vers la home*/
                 .permitAll()
 
                 .and()

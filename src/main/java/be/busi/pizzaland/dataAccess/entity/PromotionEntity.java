@@ -2,6 +2,7 @@ package be.busi.pizzaland.dataAccess.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "promotion")
@@ -12,10 +13,10 @@ public class PromotionEntity {
     private  Long id;
 
     @Column(name = "dateDebut")
-    private LocalDate dateDebut;
+    private LocalDateTime dateDebut;
 
     @Column(name = "dateFin")
-    private LocalDate dateFin;
+    private LocalDateTime dateFin;
 
     @Column(name = "codePromo", unique = true)
     private String codePromo;
@@ -30,19 +31,19 @@ public class PromotionEntity {
         this.id = id;
     }
 
-    public LocalDate getDateDebut() {
+    public LocalDateTime getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(LocalDate dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public LocalDate getDateFin() {
+    public LocalDateTime getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(LocalDate dateFin) {
+    public void setDateDebut(LocalDateTime dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public void setDateFin(LocalDateTime dateFin) {
         this.dateFin = dateFin;
     }
 

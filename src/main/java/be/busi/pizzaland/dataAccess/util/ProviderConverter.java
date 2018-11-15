@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @Component
 public class ProviderConverter {
@@ -118,6 +121,17 @@ public class ProviderConverter {
         if(commande.getId() != null) commandeEntity.setId(commande.getId());
         commandeEntity.setEtat(etatCommandeToEtatCommandeEntity(commande.getEtatCommande()));
         commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
+
+        /*Set<LigneCommande> ligneCommandes = commande.getLigneCommandes();
+
+        if(ligneCommandes != null && !ligneCommandes.isEmpty()) {
+            commandeEntity.setLigneCommandes(
+                    commande.getLigneCommandes().stream().
+                    map(ligneCommande -> ligneCommandeToLigneCommandeEntity(ligneCommande)).
+                    collect(Collectors.toSet()));
+        }*/
+
+
         return commandeEntity;
     }
 
@@ -128,6 +142,15 @@ public class ProviderConverter {
         commande.setEtatCommande(etatCommandeEntityToEtatCommande(commandeEntity.getEtat()));
         commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
         commande.setId(commandeEntity.getId());
+
+        /*Set<LigneCommandeEntity> ligneCommandeEntities = commandeEntity.getLigneCommandes();
+
+        if(ligneCommandeEntities != null && !ligneCommandeEntities.isEmpty())
+        commande.setLigneCommandes(
+                ligneCommandeEntities.stream().map(ligneCommandeEntity -> ligneCommandeEntityToLigneCommande(ligneCommandeEntity)).
+                        collect(Collectors.toSet())
+        );*/
+
         return commande;
     }
 
@@ -165,5 +188,33 @@ public class ProviderConverter {
         return etatCommande;
     }
 
+    public LigneCommandeEntity ligneCommandeToLigneCommandeEntity(LigneCommande ligneCommande){
+
+        LigneCommandeEntity ligneCommandeEntity = new LigneCommandeEntity();
+
+        LigneCommandeId ligneCommandeId = new LigneCommandeId();
+
+        ligneCommandeId.setPizza(ligneCommande.getIdPizza());
+        ligneCommandeId.setCommande(ligneCommande.getIdCommande());
+
+        ligneCommandeEntity.setPrimaryKey(ligneCommandeId);
+        ligneCommandeEntity.setQuantite(ligneCommande.getQuantite());
+
+        return ligneCommandeEntity;
+    }
+
+    public LigneCommande ligneCommandeEntityToLigneCommande(LigneCommandeEntity ligneCommandeEntity) {
+
+        LigneCommande ligneCommande = new LigneCommande();
+
+        LigneCommandeId ligneCommandeId = ligneCommandeEntity.getPrimaryKey();
+
+        ligneCommande.setIdPizza(ligneCommandeId.getPizza());
+        ligneCommande.setIdCommande(ligneCommandeId.getCommande());
+
+        ligneCommande.setQuantite(ligneCommandeEntity.getQuantite());
+
+        return ligneCommande;
+    }
 
 }

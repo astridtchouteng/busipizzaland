@@ -1,9 +1,11 @@
 package be.busi.pizzaland.controller;
 
 import be.busi.pizzaland.dataAccess.dao.CommandeDAO;
+import be.busi.pizzaland.dataAccess.dao.LigneCommandeDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.dataAccess.dao.UserDAO;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class PanierController {
     @Autowired
     private CommandeDAO commandeDAO;
 
+    @Autowired
+    private LigneCommandeDAO ligneCommandeDAO;
+
     @ModelAttribute(Constants.PANIER)
     public Panier panier(){
         return new Panier();
@@ -58,7 +63,7 @@ public class PanierController {
                            @ModelAttribute(value= Constants.PANIER) Panier panier,
                            BindingResult errors)  {
 
-
+// unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null){
@@ -85,7 +90,7 @@ public class PanierController {
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
-
+//unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null)
@@ -109,17 +114,36 @@ public class PanierController {
     public String valider(Model model, @ModelAttribute(Constants.PANIER) Panier panier,
                           BindingResult errors,
                           Authentication authentication) {
-
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
-
+        System.out.println("coucou");
         Commande commande = new Commande();
 
         UserDetails userAuthentication = (UserDetails) authentication.getPrincipal();
         User user = providerConverter.userEntityToUserModel((UserEntity)userAuthentication);
         commande.setUser(user);
         commande = commandeDAO.save(commande);
+
+        Set<LigneCommande> ligneCommandes = new HashSet<>();
+
+        for(Pizza pizza : panier.getContenu().keySet()) {
+
+            LigneCommande ligneCommande = new LigneCommande();
+            ligneCommande.setQuantite(panier.get(pizza));
+            ligneCommande.setIdCommande(commande.getId());
+            ligneCommande.setIdPizza(pizza.getId());
+            ligneCommandes.add(ligneCommande);
+        }
+
+        Set<LigneCommande> ligneCommandeSaved = new HashSet<>();
+
+        for(LigneCommande ligneCommande : ligneCommandes)
+            ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
+
+        if(ligneCommandes.equals(ligneCommandeSaved))
+            panier.vider();
+
         return "redirect:/panier";
     }
 

@@ -32,11 +32,19 @@
                 </li>
             </ul>
 
+            <div class="col-3">
+                <sec:authorize access="isAuthenticated()">
+                    <ul class="nav navbar-nav">
+                        <li style="color: cadetblue"><sec:authentication property="principal.username"/></li>
+                    </ul>
+                </sec:authorize>
+            </div>
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <sec:authorize access="isAuthenticated()">
                         <ul class="nav navbar-nav">
-                            <li><sec:authentication property="principal.username"/></li>
+                            <%--<li style="color: cadetblue"><sec:authentication property="principal.username"/></li>--%>
                             <li><a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a></li>
                         </ul>
                     </sec:authorize>
