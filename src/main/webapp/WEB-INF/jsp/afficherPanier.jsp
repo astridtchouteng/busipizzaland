@@ -74,6 +74,70 @@
                         </td>
                         <td colspan="2" style="text-align: center;">
                             <a href="${pageContext.request.contextPath}/panier/valider" class="btn btn-success">Valider Commande</a>
+                            <div id="paypal-button-container"></div>
+                            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                            <script>
+                                // Render the PayPal button
+                                paypal.Button.render({
+                                // Set your environment
+                                env: 'sandbox', // sandbox | production
+
+                                // Specify the style of the button
+                                style: {
+                                layout: 'horizontal',  // horizontal | vertical
+                                size:   'medium',    // medium | large | responsive
+                                shape:  'rect',      // pill | rect
+                                color:  'blue'       // gold | blue | silver | white | black
+                                },
+
+                                // Specify allowed and disallowed funding sources
+                                //
+                                // Options:
+                                // - paypal.FUNDING.CARD
+                                // - paypal.FUNDING.CREDIT
+                                // - paypal.FUNDING.ELV
+                                funding: {
+                                allowed: [
+                                paypal.FUNDING.CARD,
+
+                                ],
+                                disallowed: []
+                                },
+
+                                // PayPal Client IDs - replace with your own
+                                // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                                client: {
+                                sandbox: 'AeUIdUt_fKw44_9GXgwOJ7nT_lLK968Rw9MNtfoYrbGCLY20YTqbUAaXuCApnj577Cd8SlkGVHKYe-DO',
+                                production: 'damastrid02-facilitator@yahoo.fr'
+                                },
+
+                                payment: function (data, actions) {
+                                return actions.payment.create({
+                                payment: {
+                                //         redirect_urls:{
+                                //             return_url: 'http://localhost:8082/ACAPizza/panier/process',
+                                //             cancel_url:'http://localhost:3000/ACAPizza/panier'
+                                // },
+                                transactions: [
+                                {
+                                amount: {
+                                total: '${panier.prixTotal}',
+                                currency: 'EUR'
+                                }
+                                }
+                                ]
+                                }
+                                });
+                                },
+
+                                onAuthorize: function (data, actions) {
+                                return actions.payment.execute()
+                                .then(function () {
+                                window.alert('Payment Complete!');
+                                });
+                                }
+                                }, '#paypal-button-container');
+                            </script>
                         </td>
                     </tr>
                 </tbody>

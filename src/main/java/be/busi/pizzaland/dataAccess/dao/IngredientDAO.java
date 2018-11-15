@@ -1,6 +1,7 @@
 package be.busi.pizzaland.dataAccess.dao;
 
 
+import be.busi.pizzaland.dataAccess.entity.IngredientEntity;
 import be.busi.pizzaland.dataAccess.repository.IngredientRepository;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.Ingredient;
@@ -37,5 +38,22 @@ public class IngredientDAO {
 
     public Ingredient getIngredientById(Long id){
         return providerConverter.ingredientEntityToIngredient(ingredientRepository.findOne(id));
+    }
+
+    public Ingredient updateStock(Ingredient ingredient){
+        IngredientEntity ingredientEntity = providerConverter.ingredientToIngredientEntity(ingredient);
+        return providerConverter.ingredientEntityToIngredient(ingredientRepository.save(ingredientEntity));
+    }
+
+    public List<Ingredient> getIngredientStock(){
+
+        List<IngredientEntity> ingredients = ingredientRepository.findAll();
+        ingredients = ingredients.stream()
+                                 .filter(ingredientEntity -> ingredientEntity.getStock()>0)
+                                 .collect(Collectors.toList());
+
+        return ingredients.stream()
+                          .map(ingredientEntity -> providerConverter.ingredientEntityToIngredient(ingredientEntity))
+                          .collect(Collectors.toList());
     }
 }

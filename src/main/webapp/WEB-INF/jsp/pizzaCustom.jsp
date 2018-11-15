@@ -3,9 +3,15 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="type=text/html ; charset=UTF-8"/>
+        <link type="text/css" href="<spring:url value='/css/pizzacustom.css'/>" rel="stylesheet">
         <title>${titre}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
+
+
         <div class="row mt-4">
             <h2>Et si vous la personnalisez ? </h2> <span>Customiser !!!!</span>
 
@@ -39,7 +45,7 @@
 
             <div class="row mt-4">
                 <h3>Ingrédients </h3>
-
+                <br/>
                 <div >
                     <%--<c:set var="sessionMap" value="${ingredientsPizza}" scope="request" ></c:set>--%>
                     <%--<% Object maps = request.getAttribute("ingredientsPizza") ;--%>
@@ -58,11 +64,11 @@
 
 
             <div class="row mt-4">
-                <h3>Ajouter Ingredients</h3>
-
+                <h3> Ingredients Disponible en stock</h3>
+                <br/>
                 <div >
                     <c:forEach var="ingredient" items="${ingredients}">
-                        <span><a href="${pageContext.request.contextPath}/pizzaCustom?idIngredient=${ingredient.id}">${ingredient.nom}    </a></span>
+                        <span><a  href="${pageContext.request.contextPath}/pizzaCustom?idIngredient=${ingredient.id}">${ingredient.nom}</a></span>
                     </c:forEach>
                 </div>
 

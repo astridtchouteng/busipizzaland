@@ -13,6 +13,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 
+import java.time.LocalDate;
+
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class PizzalandApplication {
 
@@ -21,6 +23,9 @@ public class PizzalandApplication {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private PromotionRepository promotionRepository;
 
     @Autowired
     private PizzaRepository pizzaRepository;
@@ -40,7 +45,7 @@ public class PizzalandApplication {
     }
 
 
-    /*@Bean
+    @Bean
     CommandLineRunner runIt(){
 
         return args ->{
@@ -381,7 +386,13 @@ public class PizzalandApplication {
             etatCommandeRepository.save(livree);
             etatCommandeRepository.save(preparation);
 
+            PromotionEntity promotionEntity = new PromotionEntity();
+            promotionEntity.setCodePromo("java");
+            promotionEntity.setDateDebut(LocalDate.now());
+            promotionEntity.setDateFin(LocalDate.now().plusDays(2));
+
+            promotionRepository.save(promotionEntity);
 
         };
-    }*/
+    }
 }

@@ -46,19 +46,27 @@ public class PizzaCustomController {
 
         if(idIngredient != null) {
             Ingredient ingredient = ingredientDAO.getIngredientById(idIngredient);
-            if (!ingredients.containsKey(ingredient)) {
-                ingredients.put(ingredient,1);
-            }else{
-                for (Map.Entry<Ingredient, Integer> entry: ingredients.entrySet() ) {
-                    if(entry.getKey().getId().equals(ingredient.getId())){
-                        entry.setValue(entry.getValue()+1);
+            if(ingredient.getStock()<1){
+            }
+            else{
+                if (!ingredients.containsKey(ingredient)) {
+                    ingredients.put(ingredient,1);
+                }else{
+                    for (Map.Entry<Ingredient, Integer> entry: ingredients.entrySet() ) {
+                        if(entry.getKey().getId().equals(ingredient.getId())){
+                            entry.setValue(entry.getValue()+1);
+                        }
                     }
                 }
+                ingredient.setStock(ingredient.getStock()-1);
+                ingredientDAO.updateStock(ingredient);
+
             }
         }
+
         model.addAttribute("pizza", new Pizza());
         model.addAttribute(Constants.INGREDIENTS_PIZZA, ingredients);
-        List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
+        List<Ingredient> allIngredients = ingredientDAO.getIngredientStock();
         model.addAttribute("ingredients",allIngredients);
         return "integrated:pizzaCustom";
 
