@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>0950be0d-949d-4314-b9dd-82d48f632451.SCHEMA:pizzaland.public</OriginalElement>
+  <nodes>
+    <node x="0.0" y="235.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.etatcommande</node>
+    <node x="426.99999999999994" y="480.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.pizza</node>
+    <node x="121.875" y="502.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.commandes</node>
+    <node x="431.99999999999994" y="235.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.categorie</node>
+    <node x="180.99999999999994" y="125.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.users</node>
+    <node x="229.49999999999994" y="0.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.role</node>
+    <node x="559.625" y="671.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.portion</node>
+    <node x="626.5272277227723" y="487.2722772277228">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.ingredient</node>
+    <node x="-175.31674483237794" y="451.225117248567">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.promotion</node>
+    <node x="212.99999999999997" y="671.0">0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.lignecommande</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.commandes" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.users">
+      <point x="45.25" y="-48.5" />
+      <point x="257.625" y="460.0" />
+      <point x="354.24999999999994" y="460.0" />
+      <point x="57.75" y="147.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.pizza" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.categorie">
+      <point x="0.0" y="-70.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.commandes" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.etatcommande">
+      <point x="-45.25" y="-48.5" />
+      <point x="167.125" y="460.0" />
+      <point x="70.5" y="460.0" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.portion" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.pizza">
+      <point x="-39.25" y="-48.5" />
+      <point x="598.875" y="646.0" />
+      <point x="562.75" y="646.0" />
+      <point x="45.25" y="70.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.portion" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.ingredient">
+      <point x="39.25" y="-48.5" />
+      <point x="677.375" y="646.0" />
+      <point x="713.5" y="646.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.lignecommande" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.pizza">
+      <point x="40.5" y="-48.5" />
+      <point x="334.5" y="646.0" />
+      <point x="472.24999999999994" y="646.0" />
+      <point x="-45.25" y="70.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.users" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.users">
+      <point x="-57.75" y="147.5" />
+      <point x="238.74999999999994" y="440.0" />
+      <point x="160.99999999999994" y="440.0" />
+      <point x="160.99999999999994" y="272.5" />
+      <point x="-115.5" y="-0.0" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.users" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.role">
+      <point x="0.0" y="-147.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.lignecommande" target="0950be0d-949d-4314-b9dd-82d48f632451.TABLE:pizzaland.public.commandes">
+      <point x="-40.5" y="-48.5" />
+      <point x="253.49999999999997" y="646.0" />
+      <point x="212.375" y="646.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6789915966386554" x="481.89002998984733" y="440.9777227722773" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
