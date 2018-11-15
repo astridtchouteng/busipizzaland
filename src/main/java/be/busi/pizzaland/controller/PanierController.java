@@ -51,7 +51,7 @@ public class PanierController {
                                   Model model,
                                   @ModelAttribute(value= Constants.PANIER) Panier panier, BindingResult errors)  {
 
-
+// unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null){
@@ -78,7 +78,7 @@ public class PanierController {
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
-
+//unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null)
@@ -114,10 +114,12 @@ public class PanierController {
         etatCommande.setEtatCommandeEnum(EtatCommandeEnum.NON_PAYE);
 
         commande.setEtatCommande(etatCommande);
-
         Commande commandeSaved = commandeDAO.save(commande);
 
-        System.out.println("*************" + commande);
+        LigneCommande ligneCommande = new LigneCommande();
+
+
+
 
         if(user == null){
 

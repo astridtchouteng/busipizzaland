@@ -4,11 +4,9 @@ import java.util.Map;
 
 public class LigneCommande {
 
-
-
+    private int idPizza;
+    private int idCommande;
     private int quantite;
-    private String nom;
-
 
 
     public LigneCommande() {
@@ -18,12 +16,20 @@ public class LigneCommande {
         this.quantite = quantite;
     }
 
-    public String getNom() {
-        return nom;
+    public int getIdPizza() {
+        return idPizza;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setIdPizza(int idPizza) {
+        this.idPizza = idPizza;
+    }
+
+    public int getIdCommande() {
+        return idCommande;
+    }
+
+    public void setIdCommande(int idCommande) {
+        this.idCommande = idCommande;
     }
 
     public int getQuantite() {
