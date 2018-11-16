@@ -1,6 +1,7 @@
 package be.busi.pizzaland.controller;
 
 
+import be.busi.pizzaland.Service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Constants;
 import be.busi.pizzaland.model.Panier;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes({Constants.PANIER})
 public class TraiterPizzas {
 
+    @Autowired
+    private PanierService panierService;
 
     @Autowired
     private PizzaDAO pizzaDAO;

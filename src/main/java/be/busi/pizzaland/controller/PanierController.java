@@ -1,5 +1,6 @@
 package be.busi.pizzaland.controller;
 
+import be.busi.pizzaland.Service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.CommandeDAO;
 import be.busi.pizzaland.dataAccess.dao.LigneCommandeDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +29,8 @@ import java.util.Set;
 @SessionAttributes({Constants.PANIER})
 public class PanierController {
 
+    @Autowired
+    private PanierService panierService;
     @Autowired
     private ProviderConverter providerConverter;
 
@@ -136,6 +140,9 @@ public class PanierController {
             ligneCommandes.add(ligneCommande);
         }
 
+        int pourcentagePromotion = panierService.promotionQuantite(panier);
+        panier.setPrixTotal(panier.getPrixTotal()*pourcentagePromotion);
+
         Set<LigneCommande> ligneCommandeSaved = new HashSet<>();
 
         for(LigneCommande ligneCommande : ligneCommandes)
@@ -144,7 +151,7 @@ public class PanierController {
         if(ligneCommandes.equals(ligneCommandeSaved))
             panier.vider();
 
-        return "redirect:/panier";
+        return "redirect:/home";
     }
 
 

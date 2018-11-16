@@ -45,7 +45,7 @@ public class PizzalandApplication {
         SpringApplication.run(PizzalandApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner runIt(){
 
         return args ->{
@@ -394,5 +394,5 @@ public class PizzalandApplication {
             promotionRepository.save(promotionEntity);
 
         };
-    }
+    }*/
 }
