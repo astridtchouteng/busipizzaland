@@ -121,7 +121,7 @@
                                 transactions: [
                                 {
                                 amount: {
-                                total: '${panier.prixTotal}',
+                                total: '2',
                                 currency: 'EUR'
                                 }
                                 }
