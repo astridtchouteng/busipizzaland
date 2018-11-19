@@ -37,8 +37,7 @@ public class InscriptionController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String enregistrer(Model model,
-                              @Valid  @ModelAttribute(value = Constants.CURRENT_USER) User user,
+    public String enregistrer(@Valid  @ModelAttribute(value = Constants.CURRENT_USER) User user,
                               final BindingResult errors) {
 
         if(errors.hasErrors()){

@@ -18,6 +18,7 @@
                 <form:form method="post" modelAttribute="user" role="login">
                     <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
                     <form:input path="username" placeholder="Email" cssClass="form-control input-lg" />
+                    <form:errors path="username" />
 
                     <form:password path="password" class="form-control input-lg" placeholder="Password" required="true" />
 

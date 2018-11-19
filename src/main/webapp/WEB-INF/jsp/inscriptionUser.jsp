@@ -17,20 +17,24 @@
         <div class="col-lg-6">
             <form:form method="post" action="/pizzaland/inscription" modelAttribute="currentUser">
                 <div class="form-group">
-                    <form:label path="username"><label>Username</label></form:label>
-                    <form:input path="username" cssClass="form-control"></form:input>
+                    <form:label path="username" for="username"><label>Username</label></form:label>
+                    <form:input path="username" id="username" cssClass="form-control"></form:input>
+                    <form:errors path="username"></form:errors>
                 </div>
                 <div class="form-group">
                     <form:label path="firstname"><label>Firstname</label></form:label>
                     <form:input path="firstname" cssClass="form-control"></form:input>
+                    <form:errors path="firstname"></form:errors>
                 </div>
                 <div class="form-group">
                     <form:label path="email"><label>Email</label></form:label>
                     <form:input type = "email" path="email" cssClass="form-control"></form:input>
+                    <form:errors path="email"></form:errors>
                 </div>
                 <div class="form-group">
                     <form:label path="password">Password</form:label>
                     <form:password path="password" cssClass="form-control"></form:password>
+                    <form:errors path="password"></form:errors>
                 </div>
                 <div class="form-group">
                     ConfirmPassword
@@ -40,6 +44,7 @@
                 <div class="form-group">
                     <form:label path="adresse">Adresse</form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>
+                    <form:errors path="adresse" ></form:errors>
                 </div>
 
                 <div class="form-check form-check-inline">
