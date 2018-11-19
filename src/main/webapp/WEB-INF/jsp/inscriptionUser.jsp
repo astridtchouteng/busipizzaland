@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <link type="text/css" href="<spring:url value='/css/inscription.css' />" rel="stylesheet">
     <title>${titre}</title>
 </head>
 <body>
@@ -18,11 +19,14 @@
             <form:form method="post" action="/pizzaland/inscription" modelAttribute="currentUser">
                 <div class="form-group">
                     <form:label path="username"><label>Username</label></form:label>
-                    <form:input path="username" cssClass="form-control"></form:input>
+                    <form:input path="username" cssClass="form-control" type="text"
+                                maxlength="50" minlength="3"></form:input>
                 </div>
                 <div class="form-group">
                     <form:label path="firstname"><label>Firstname</label></form:label>
-                    <form:input path="firstname" cssClass="form-control"></form:input>
+                    <form:input path="firstname" cssClass="form-control" type="text"
+                        maxlength="50" minlength="3"></form:input>
+
                 </div>
                 <div class="form-group">
                     <form:label path="email"><label>Email</label></form:label>
@@ -31,10 +35,11 @@
                 <div class="form-group">
                     <form:label path="password">Password</form:label>
                     <form:password path="password" cssClass="form-control"></form:password>
+                    <span class="erreur"> ${erreur}</span>
                 </div>
                 <div class="form-group">
                     ConfirmPassword
-                    <input type="password" class="form-control" />
+                    <form:password path="confirmPassword" cssClass="form-control"></form:password>
                 </div>
 
                 <div class="form-group">
@@ -43,7 +48,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <form:radiobutton path="sexe" value="true" label="Boy"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="true" label="Boy" checked="true"></form:radiobutton>
                     <form:radiobutton path="sexe" value="false" label="Girl"></form:radiobutton>
                 </div>
 

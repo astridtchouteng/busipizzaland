@@ -1,6 +1,7 @@
 package be.busi.pizzaland.controller;
 
 
+import be.busi.pizzaland.Service.ValidatorService;
 import be.busi.pizzaland.dataAccess.dao.RoleDAO;
 import be.busi.pizzaland.dataAccess.dao.UserDAO;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
@@ -20,18 +21,24 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/inscription")
 @SessionAttributes({Constants.CURRENT_USER})
 public class InscriptionController {
+
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private ValidatorService validatorService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String inscription(Model model) {
-
+        model.addAttribute("erreur",null);
         model.addAttribute(Constants.CURRENT_USER,new User());
         return "integrated:inscriptionUser";
     }
@@ -45,8 +52,14 @@ public class InscriptionController {
             return "integrated:inscriptionUser";
         }
 
-        userDAO.save(user);
+        try{
+            validatorService.validationMotsDePasse(user.getPassword(), user.getConfirmPassword());
+        }catch (Exception e){
+            model.addAttribute("erreur",e.getMessage());
+            return "integrated:inscriptionUser";
+        }
 
+        userDAO.save(user);
         return "redirect:/home";
     }
 }

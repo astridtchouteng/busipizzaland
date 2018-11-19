@@ -1,24 +1,32 @@
 package be.busi.pizzaland.model;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.*;
 
 public class User implements UserDetails {
 
     private Long id;
-    @NotNull(message = "username must be ")
+    @NotNull
+    @Size(min = 3, max = 50)
     private String username;
     @NotNull
     private String firstname;
     @NotNull
+    @Size(min = 3, max = 50)
     private String password;
     @NotNull
+    private String confirmPassword;
+    @Email
     private String email;
-    private LocalDate age;
+
+
+    //private LocalDate age;
     private String adresse;
     @NotNull
     private String sexe;
@@ -182,4 +190,11 @@ public class User implements UserDetails {
         this.commandes = commandes;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }

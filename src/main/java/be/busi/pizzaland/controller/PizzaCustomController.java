@@ -95,6 +95,7 @@ public class PizzaCustomController {
         pizza = pizzaDAO.savePizzaCustom(pizza);
         //je l'ajoute au panier
         panier.addPizza(pizza,1);
+        model.addAttribute(Constants.INGREDIENTS_PIZZA, new HashMap<>());
         return "redirect:/home";
     }
 

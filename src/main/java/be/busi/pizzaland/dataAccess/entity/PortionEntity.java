@@ -42,16 +42,16 @@ public class PortionEntity {
         this.portion = portion;
     }
 
-    public void getIngredient(){
-        getPrimaryKey().getIngredientEntity();
+    public Long getIngredient(){
+        return getPrimaryKey().getIngredientEntity();
     }
 
     public void setIngredient(IngredientEntity ingredient){
         getPrimaryKey().setIngredientEntity(ingredient.getId());
     }
 
-    public void getPizza(){
-        getPrimaryKey().getPizzaEntity();
+    public Long getPizza(){
+        return getPrimaryKey().getPizzaEntity();
     }
 
     public void setPizza(PizzaEntity pizza){
