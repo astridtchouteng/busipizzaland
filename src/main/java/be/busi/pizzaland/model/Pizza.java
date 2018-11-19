@@ -110,6 +110,7 @@ public class Pizza {
     @Override
     public String toString() {
         return "Pizza{" +
+                ", Id=" + id +
                 ", categorie=" + categorie +
                 ", description='" + description + '\'' +
                 ", prix=" + prix +

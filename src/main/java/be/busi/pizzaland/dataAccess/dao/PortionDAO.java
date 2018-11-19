@@ -104,11 +104,21 @@ public class PortionDAO {
     }
 
 
-    /*public List<Portion> findPortionbyPizzaId(Long idPizza) {
+    public List<Portion> findPortionbyPizzaId(Long idPizza) {
 
         List<PortionEntity> portionEntities = portionRepository.findByPrimaryKey_Pizza(idPizza);
 
         return portionEntities.stream()
-                .map(portionEntity -> port)
-    }*/
+                .map(portionEntity -> providerConverter.portionEntityToPortion(portionEntity))
+                .collect(Collectors.toList());
+    }
+
+    public List<Portion> findPortionbyPizza(Long idPizza) {
+
+        List<PortionEntity> portionEntities = portionRepository.findPortionEntitiesByPrimaryKeyPizza(idPizza);
+
+        return portionEntities.stream()
+                .map(portionEntity -> providerConverter.portionEntityToPortion(portionEntity))
+                .collect(Collectors.toList());
+    }
 }

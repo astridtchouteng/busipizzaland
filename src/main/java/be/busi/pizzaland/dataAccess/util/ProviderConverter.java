@@ -217,10 +217,28 @@ public class ProviderConverter {
         return ligneCommande;
     }
 
-    /*public Portion portionEntityToPortion(PortionEntity portionEntity) {
+    public Portion portionEntityToPortion(PortionEntity portionEntity) {
 
         Portion portion = new Portion();
         portion.setIdPizza(portionEntity.getIngredient());
-    }*/
+        portion.setIdIngredient(portionEntity.getIngredient());
+        portion.setPortion(portionEntity.getPortion());
+
+        return portion;
+    }
+
+    public PortionEntity portionToPortionEntity(Portion portion){
+
+        PortionEntity portionEntity = new PortionEntity();
+        portionEntity.setPortion(portion.getPortion());
+
+        PortionId portionId = new PortionId();
+        portionId.setPizzaEntity(portion.getIdPizza());
+        portionId.setIngredientEntity(portion.getIdIngredient());
+
+        portionEntity.setPrimaryKey(portionId);
+
+        return portionEntity;
+    }
 
 }

@@ -1,5 +1,6 @@
 package be.busi.pizzaland.controller;
 
+import be.busi.pizzaland.Service.IngredientService;
 import be.busi.pizzaland.Service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.*;
 import be.busi.pizzaland.dataAccess.entity.PortionEntity;
@@ -51,6 +52,9 @@ public class PanierController {
 
     @Autowired
     private PortionDAO portionDAO;
+
+    @Autowired
+    private IngredientService ingredientService;
 
     @ModelAttribute(Constants.PANIER)
     public Panier panier(){
@@ -134,16 +138,7 @@ public class PanierController {
         commande.setUser(user);
         commande = commandeDAO.save(commande);
 
-        List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
-
-        Pizza pizza = new Pizza();
-
-        for(Ingredient ingredient : pizza.getMapIngredients().keySet()){
-
-        }
-
-
-        /*Set<LigneCommande> ligneCommandes = new HashSet<>();
+        Set<LigneCommande> ligneCommandes = new HashSet<>();
 
         for(Pizza pizza : panier.getContenu().keySet()) {
 
@@ -163,7 +158,7 @@ public class PanierController {
             ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
 
         if(ligneCommandes.equals(ligneCommandeSaved))
-            panier.vider();*/
+            panier.vider();
 
         return "redirect:/home";
     }
