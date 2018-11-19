@@ -21,6 +21,7 @@ public class User implements UserDetails {
     @Size(min = 3, max = 50)
     private String password;
     @NotNull
+    @Size(min = 3, max = 50)
     private String confirmPassword;
     @Email
     private String email;

@@ -9,6 +9,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
     <link type="text/css" href="<spring:url value='/css/inscription.css' />" rel="stylesheet">
     <title>${titre}</title>
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -20,7 +25,8 @@
                 <div class="form-group">
                     <form:label path="username"><label>Username</label></form:label>
                     <form:input path="username" cssClass="form-control" ></form:input>
-                    <span class="erreur">${erreurs['username']}</span>
+                    <form:errors path="username" cssClass="error"></form:errors>
+                    <%--<span class="erreur">${erreurs['username']}</span>--%>
                 </div>
                 <div class="form-group">
                     <form:label path="firstname"><label>Firstname</label></form:label>
@@ -30,17 +36,20 @@
                 <div class="form-group">
                     <form:label path="email"><label>Email</label></form:label>
                     <form:input type = "email" path="email" cssClass="form-control"></form:input>
-                    <form:errors path="email"></form:errors>
-                    <span class="erreur">${erreurs['email']}</span>
+                    <form:errors path="email" cssClass="error"></form:errors>
+                    <%--<span class="erreur">${erreurs['email']}</span>--%>
                 </div>
                 <div class="form-group">
                     <form:label path="password">Password</form:label>
                     <form:password path="password" cssClass="form-control"></form:password>
-                    <span class="erreur">${erreurs['password']}</span>
+                    <%--<span class="erreur">${erreurs['password']}</span>--%>
+                    <form:errors path="password" cssClass="error"></form:errors>
                 </div>
                 <div class="form-group">
                     ConfirmPassword
                     <form:password path="confirmPassword" cssClass="form-control"></form:password>
+                    <%--<span class="erreur">${erreurs['passwordConfirm']}</span>--%>
+                    <form:errors path="confirmPassword" cssClass="error"></form:errors>
                 </div>
 
                 <div class="form-group">

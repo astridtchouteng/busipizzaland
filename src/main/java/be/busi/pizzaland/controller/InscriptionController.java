@@ -48,7 +48,7 @@ public class InscriptionController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String enregistrer(Model model,
-                              @ModelAttribute(value = Constants.CURRENT_USER)@Validated User user,
+                              @Valid @ModelAttribute(value = Constants.CURRENT_USER)/*@Validated*/ User user,
                               final BindingResult errors) {
 
         try{
@@ -61,7 +61,7 @@ public class InscriptionController {
         }
 
         if(errors.hasErrors()){
-            try{
+            /*try{
                 validatorService.validationNom(user.getUsername());
             }catch (Exception e){
                 erreurs.put("username", e.getMessage());
@@ -71,7 +71,7 @@ public class InscriptionController {
             }catch (Exception e) {
                 erreurs.put("email", e.getMessage());
             }
-            model.addAttribute("erreurs",erreurs);
+            model.addAttribute("erreurs",erreurs);*/
             return "integrated:inscriptionUser";
         }
 
