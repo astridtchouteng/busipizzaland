@@ -112,13 +112,4 @@ public class PortionDAO {
                 .map(portionEntity -> providerConverter.portionEntityToPortion(portionEntity))
                 .collect(Collectors.toList());
     }
-
-    public List<Portion> findPortionbyPizza(Long idPizza) {
-
-        List<PortionEntity> portionEntities = portionRepository.findPortionEntitiesByPrimaryKeyPizza(idPizza);
-
-        return portionEntities.stream()
-                .map(portionEntity -> providerConverter.portionEntityToPortion(portionEntity))
-                .collect(Collectors.toList());
-    }
 }

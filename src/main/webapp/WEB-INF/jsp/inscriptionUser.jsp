@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <link type="text/css" href="<spring:url value='/css/inscription.css' />" rel="stylesheet">
     <title>${titre}</title>
 </head>
 <body>
@@ -17,39 +18,39 @@
         <div class="col-lg-6">
             <form:form method="post" action="/pizzaland/inscription" modelAttribute="currentUser">
                 <div class="form-group">
-                    <form:label path="username" for="username"><label>Username</label></form:label>
-                    <form:input path="username" id="username" cssClass="form-control"></form:input>
-                    <form:errors path="username"></form:errors>
+                    <form:label path="username"><label>Username</label></form:label>
+                    <form:input path="username" cssClass="form-control" ></form:input>
+                    <span class="erreur">${erreurs['username']}</span>
                 </div>
                 <div class="form-group">
                     <form:label path="firstname"><label>Firstname</label></form:label>
-                    <form:input path="firstname" cssClass="form-control"></form:input>
-                    <form:errors path="firstname"></form:errors>
+                    <form:input path="firstname" cssClass="form-control" ></form:input>
+
                 </div>
                 <div class="form-group">
                     <form:label path="email"><label>Email</label></form:label>
                     <form:input type = "email" path="email" cssClass="form-control"></form:input>
                     <form:errors path="email"></form:errors>
+                    <span class="erreur">${erreurs['email']}</span>
                 </div>
                 <div class="form-group">
                     <form:label path="password">Password</form:label>
                     <form:password path="password" cssClass="form-control"></form:password>
-                    <form:errors path="password"></form:errors>
+                    <span class="erreur">${erreurs['password']}</span>
                 </div>
                 <div class="form-group">
                     ConfirmPassword
-                    <input type="password" class="form-control" />
+                    <form:password path="confirmPassword" cssClass="form-control"></form:password>
                 </div>
 
                 <div class="form-group">
                     <form:label path="adresse">Adresse</form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>
-                    <form:errors path="adresse" ></form:errors>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <form:radiobutton path="sexe" value="true" label="Boy" checked="true"></form:radiobutton>
-                    <form:radiobutton path="sexe" value="false" label="Girl"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="Boy" label="Boy" checked="true"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="Girl" label="Girl"></form:radiobutton>
                 </div>
 
 

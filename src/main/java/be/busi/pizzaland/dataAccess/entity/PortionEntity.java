@@ -42,7 +42,7 @@ public class PortionEntity {
         this.portion = portion;
     }
 
-    public Long  getIngredient(){
+    public Long getIngredient(){
         return getPrimaryKey().getIngredientEntity();
     }
 

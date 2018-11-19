@@ -11,6 +11,8 @@ public class Panier {
 
     private Double prixTotal;
 
+    private String monStock;
+
     public Panier() {
 
         this.quantiteTotal = 0;
@@ -106,6 +108,18 @@ public class Panier {
 
     public void setPrixTotal(Double prixTotal) {
         this.prixTotal = prixTotal;
+    }
+
+    public void setQuantiteTotal(int quantiteTotal) {
+        this.quantiteTotal = quantiteTotal;
+    }
+
+    public String getMonStock() {
+        return monStock;
+    }
+
+    public void setMonStock(String monStock) {
+        this.monStock = monStock;
     }
 
     @Override
