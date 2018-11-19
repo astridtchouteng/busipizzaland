@@ -14,4 +14,5 @@ import java.util.List;
 public interface PortionRepository extends JpaRepository<PortionEntity, Long> {
 
 
+    List<PortionEntity> findByPrimaryKey_Pizza(Long primaryKey_pizza);
 }

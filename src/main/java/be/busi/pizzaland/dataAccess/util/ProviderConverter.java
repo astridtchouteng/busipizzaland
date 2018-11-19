@@ -217,4 +217,10 @@ public class ProviderConverter {
         return ligneCommande;
     }
 
+    /*public Portion portionEntityToPortion(PortionEntity portionEntity) {
+
+        Portion portion = new Portion();
+        portion.setIdPizza(portionEntity.getIngredient());
+    }*/
+
 }

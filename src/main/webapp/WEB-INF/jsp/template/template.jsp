@@ -12,9 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-<%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
-    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
-    <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <link type="text/css" href="<spring:url value='/css/template.css' />" rel="stylesheet">
     <title>${titre}</title>
 </head>
@@ -32,30 +29,38 @@
                 </li>
             </ul>
 
-            <div class="col-3">
-                <sec:authorize access="isAuthenticated()">
-                    <ul class="nav navbar-nav">
-                        <li style="color: cadetblue"><sec:authentication property="principal.username"/></li>
-                    </ul>
-                </sec:authorize>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <span class="navbar-text " style="color: cadetblue">
                     <sec:authorize access="isAuthenticated()">
-                        <ul class="nav navbar-nav">
-                            <%--<li style="color: cadetblue"><sec:authentication property="principal.username"/></li>--%>
-                            <li><a href="${pageContext.request.contextPath}/logout" class ="btn btn-warning btn-sm">Logout</a></li>
+                        <sec:authentication property="principal.username"/>
+                    </sec:authorize>
+                </span>
+            </ul>
+            <ul class="navbar-nav navbar-right ">
+                <li class="nav-item mr-2">
+                    <sec:authorize access="isAuthenticated()">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a href="${pageContext.request.contextPath}/logout" class =" nav-link btn btn-warning btn-sm">Logout</a></li>
                         </ul>
                     </sec:authorize>
                     <sec:authorize access="!isAuthenticated()">
-                        <%--<ul class="nav navbar-nav">--%>
-                            <li><a href="${pageContext.request.contextPath}/login" class ="btn btn-warning btn-sm">Login</a></li>
-                        <%--</ul>--%>
+                        <ul class="navbar-nav">
+                            <li class="nav-item mr-2">
+                                <a href="${pageContext.request.contextPath}/login" class =" nav-link btn btn-outline-success btn-sm-mr-2">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item mr-2"><span class="navbar-text">or</span></li>
+                            <li class="nav-item">
+                                <a href="${pageContext.request.contextPath}/inscription" class=" nav-link btn btn-outline-success btn-sm-mr-2">
+                                    SignUp
+                                </a>
+                            </li>
+                        </ul>
                     </sec:authorize>
                 </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/panier"  class ="btn btn-primary btn-sm">
+                <li class="nav-item">
+                    <a href="${pageContext.request.contextPath}/panier"  class =" nav-link btn btn-primary btn-sm">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         Shopping Cart
                         <span class="badge">
