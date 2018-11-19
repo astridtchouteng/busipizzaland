@@ -9,6 +9,7 @@ import be.busi.pizzaland.dataAccess.repository.PortionRepository;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.Ingredient;
 import be.busi.pizzaland.model.Pizza;
+import be.busi.pizzaland.model.Portion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -101,4 +102,13 @@ public class PortionDAO {
         pizza.setMapIngredients(maps);
         return pizza;
     }
+
+
+    /*public List<Portion> findPortionbyPizzaId(Long idPizza) {
+
+        List<PortionEntity> portionEntities = portionRepository.findByPrimaryKey_Pizza(idPizza);
+
+        return portionEntities.stream()
+                .map(portionEntity -> port)
+    }*/
 }

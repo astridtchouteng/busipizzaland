@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <form:radiobutton path="sexe" value="true" label="Boy"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="true" label="Boy" checked="true"></form:radiobutton>
                     <form:radiobutton path="sexe" value="false" label="Girl"></form:radiobutton>
                 </div>
 

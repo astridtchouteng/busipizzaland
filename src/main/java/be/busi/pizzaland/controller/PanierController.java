@@ -1,14 +1,13 @@
 package be.busi.pizzaland.controller;
 
 import be.busi.pizzaland.Service.PanierService;
-import be.busi.pizzaland.dataAccess.dao.CommandeDAO;
-import be.busi.pizzaland.dataAccess.dao.LigneCommandeDAO;
-import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
-import be.busi.pizzaland.dataAccess.dao.UserDAO;
+import be.busi.pizzaland.dataAccess.dao.*;
+import be.busi.pizzaland.dataAccess.entity.PortionEntity;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -45,6 +45,12 @@ public class PanierController {
 
     @Autowired
     private LigneCommandeDAO ligneCommandeDAO;
+
+    @Autowired
+    private IngredientDAO ingredientDAO;
+
+    @Autowired
+    private PortionDAO portionDAO;
 
     @ModelAttribute(Constants.PANIER)
     public Panier panier(){
@@ -128,7 +134,16 @@ public class PanierController {
         commande.setUser(user);
         commande = commandeDAO.save(commande);
 
-        Set<LigneCommande> ligneCommandes = new HashSet<>();
+        List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
+
+        Pizza pizza = new Pizza();
+
+        for(Ingredient ingredient : pizza.getMapIngredients().keySet()){
+
+        }
+
+
+        /*Set<LigneCommande> ligneCommandes = new HashSet<>();
 
         for(Pizza pizza : panier.getContenu().keySet()) {
 
@@ -148,7 +163,7 @@ public class PanierController {
             ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
 
         if(ligneCommandes.equals(ligneCommandeSaved))
-            panier.vider();
+            panier.vider();*/
 
         return "redirect:/home";
     }
