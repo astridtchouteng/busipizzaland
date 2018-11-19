@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,29 +34,44 @@ public class InscriptionController {
     @Autowired
     private UserDAO userDAO;
 
+    private Map<String, String> erreurs = new HashMap<>();
+
     @Autowired
     private ValidatorService validatorService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String inscription(Model model) {
-        model.addAttribute("erreur",null);
+        model.addAttribute("erreurs",new HashMap<>());
         model.addAttribute(Constants.CURRENT_USER,new User());
         return "integrated:inscriptionUser";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String enregistrer(Model model,
-                              @Valid  @ModelAttribute(value = Constants.CURRENT_USER) User user,
+                              @ModelAttribute(value = Constants.CURRENT_USER)@Validated User user,
                               final BindingResult errors) {
-
-        if(errors.hasErrors()){
-            return "integrated:inscriptionUser";
-        }
 
         try{
             validatorService.validationMotsDePasse(user.getPassword(), user.getConfirmPassword());
+            erreurs.put("password","");
         }catch (Exception e){
-            model.addAttribute("erreur",e.getMessage());
+            erreurs.put("password", e.getMessage());
+            model.addAttribute("erreurs",erreurs);
+            return "integrated:inscriptionUser";
+        }
+
+        if(errors.hasErrors()){
+            try{
+                validatorService.validationNom(user.getUsername());
+            }catch (Exception e){
+                erreurs.put("username", e.getMessage());
+            }
+            try{
+                validatorService.validationEmail(user.getEmail());
+            }catch (Exception e) {
+                erreurs.put("email", e.getMessage());
+            }
+            model.addAttribute("erreurs",erreurs);
             return "integrated:inscriptionUser";
         }
 

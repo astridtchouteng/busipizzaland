@@ -17,16 +17,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.sound.sampled.Port;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Controller
 @RequestMapping(value = "/panier")
-@SessionAttributes({Constants.PANIER})
+@SessionAttributes({Constants.PANIER,"monStock"})
 public class PanierController {
 
     @Autowired
@@ -58,8 +56,9 @@ public class PanierController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model)  {
-
+    public String home(Model model, @ModelAttribute(Constants.PANIER) Panier panier)  {
+        if(panier.getMonStock() == null)
+            panier.setMonStock("");
         return "integrated:afficherPanier";
     }
 
@@ -78,9 +77,36 @@ public class PanierController {
 
         if(pizza != null){
 
-            if(operation.equals("plus"))
+            if(operation.equals("plus")) {
+                //si ingredient suffisant
+                List<Portion> portions = portionDAO.findPortionbyPizzaId(pizza.getId());
+                List<Ingredient> ingredients = ingredientDAO.getAllIngredients();
+                Map<Long,Integer> idIngredientStock = new HashMap<>();
+
+                Boolean ok = true;
+                int i=0, j=0;
+                for(i=0; i<portions.size() && ok ; i++){
+                    for(j=0; j<ingredients.size() && ok; j++){
+                        if(portions.get(i).getIdIngredient().equals(ingredients.get(j).getId()) &&
+                            portions.get(i).getPortion() > ingredients.get(j).getStock()){
+                            ok=false;
+                        }
+                    }
+                    if(!ok){
+                        panier.setMonStock("Pas de Stock");
+                        return "redirect:/panier";
+                    }
+                    idIngredientStock.put(portions.get(i).getIdIngredient(), portions.get(i).getPortion());
+                }
+                //les portions sont bonnes et je dois diminuer les stocks
+
+                for (Map.Entry<Long, Integer> key : idIngredientStock.entrySet()) {
+                    Ingredient ingredient = ingredientDAO.getIngredientById(key.getKey());
+                    ingredient.setStock(ingredient.getStock()-key.getValue());
+                    ingredientDAO.updateStock(ingredient);
+                }
                 panier.addPizza(pizza, 1);
-            else if(operation.equals("moins"))
+            }else if(operation.equals("moins"))
                 panier.removePizza(pizza, 1);
         }
 
@@ -94,8 +120,11 @@ public class PanierController {
     }
 
     @RequestMapping(value = "/supprimer", method = RequestMethod.GET)
-    public String supprimerParPizza(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
-                                    Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors){
+    public String supprimerParPizza(@RequestParam(name = "nomPizza",
+                                                      required = false, defaultValue = "world")String nomPizza,
+                                    Model model,
+                                    @ModelAttribute(Constants.PANIER) Panier panier,
+                                    BindingResult errors){
 
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
@@ -110,7 +139,8 @@ public class PanierController {
     }
 
     @RequestMapping(value = "/vider", method = RequestMethod.GET)
-    public String vider(Model model, @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors) {
+    public String vider(Model model,
+                        @ModelAttribute(Constants.PANIER) Panier panier, BindingResult errors) {
 
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
@@ -136,14 +166,8 @@ public class PanierController {
 
         List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
 
-        Pizza pizza = new Pizza();
 
-        for(Ingredient ingredient : pizza.getMapIngredients().keySet()){
-
-        }
-
-
-        /*Set<LigneCommande> ligneCommandes = new HashSet<>();
+        Set<LigneCommande> ligneCommandes = new HashSet<>();
 
         for(Pizza pizza : panier.getContenu().keySet()) {
 
@@ -163,7 +187,7 @@ public class PanierController {
             ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
 
         if(ligneCommandes.equals(ligneCommandeSaved))
-            panier.vider();*/
+            panier.vider();
 
         return "redirect:/home";
     }

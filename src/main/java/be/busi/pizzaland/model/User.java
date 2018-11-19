@@ -24,8 +24,6 @@ public class User implements UserDetails {
     private String confirmPassword;
     @Email
     private String email;
-
-
     //private LocalDate age;
     private String adresse;
     @NotNull

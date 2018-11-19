@@ -7,6 +7,7 @@
         <title>${titre}</title>
     </head>
     <body>
+
         <div class="row mt-4">
             <table class="table">
                 <thead>
@@ -50,12 +51,14 @@
                                         <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=plus"
                                            class="btn btn-danger btn-sm plus">+
                                         </a>
-
-                                        <input type="number" size="4" min="1" max="200" value="${row.value}"/>
+                                        <input type="text" value="${row.value}"/>
 
                                         <a href="${pageContext.request.contextPath}/panier/modifier?nomPizza=${row.key.nom}&amp;operation=moins"
                                            class="btn btn-danger btn-sm moins" disabled="true">-
                                         </a>
+                                        <div>
+                                                ${panier.monStock}
+                                        </div>
                                     </div>
                                 </td>
                                 <td>${row.value * row.key.prix }</td>
