@@ -54,7 +54,7 @@
         </div>
 
         <div class="row mt-4">
-            <a href="${pageContext.request.contextPath}/pizzaCustom" class ="btn btn-success btn-sm mr-1">Custom Izza</a>
+            <a href="${pageContext.request.contextPath}/pizzaCustom" class ="btn btn-success btn-sm mr-1">Custom Pizza</a>
         </div>
     </body>
 </html>

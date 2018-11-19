@@ -10,7 +10,7 @@ import java.util.*;
 public class User implements UserDetails {
 
     private Long id;
-    @NotNull
+    @NotNull(message = "username must be ")
     private String username;
     @NotNull
     private String firstname;
@@ -18,6 +18,7 @@ public class User implements UserDetails {
     private String password;
     @NotNull
     private String email;
+    private LocalDate age;
     private String adresse;
     @NotNull
     private String sexe;

@@ -121,7 +121,6 @@ public class PanierController {
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
-        System.out.println("coucou");
         Commande commande = new Commande();
 
         UserDetails userAuthentication = (UserDetails) authentication.getPrincipal();

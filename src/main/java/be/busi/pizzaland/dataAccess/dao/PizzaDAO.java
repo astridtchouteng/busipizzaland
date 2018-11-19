@@ -44,9 +44,11 @@ public class PizzaDAO {
 
     public Set<Pizza> getAll() {
         Set<Pizza> pizzas = new HashSet<>();
-        pizzas = pizzaRepository.findAll().
-                stream().
-                map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
+        pizzas = pizzaRepository.findAll()
+                .stream()
+                .filter(pizzaEntity ->
+                        !pizzaEntity.getCategorie().getCategorieEnum().equals(CategorieEnum.CUSTOMISEE))
+                .map(pizzaEntity -> providerConverter.pizzaEntityToPizzaModel(pizzaEntity)).
                 collect(Collectors.toSet());
         return pizzas;
     }
@@ -101,6 +103,6 @@ public class PizzaDAO {
             portionRepository.save(portionEntity);
         }
 
-        return pizza;
+        return providerConverter.pizzaEntityToPizzaModel(pizzaEntity);
     }
 }

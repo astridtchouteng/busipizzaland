@@ -20,39 +20,34 @@
 
             <div class="col-lg-9">
                 <div class="row card-deck">
+                    <h3>Pizzas ${categorie}</h3>
                     <c:forEach items="${pizzas}" var="pizza">
-                        <div class="card text-white bg-warning mb-3 mr-3"
-                             style="max-width: 400px; max-height: 400px;">
-                            <div class="card-header"><a href="${pageContext.request.contextPath}/pizzaDetails?nom=${pizza.nom}">${pizza.nom}</a></div>
+                    <div class="card mb-3 mr-5 bg-warning" style="max-width: 18rem; max-height: 350px;">
+                        <div class="card-header">${pizza.nom}</div>
                             <div class="card-body">
                                 <h5 class="card-title">Description</h5>
                                 <div class="card-text">
                                     <p>${pizza.description}</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-12 col-lg-12">
-                                        <form class="form-row my-2 my-lg-0">
-                                            <div class="col-4">
-                                                <input class="form-control mr-sm-2" type="number" min="1" max="20"
-                                                       value="1"/>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-3 mr-my-0">
+                                                <p class="lead">${pizza.prix}</p>
                                             </div>
-                                            <div class="col-3 offset-1">
-                                                <p class="lead">
-                                                        ${pizza.prix}</p>
+                                            <div class="col-9">
+                                                <div class="col-2">
+                                                    <a href="${pageContext.request.contextPath}/traiter?nomPizza=${pizza.nom}"
+                                                       class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+                                                        Ajouter au panier
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="col-4">
-                                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                                    Search
-                                                </button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
-                        </div>
+                    </div>
                     </c:forEach>
                 </div>
-                    <%--</c:if>--%>
             </div>
         </div>
     </body>

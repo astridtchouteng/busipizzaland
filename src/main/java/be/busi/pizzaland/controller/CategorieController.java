@@ -25,11 +25,12 @@ public class CategorieController {
     private CategorieDAO categorieDAO;
 
     @RequestMapping( method = RequestMethod.GET)
-    public String pizzaParCategorie(@RequestParam(name = "categorie", required = false,
+    public String pizzaParCategorie(@RequestParam(name = "categorie",
                                                          defaultValue = "VEGETARIENNE") String categorie,
                                     Model model) {
 
         Set<Pizza> pizzaTries = pizzaDAO.pizzaByCategorie(categorie);
+        model.addAttribute("categorie", categorie);
         model.addAttribute(Constants.PIZZAS, pizzaTries);
         model.addAttribute("categories", categorieDAO.getAll());
 
