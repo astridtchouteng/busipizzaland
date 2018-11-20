@@ -31,7 +31,6 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model) {
-
         model.addAttribute(Constants.PIZZAS, pizzaDAO.getAll());
         model.addAttribute("categories", categorieDAO.getAll());
         return "integrated:welcome";
@@ -47,6 +46,7 @@ public class HomeController {
         if(errors.hasErrors()){
             return "redirect:/affciherPizzas";
         }
+
         return "redirect:/welcome";
     }
 }

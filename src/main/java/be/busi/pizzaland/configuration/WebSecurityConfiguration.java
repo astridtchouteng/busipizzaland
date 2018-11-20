@@ -28,13 +28,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST="/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{
-            "/home","/inscription", "/pizza", "/categorie", "/panier", "/traiter", "/panier/modifier", "/panier/vider",
+            "/home","/inscription", "/categorie", "/panier", "/traiter", "/panier/modifier", "/panier/vider",
             "/panier/supprimer"
     };
 
-    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{
-            "/users","/pizza","/ingredient"
-    };
+    private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/pizza","/ingredient"};
 
      String[] staticResources = {
             "/css/**",
@@ -62,24 +60,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-                .failureHandler(new AuthenticationFailureHandler() {
-                    @Override
-                    public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
-                                                        HttpServletResponse httpServletResponse,
-                                                        AuthenticationException e)
-                            throws IOException, ServletException {
-                        System.out.println("****"+e.getMessage());
-                    }
-                })
                 .loginPage(LOGIN_REQUEST)
-                /*.loginProcessingUrl("/login")
-                .successHandler(new AuthenticationSuccessHandler() {
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-                        redirectStrategy.sendRedirect(request, response, "/home");
-                    }
-                })// si on se loggue avec succes on est redirigé vers la home*/
+                .loginProcessingUrl("/home")
                 .permitAll()
 
                 .and()
@@ -91,7 +73,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("admin").roles("ADMIN");
     }
 
 }

@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <form:label path="categorie"><label>Categorie</label></form:label>
                     <form:select path="categorie">
-                        <form:options items="${categories}" itemValue="name" itemLabel="name" />
+                        <form:options items="${categories}" itemValue="categorie" itemLabel="categorie" />
                     </form:select>
                 </div>
                 <div class="form-group">

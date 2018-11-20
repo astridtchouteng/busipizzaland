@@ -99,9 +99,5 @@
 
 </div>
 
-    <%--<div class="footer">--%>
-        <%--<p class="copyright">Copyright @ 2018-2020 Web Application. All rights reserved.</p>--%>
-        <%--<p class="site">Website developped by Herve</p>--%>
-    <%--</div>--%>
 </body>
 </html>
