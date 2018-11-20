@@ -44,17 +44,14 @@ public class ValiderPanierController {
                           @SessionAttribute(value = Constants.PANIER) Panier panier,
                           Authentication authentication) {
 
-        Double reduction = promoService.reduction(panier.getPrixTotal());
-        Double prixFinal = panier.getPrixTotal()-reduction;
-        model.addAttribute("prixFinal", prixFinal);
-        model.addAttribute("reduction", reduction);
+        panier.setReduction(promoService.reduction(panier.getPrixTotal()));
+        model.addAttribute("prixFinal",panier.getPrixTotal()-panier.getReduction());
         model.addAttribute(Constants.PANIER, panier);
         return "integrated:validate";
     }
 
     @GetMapping(value = "/process")
     public String viderPanier(Model model,
-                              @ModelAttribute(value = "prixFinal") Double prixFinal,
                               @SessionAttribute(value = Constants.PANIER) Panier panier,
                               Authentication authentication){
 
@@ -63,7 +60,7 @@ public class ValiderPanierController {
         UserDetails userAuthentication = (UserDetails) authentication.getPrincipal();
         User user = providerConverter.userEntityToUserModel((UserEntity)userAuthentication);
         commande.setUser(user);
-        commande.setPrice(prixFinal);
+        commande.setPrice(panier.getPrixTotal()-panier.getReduction());
         commande = commandeDAO.save(commande);
 
         List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();

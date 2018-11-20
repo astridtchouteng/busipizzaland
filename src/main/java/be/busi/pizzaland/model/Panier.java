@@ -11,12 +11,22 @@ public class Panier {
 
     private Double prixTotal;
 
+    private Double reduction;
+
     private String monStock;
 
     public Panier() {
 
         this.quantiteTotal = 0;
         this.prixTotal = 0.0;
+    }
+
+    public Double getReduction() {
+        return reduction;
+    }
+
+    public void setReduction(Double reduction) {
+        this.reduction = reduction;
     }
 
     public void addPizza(Pizza pizza, Integer quantite) {

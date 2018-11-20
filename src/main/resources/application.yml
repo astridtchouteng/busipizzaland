@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     username: postgres
-    password: root
+    password: 1234
     url: jdbc:postgresql://localhost:5432/pizzaland
   jpa:
     database: POSTGRESQL
     generate-ddl: true
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update

@@ -46,9 +46,11 @@
                 <div class="pull-right" style="margin: 5px">
                     <spring:message code="total"/>: ${panier.prixTotal} euro
                     <br/>
-                    Reduction: -${reduction} euro
+                    Reduction: -${panier.reduction} euro
                     <br/>
-                    <spring:message code="totalPrice"/>: <b>${prixFinal} euro</b>
+                    <spring:message code="totalPrice"/>:
+                    <b>${prixFinal} euro
+                    </b>
                 </div>
 
                 <sec:authorize access="isAuthenticated()">
