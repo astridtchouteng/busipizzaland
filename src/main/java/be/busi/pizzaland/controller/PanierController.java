@@ -4,7 +4,9 @@ import be.busi.pizzaland.service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.*;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
+import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping(value = "/panier")
-@SessionAttributes({Constants.PANIER,"monStock"})
+@SessionAttributes({Constants.PANIER,"monStock", Constants.INGREDIENTS_RESTANTS})
 public class PanierController {
 
     @Autowired
@@ -61,7 +63,7 @@ public class PanierController {
                                                             defaultValue = "world")String nomPizza,
                            @RequestParam(name = "operation", required = false,
                                                   defaultValue = "world")String operation,
-                           Model model,
+                       Model model, @ModelAttribute(Constants.INGREDIENTS_RESTANTS) List<Ingredient> ingredients,
                            @ModelAttribute(value= Constants.PANIER) Panier panier,
                            BindingResult errors)  {
 
@@ -71,7 +73,7 @@ public class PanierController {
             if(operation.equals("plus")) {
                 //si ingredient suffisant
                 List<Portion> portions = portionDAO.findPortionbyPizzaId(pizza.getId());
-                List<Ingredient> ingredients = ingredientDAO.getAllIngredients();
+                //List<Ingredient> ingredients = ingredientDAO.getAllIngredients();
                 Map<Long,Integer> idIngredientStock = new HashMap<>();
 
                 Boolean ok = true;
@@ -92,9 +94,12 @@ public class PanierController {
                 //les portions sont bonnes et je dois diminuer les stocks
 
                 for (Map.Entry<Long, Integer> key : idIngredientStock.entrySet()) {
-                    Ingredient ingredient = ingredientDAO.getIngredientById(key.getKey());
+                    /*Ingredient ingredient = ingredientDAO.getIngredientById(key.getKey());
                     ingredient.setStock(ingredient.getStock()-key.getValue());
-                    ingredientDAO.updateStock(ingredient);
+                    ingredientDAO.updateStock(ingredient);*/
+                    for(Ingredient ingredient : ingredients)
+                        if(ingredient.getId().equals(key.getKey()))
+                            ingredient.setStock(ingredient.getStock()-key.getValue());
                 }
                 panier.addPizza(pizza, 1);
             }else if(operation.equals("moins"))
@@ -142,7 +147,7 @@ public class PanierController {
 
     @RequestMapping(value = "/valider", method = RequestMethod.GET)
     public String valider(Model model, @ModelAttribute(Constants.PANIER) Panier panier,
-                          BindingResult errors,
+                          BindingResult errors, @ModelAttribute(Constants.INGREDIENTS_RESTANTS) List<Ingredient> ingredients,
                           Authentication authentication) {
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
@@ -154,7 +159,7 @@ public class PanierController {
         commande.setUser(user);
         commande = commandeDAO.save(commande);
 
-        List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
+        //List<Ingredient> allIngredients = ingredientDAO.getAllIngredients();
 
 
         Set<LigneCommande> ligneCommandes = new HashSet<>();
@@ -175,6 +180,13 @@ public class PanierController {
 
         for(LigneCommande ligneCommande : ligneCommandes)
             ligneCommandeSaved.add(ligneCommandeDAO.save(ligneCommande));
+
+        // sauve la liste des ingredients restants en sessions
+        for(Ingredient ingredient : ingredients)
+            ingredientDAO.save(ingredient);
+
+        //reset le liste à null
+        //ingredients = null;
 
         if(ligneCommandes.equals(ligneCommandeSaved))
             panier.vider();

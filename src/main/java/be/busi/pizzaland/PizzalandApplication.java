@@ -116,46 +116,46 @@ public class PizzalandApplication {
 
             IngredientEntity fromage = new IngredientEntity();
             fromage.setNom("Fromage");
-            fromage.setStock(15);
+            fromage.setStock(40);
 
             IngredientEntity ognons = new IngredientEntity();
             ognons.setNom("Ognons");
-            ognons.setStock(10);
+            ognons.setStock(40);
 
             IngredientEntity mozarella = new IngredientEntity();
             mozarella.setNom("Mozarella");
-            mozarella.setStock(10);
+            mozarella.setStock(40);
 
             IngredientEntity tomate = new IngredientEntity();
             tomate.setNom("Tomate");
-            tomate.setStock(10);
+            tomate.setStock(40);
 
             IngredientEntity olive = new IngredientEntity();
             olive.setNom("Olive");
-            olive.setStock(10);
+            olive.setStock(40);
 
             IngredientEntity jambon = new IngredientEntity();
-            jambon.setStock(10);
+            jambon.setStock(40);
             jambon.setNom("Jambon");
 
             IngredientEntity champigon = new IngredientEntity();
             champigon.setNom("Champignon");
-            champigon.setStock(10);
+            champigon.setStock(40);
 
             IngredientEntity lardon = new IngredientEntity();
-            lardon.setStock(10);
+            lardon.setStock(40);
             lardon.setNom("Lardon");
 
             IngredientEntity ananas = new IngredientEntity();
-            ananas.setStock(10);
+            ananas.setStock(40);
             ananas.setNom("Ananas");
 
             IngredientEntity aubergine = new IngredientEntity();
-            aubergine.setStock(10);
+            aubergine.setStock(40);
             aubergine.setNom("Aubergine");
 
             IngredientEntity courgette = new IngredientEntity();
-            courgette.setStock(10);
+            courgette.setStock(400);
             courgette.setNom("Courgette");
 
             ingredientRepository.save(fromage);
