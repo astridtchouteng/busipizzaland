@@ -1,6 +1,5 @@
 package be.busi.pizzaland.controller;
 
-import be.busi.pizzaland.Service.CategorieService;
 import be.busi.pizzaland.dataAccess.dao.CategorieDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Pizza;

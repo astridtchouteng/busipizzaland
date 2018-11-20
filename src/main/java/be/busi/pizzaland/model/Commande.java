@@ -1,5 +1,6 @@
 package be.busi.pizzaland.model;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,20 @@ public class Commande {
 
     private Set<LigneCommande> ligneCommandes = new HashSet<>();
 
+    private LocalDateTime heure;
+
+    private Double price;
+
     public Commande() {
+        this.heure = LocalDateTime.now();
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Long getId() {
@@ -33,6 +47,14 @@ public class Commande {
     public Commande(EtatCommande etatCommande, User user) {
         this.etatCommande = etatCommande;
         this.user = user;
+    }
+
+    public LocalDateTime getHeure() {
+        return heure;
+    }
+
+    public void setHeure(LocalDateTime heure) {
+        this.heure = heure;
     }
 
     public EtatCommande getEtatCommande() {

@@ -392,7 +392,8 @@ public class PizzalandApplication {
             etatCommandeRepository.save(preparation);
 
             PromotionEntity promotionEntity = new PromotionEntity();
-            promotionEntity.setCodePromo("java");
+            promotionEntity.setMontantMinimum(25.0);
+            promotionEntity.setPourcentage(20);
             promotionEntity.setDateDebut(LocalDateTime.now());
             promotionEntity.setDateFin(LocalDateTime.now().plusDays(2));
 

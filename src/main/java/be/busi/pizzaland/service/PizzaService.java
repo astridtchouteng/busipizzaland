@@ -1,4 +1,4 @@
-package be.busi.pizzaland.Service;
+package be.busi.pizzaland.service;
 
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.stereotype.Service;

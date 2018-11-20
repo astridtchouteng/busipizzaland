@@ -1,34 +1,17 @@
-package be.busi.pizzaland.dataAccess.entity;
+package be.busi.pizzaland.model;
 
-import be.busi.pizzaland.model.LocalDateConverter;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "promotion")
-public class PromotionEntity {
+public class Promotion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long id;
-
-    @Column
-    //@Convert(converter = LocalDateConverter.class)
+    private Long id;
     private LocalDateTime dateDebut;
-
-    @Column
-    //@Convert(converter = LocalDateConverter.class)
     private LocalDateTime dateFin;
-
-    @Column(name = "codePromo")
     private Double montantMinimum;
-
-    @Column(name = "pourcentage")
     private Integer pourcentage;
 
-    public PromotionEntity() {}
+    public Promotion() {}
 
     public Long getId() {
         return id;
@@ -42,12 +25,12 @@ public class PromotionEntity {
         return dateDebut;
     }
 
-    public LocalDateTime getDateFin() {
-        return dateFin;
-    }
-
     public void setDateDebut(LocalDateTime dateDebut) {
         this.dateDebut = dateDebut;
+    }
+
+    public LocalDateTime getDateFin() {
+        return dateFin;
     }
 
     public void setDateFin(LocalDateTime dateFin) {
@@ -70,3 +53,5 @@ public class PromotionEntity {
         this.pourcentage = pourcentage;
     }
 }
+
+

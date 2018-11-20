@@ -1,9 +1,8 @@
-package be.busi.pizzaland.Service;
+package be.busi.pizzaland.service;
 
 import be.busi.pizzaland.model.CategorieEnum;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Size;
 import java.util.*;
 
 @Service

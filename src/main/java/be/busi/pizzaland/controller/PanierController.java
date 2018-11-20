@@ -1,13 +1,10 @@
 package be.busi.pizzaland.controller;
 
-import be.busi.pizzaland.Service.PanierService;
+import be.busi.pizzaland.service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.*;
-import be.busi.pizzaland.dataAccess.entity.PortionEntity;
 import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.dataAccess.util.ProviderConverter;
-import be.busi.pizzaland.dataAccess.util.ProviderConverter;
 import be.busi.pizzaland.model.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.sound.sampled.Port;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -67,12 +61,10 @@ public class PanierController {
                                                             defaultValue = "world")String nomPizza,
                            @RequestParam(name = "operation", required = false,
                                                   defaultValue = "world")String operation,
-
                            Model model,
                            @ModelAttribute(value= Constants.PANIER) Panier panier,
                            BindingResult errors)  {
 
-// unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
         if(pizza != null){
 
@@ -128,7 +120,6 @@ public class PanierController {
         if(errors.hasErrors()){
             return "integrated:afficherPizzas";
         }
-//unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
 
         if(pizza != null)

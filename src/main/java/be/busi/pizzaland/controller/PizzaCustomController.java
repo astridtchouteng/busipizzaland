@@ -1,10 +1,9 @@
 package be.busi.pizzaland.controller;
 
-import be.busi.pizzaland.Service.PizzaService;
+import be.busi.pizzaland.service.PizzaService;
 import be.busi.pizzaland.dataAccess.dao.IngredientDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.dataAccess.dao.PortionDAO;
-import be.busi.pizzaland.dataAccess.entity.UserEntity;
 import be.busi.pizzaland.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

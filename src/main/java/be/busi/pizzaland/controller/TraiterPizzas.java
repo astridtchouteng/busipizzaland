@@ -1,7 +1,7 @@
 package be.busi.pizzaland.controller;
 
 
-import be.busi.pizzaland.Service.PanierService;
+import be.busi.pizzaland.service.PanierService;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Constants;
 import be.busi.pizzaland.model.Panier;

@@ -121,7 +121,8 @@ public class ProviderConverter {
         if(commande.getId() != null) commandeEntity.setId(commande.getId());
         commandeEntity.setEtat(etatCommandeToEtatCommandeEntity(commande.getEtatCommande()));
         commandeEntity.setUser(userModelToUserEntity(commande.getUser()));
-
+        commandeEntity.setHeure(commande.getHeure());
+        commandeEntity.setPrice(commande.getPrice());
         /*Set<LigneCommande> ligneCommandes = commande.getLigneCommandes();
 
         if(ligneCommandes != null && !ligneCommandes.isEmpty()) {
@@ -142,6 +143,8 @@ public class ProviderConverter {
         commande.setEtatCommande(etatCommandeEntityToEtatCommande(commandeEntity.getEtat()));
         commande.setUser(userEntityToUserModel(commandeEntity.getUser()));
         commande.setId(commandeEntity.getId());
+        commande.setPrice(commandeEntity.getPrice());
+        commande.setHeure(commandeEntity.getHeure());
 
         /*Set<LigneCommandeEntity> ligneCommandeEntities = commandeEntity.getLigneCommandes();
 
@@ -231,14 +234,33 @@ public class ProviderConverter {
 
         PortionEntity portionEntity = new PortionEntity();
         portionEntity.setPortion(portion.getPortion());
-
         PortionId portionId = new PortionId();
         portionId.setPizzaEntity(portion.getIdPizza());
         portionId.setIngredientEntity(portion.getIdIngredient());
-
         portionEntity.setPrimaryKey(portionId);
-
         return portionEntity;
+    }
+
+    public Promotion promotionEntityToPromotion(PromotionEntity promotionEntity) {
+
+        Promotion promotion = new Promotion();
+        promotion.setId(promotionEntity.getId());
+        promotion.setDateDebut(promotionEntity.getDateDebut());
+        promotion.setDateFin(promotionEntity.getDateFin());
+        promotion.setMontantMinimum(promotionEntity.getMontantMinimum());
+        promotion.setPourcentage(promotionEntity.getPourcentage());
+        return promotion;
+    }
+
+    public PromotionEntity promotionToPromotionEntity(Promotion promotion) {
+
+        PromotionEntity promotionEntity = new PromotionEntity();
+        promotionEntity.setId(promotion.getId());
+        promotionEntity.setDateDebut(promotion.getDateDebut());
+        promotionEntity.setDateFin(promotion.getDateFin());
+        promotionEntity.setMontantMinimum(promotion.getMontantMinimum());
+        promotionEntity.setPourcentage(promotion.getPourcentage());
+        return promotionEntity;
     }
 
 }

@@ -5,6 +5,7 @@ import be.busi.pizzaland.model.EtatCommandeEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,7 +33,29 @@ public class CommandeEntity {
             mappedBy = "primaryKey.commande")
     private Set<LigneCommandeEntity> ligneCommandes = new HashSet<>();
 
+    @Column
+    private LocalDateTime heure;
+
+    @Column
+    private Double price;
+
     public CommandeEntity(){}
+
+    public LocalDateTime getHeure() {
+        return heure;
+    }
+
+    public void setHeure(LocalDateTime heure) {
+        this.heure = heure;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
     public Long getId() {
         return id;

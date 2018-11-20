@@ -1,13 +1,10 @@
-package be.busi.pizzaland.Service;
+package be.busi.pizzaland.service;
 
 
 import be.busi.pizzaland.dataAccess.dao.IngredientDAO;
 import be.busi.pizzaland.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
