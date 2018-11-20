@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/pizza")
+@RequestMapping(value ="/pizza")
 public class PizzaController {
 
     @Autowired
@@ -24,9 +24,6 @@ public class PizzaController {
 
     @Autowired
     private PizzaDAO pizzaDAO;
-
-    @Autowired
-    private  CategorieService categorieService;
 
     @GetMapping
     public String home(Model model) {

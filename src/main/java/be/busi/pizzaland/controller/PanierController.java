@@ -74,7 +74,6 @@ public class PanierController {
 
 // unit test
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
-
         if(pizza != null){
 
             if(operation.equals("plus")) {

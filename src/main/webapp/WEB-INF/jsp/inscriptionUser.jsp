@@ -23,47 +23,45 @@
         <div class="col-lg-6">
             <form:form method="post" action="/pizzaland/inscription" modelAttribute="currentUser">
                 <div class="form-group">
-                    <form:label path="username"><label>Username</label></form:label>
+                    <form:label path="username"><spring:message code="username"/></form:label>
                     <form:input path="username" cssClass="form-control" ></form:input>
                     <form:errors path="username" cssClass="error"></form:errors>
-                    <%--<span class="erreur">${erreurs['username']}</span>--%>
                 </div>
                 <div class="form-group">
-                    <form:label path="firstname"><label>Firstname</label></form:label>
+                    <form:label path="firstname"><spring:message code="firstname"/></form:label>
                     <form:input path="firstname" cssClass="form-control" ></form:input>
 
                 </div>
                 <div class="form-group">
-                    <form:label path="email"><label>Email</label></form:label>
+                    <form:label path="email"><spring:message code="email"/></form:label>
                     <form:input type = "email" path="email" cssClass="form-control"></form:input>
                     <form:errors path="email" cssClass="error"></form:errors>
-                    <%--<span class="erreur">${erreurs['email']}</span>--%>
                 </div>
                 <div class="form-group">
-                    <form:label path="password">Password</form:label>
+                    <form:label path="password"><spring:message code="password"/></form:label>
                     <form:password path="password" cssClass="form-control"></form:password>
-                    <%--<span class="erreur">${erreurs['password']}</span>--%>
+                    <span class="erreur">${erreurs['password']}</span>
                     <form:errors path="password" cssClass="error"></form:errors>
                 </div>
                 <div class="form-group">
-                    ConfirmPassword
+                    <spring:message code="confirmPassword"/>
                     <form:password path="confirmPassword" cssClass="form-control"></form:password>
-                    <%--<span class="erreur">${erreurs['passwordConfirm']}</span>--%>
+                    <span class="erreur">${erreurs['passwordConfirm']}</span>
                     <form:errors path="confirmPassword" cssClass="error"></form:errors>
                 </div>
 
                 <div class="form-group">
-                    <form:label path="adresse">Adresse</form:label>
+                    <form:label path="adresse"><spring:message code="adresse"/></form:label>
                     <form:input path="adresse" cssClass="form-control" ></form:input>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <form:radiobutton path="sexe" value="Boy" label="Boy" checked="true"></form:radiobutton>
-                    <form:radiobutton path="sexe" value="Girl" label="Girl"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="boy" label="Boy" checked="true"></form:radiobutton>
+                    <form:radiobutton path="sexe" value="girl" label="Girl"></form:radiobutton>
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary"><spring:message code="submit"/></button>
             </form:form>
         </div>
     </div>

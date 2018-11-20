@@ -24,11 +24,11 @@
                         <c:forEach items="${pizzas}" var="pizza">
                             <div class="card-deck">
                                 <div class="card mb-3 mr-5 bg-warning" style="max-width: 18rem; max-height: 350px;">
-                                    <div class="card-header"><spring:message code="${pizza.nom}"/></div>
+                                    <div class="card-header"><spring:message code="${pizza.getNom().replace(\" \", \"\").replace(\"é\",\"e\").toLowerCase()}"/></div>
                                     <div class="card-body">
                                         <h5 class="card-title"><spring:message code="Description"/></h5>
                                         <div class="card-text">
-                                            <p>${pizza.description}</p>
+                                            <%--<spring:message code="${pizza.description.trim()}"></spring:message>--%>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="row mt-4">
-            <a href="${pageContext.request.contextPath}/pizzaCustom" class ="btn btn-success btn-sm mr-1">Custom Pizza</a>
+            <a href="${pageContext.request.contextPath}/pizzaCustom" class ="btn btn-success btn-sm mr-1"><spring:message code="pizzacustom"/></a>
         </div>
     </body>
 </html>

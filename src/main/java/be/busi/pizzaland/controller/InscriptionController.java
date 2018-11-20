@@ -61,17 +61,6 @@ public class InscriptionController {
         }
 
         if(errors.hasErrors()){
-            /*try{
-                validatorService.validationNom(user.getUsername());
-            }catch (Exception e){
-                erreurs.put("username", e.getMessage());
-            }
-            try{
-                validatorService.validationEmail(user.getEmail());
-            }catch (Exception e) {
-                erreurs.put("email", e.getMessage());
-            }
-            model.addAttribute("erreurs",erreurs);*/
             return "integrated:inscriptionUser";
         }
 
