@@ -56,4 +56,11 @@ public class IngredientDAO {
                           .map(ingredientEntity -> providerConverter.ingredientEntityToIngredient(ingredientEntity))
                           .collect(Collectors.toList());
     }
+
+    public Ingredient save(Ingredient ingredient) {
+
+        IngredientEntity ingredientEntity = providerConverter.ingredientToIngredientEntity(ingredient);
+
+        return providerConverter.ingredientEntityToIngredient(ingredientRepository.save(ingredientEntity));
+    }
 }

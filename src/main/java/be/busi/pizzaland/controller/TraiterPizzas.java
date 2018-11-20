@@ -104,8 +104,6 @@ public class TraiterPizzas {
             return "redirect:/affciherPizzas";
         }
 
-        System.out.println(ingredients);
-
         return "redirect:/panier";
     }
 
