@@ -49,4 +49,13 @@ public class Ingredient {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", stock=" + stock +
+                '}';
+    }
 }

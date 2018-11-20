@@ -2,8 +2,10 @@ package be.busi.pizzaland.controller;
 
 
 import be.busi.pizzaland.Service.PanierService;
+import be.busi.pizzaland.dataAccess.dao.IngredientDAO;
 import be.busi.pizzaland.dataAccess.dao.PizzaDAO;
 import be.busi.pizzaland.model.Constants;
+import be.busi.pizzaland.model.Ingredient;
 import be.busi.pizzaland.model.Panier;
 import be.busi.pizzaland.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/traiter")
@@ -23,17 +28,24 @@ public class TraiterPizzas {
     @Autowired
     private PizzaDAO pizzaDAO;
 
+    @Autowired
+    private IngredientDAO ingredientDAO;
+
     @ModelAttribute(Constants.PANIER)
     public Panier panier(){
         return new Panier();
     }
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(@RequestParam(name = "nomPizza", required = false, defaultValue = "world")String nomPizza,
                        Model model,
                        @ModelAttribute(value= Constants.PANIER) Panier panier, BindingResult errors)  {
 
+
         Pizza pizza = pizzaDAO.getPizzaByNom(nomPizza);
+
+        //
 
         if(pizza != null) {
             panier.addPizza(pizza, 1);

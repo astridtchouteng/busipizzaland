@@ -10,4 +10,4 @@ spring:
   jpa:
     database: POSTGRESQL
     generate-ddl: true
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
