@@ -50,7 +50,7 @@ public class HomeController {
                                   BindingResult errors,
                                   @ModelAttribute("commande") LigneCommande ligneCommande)  {
         if(errors.hasErrors()){
-            return "redirect:/affciherPizzas";
+            return "redirect:/afficherPizzas";
         }
 
         return "redirect:/welcome";
