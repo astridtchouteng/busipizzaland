@@ -76,30 +76,35 @@ public class PizzalandApplication {
 
             PizzaEntity pizzaEntity = new PizzaEntity();
             pizzaEntity.setCategorie(categorieEntity2);
-            pizzaEntity.setDescription("La pizza hawaïenne est une variété de pizza qui se compose généralement de fromage et d'une base de tomate avec des morceaux de jambon et d'ananas");
+            //pizzaEntity.setDescription("La pizza hawaïenne est une variété de pizza qui se compose généralement de fromage et d'une base de tomate avec des morceaux de jambon et d'ananas");
+            pizzaEntity.setDescription("fromage, tomate, jambon, ananas, ognon");
             pizzaEntity.setNom("Pizza Hawaienne");
             pizzaEntity.setPrix(12.5);
 
             PizzaEntity pizzaEntity1 = new PizzaEntity();
             pizzaEntity1.setCategorie(categorieEntity2);
             pizzaEntity1.setNom("Pizza Maurice");
+            pizzaEntity1.setDescription("fromage, tomate, jambon, ananas, champignon");
             pizzaEntity1.setPrix(6);
 
             PizzaEntity pizzaEntity2 = new PizzaEntity();
             pizzaEntity2.setCategorie(categorieEntity);
             pizzaEntity2.setNom("Légumes de l'été");
+            pizzaEntity2.setDescription("fromage, ognon, tomate, aubergine");
             pizzaEntity2.setPrix(7.5);
 
             PizzaEntity pizzaEntity3 = new PizzaEntity();
             pizzaEntity3.setNom("Roulée aux légumes");
             pizzaEntity3.setCategorie(categorieEntity);
             pizzaEntity3.setPrix(8);
+            pizzaEntity3.setDescription("fromage, ognon, tomate, aubergine, courgette, olive");
 
 
             PizzaEntity pizzaEntity4 = new PizzaEntity();
             pizzaEntity4.setNom("Quatres fromages");
             pizzaEntity4.setCategorie(categorieEntity1);
             pizzaEntity4.setPrix(9);
+            pizzaEntity4.setDescription("fromage, cheddar, emmental, cammenber");
 
 
             pizzaRepository.save(pizzaEntity);
